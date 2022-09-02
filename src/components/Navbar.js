@@ -74,7 +74,7 @@ const Navbar = () => {
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>OZU.</Logo>
+          <Logo>tHE/vOID.</Logo>
         </Center>
         <Right>
           <MenuItem>SIGN UP</MenuItem>
