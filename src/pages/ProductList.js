@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import Announcement from "../components/Announcement";
+import Navbar from "../components/Navbar";
+import Products from "../components/Products";
 
 const Container = styled.div``;
 
@@ -13,7 +16,13 @@ const FilterText = styled.span``;
 const Select = styled.select``;
 
 const ProductList = () => {
-  return <Container></Container>;
+  return (<Container>
+    <Title></Title>
+    <FilterContainer>
+      <Filter></Filter>
+      <FilterText></FilterText>
+    </FilterContainer>
+  </Container>);
 };
 
 export default ProductList;
