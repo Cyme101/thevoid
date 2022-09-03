@@ -4,7 +4,7 @@ export const sliderItems = [
     img: "https://i.ibb.co/stTBjZH/kaia.png",
     title: "END OF SUMMER SALE",
     desc: "UP TO 50% OFF ON ALL YVES ST-LAURENT LEATHER JACKETS",
-    bg: "f7ede2",
+    bg: "e2e2df",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ export const sliderItems = [
     img: "https://i.ibb.co/MswZBjt/bless-the-youth.png",
     title: "COSTALAMEL",
     desc: "SHOP 90s STYLES",
-    bg: "edf6f9",
+    bg: "e5dcde",
   },
 ];
 
@@ -36,6 +36,45 @@ export const categories = [
   {
     id: 3,
     img: "https://bit.ly/3q9CV0u",
-    title: "JEANS JEANS JEANS",
+    title: "JEANS ON JEANS",
   },
 ];
+
+export const popularProducts = [
+  {
+    id:1,
+    img:"https://bit.ly/3KHLd9e",
+  },
+  {
+    id:2,
+    img:"https://bit.ly/3wVsO2S",
+  },
+  {
+    id:3,
+    img:"https://bit.ly/3RBYLoK",
+  },
+  {
+    id:4,
+    img:"https://bit.ly/3D0MAhz",
+  },
+  {
+    id:5,
+    img:"https://bit.ly/3TIb4So",
+  },
+  {
+    id:6,
+    img:"https://bit.ly/3CV8YbS",
+  },
+  {
+    id:7,
+    img:"https://bit.ly/3KK1Pgs",
+  },
+  {
+    id:8,
+    img:"https://bit.ly/3AOkOC8",
+  },
+  {
+    id:9,
+    img:"https://bit.ly/3cEU4Ms",
+  },
+]

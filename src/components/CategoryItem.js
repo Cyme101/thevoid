@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Container = styled.div`
   flex: 1;
   height: 70vh;
-  margin: 4px;
+  margin: 3px;
   position: relative;
 `;
 
@@ -16,6 +16,7 @@ const Image = styled.img`
 const Info = styled.div`
   align-items: center;
   display: flex;
+  flex-direction: column;
   left: 0;
   height: 100%;
   justify-content: center;
@@ -24,9 +25,19 @@ const Info = styled.div`
   width: 100%;
 `;
 
-const Title = styled.div``;
+const Title = styled.h1`
+  color: white;
+  margin-bottom: 20px;
+`;
 
-const Button = styled.button``;
+const Button = styled.button`
+  background-color: white;
+  border: none;
+  color: gray;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 10px;
+`;
 
 const CategoryItem = ({ item }) => {
   return (
@@ -34,7 +45,7 @@ const CategoryItem = ({ item }) => {
       <Image src={item.img} />
       <Info>
         <Title>{item.title}</Title>
-        <Button>SHOP HERE!</Button>
+        <Button>SHOP HERE</Button>
       </Info>
     </Container>
   );
