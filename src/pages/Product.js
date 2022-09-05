@@ -40,8 +40,9 @@ const Product = () => {
       <Navbar />
       <Announcement />
       <Wrapper>
-        <ImgContainer></ImgContainer>
-        <Image></Image>
+        <ImgContainer>
+          <Image src="" />
+        </ImgContainer>
         <InfoContainer>
           <Title></Title>
           <Desc></Desc>
@@ -49,6 +50,20 @@ const Product = () => {
           <FilterContainer>
             <Filter>
               <FilterTitle></FilterTitle>
+              <FilterColor></FilterColor>
+              <FilterColor></FilterColor>
+              <FilterColor></FilterColor>
+              <FilterColor></FilterColor>
+            </Filter>
+            <Filter>
+              <FilterTitle></FilterTitle>
+              <FilterSize>
+                <FilterSizeOption></FilterSizeOption>
+                <FilterSizeOption></FilterSizeOption>
+                <FilterSizeOption></FilterSizeOption>
+                <FilterSizeOption></FilterSizeOption>
+                <FilterSizeOption></FilterSizeOption>
+              </FilterSize>
             </Filter>
           </FilterContainer>
           <Button>ADD TO CART</Button>

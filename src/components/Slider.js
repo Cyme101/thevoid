@@ -54,12 +54,13 @@ const ImgContainer = styled.div`
 
 const Image = styled.img`
   height: 100%;
-  margin-left: 200px;
+  margin-left: 80px;
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
-  padding: 40px;
+  margin-right: 125px;
+  padding: 20px;
 `;
 
 const Title = styled.h1`
@@ -67,7 +68,7 @@ const Title = styled.h1`
 `;
 
 const Desc = styled.p`
-  margin: 50px 0px;
+  margin: 40px 0px;
   font-size: 24px;
   font-weight: 500;
   letter-spacing: 1px;

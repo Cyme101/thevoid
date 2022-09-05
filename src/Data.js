@@ -42,39 +42,36 @@ export const categories = [
 
 export const popularProducts = [
   {
-    id:1,
-    img:"https://bit.ly/3KHLd9e",
+    id: 1,
+    img: "https://i.ibb.co/rfhzhpP/photo-1619521440807-ba72afd67b12-removebg-preview.png",
   },
   {
-    id:2,
-    img:"https://bit.ly/3wVsO2S",
+    id: 2,
+    img: "https://i.ibb.co/CV8bSjV/Bomber-Jacket-Transparent-Images.png",
   },
   {
-    id:3,
-    img:"https://bit.ly/3RBYLoK",
+    id: 3,
+    img: "https://i.ibb.co/WgqVK33/Jeans-PNG-Image-Transparent-Background.png",
+    width: "250",
   },
   {
-    id:4,
-    img:"https://bit.ly/3D0MAhz",
+    id: 4,
+    img: "https://i.ibb.co/jWshXS3/Balenciaga-Logo-PNG-Image-Background.png",
   },
   {
-    id:5,
-    img:"https://bit.ly/3TIb4So",
+    id: 5,
+    img: "https://i.ibb.co/M7DBrGp/Plaid-Skirt-PNG-Photo.png",
   },
   {
-    id:6,
-    img:"https://bit.ly/3CV8YbS",
+    id: 6,
+    img: "https://i.ibb.co/RcPfqtj/Motorcycle-Leather-Jacket-PNG-Image-Background.png",
   },
   {
-    id:7,
-    img:"https://bit.ly/3KK1Pgs",
+    id: 7,
+    img: "https://i.ibb.co/HCD6qvy/photo-1584735174914-6b1272458e3e-removebg-preview.png",
   },
   {
-    id:8,
-    img:"https://bit.ly/3AOkOC8",
+    id: 8,
+    img: "https://i.ibb.co/xYrsqC9/Obey-Cap-PNG-Transparent-Image.png",
   },
-  {
-    id:9,
-    img:"https://bit.ly/3cEU4Ms",
-  },
-]
+];
