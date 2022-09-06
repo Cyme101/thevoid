@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Products from "../components/Products";
+import Newsletter from "../components/Newsletter";
+import Footer from "../components/Footer";
 
 const Container = styled.div``;
 
@@ -36,38 +38,44 @@ const ProductList = () => {
     <Container>
       <Navbar />
       <Announcement />
-      <Title></Title>
+      <Title>Jackets</Title>
       <FilterContainer>
         <Filter>
-          <FilterText></FilterText>
+          <FilterText>Filter Products:</FilterText>
           <Select>
-            <Option disabled selected></Option>
-            <Option></Option>
-            <Option></Option>
-            <Option></Option>
-            <Option></Option>
-            <Option></Option>
+            <Option disabled selected>
+              Color
+            </Option>
+            <Option>Black</Option>
+            <Option>Grey</Option>
+            <Option>Red</Option>
+            <Option>Blue</Option>
+            <Option>Teal</Option>
+            <Option>White</Option>
           </Select>
           <Select>
             <Option disabled selected>
-              <Option></Option>
-              <Option></Option>
-              <Option></Option>
-              <Option></Option>
-              <Option></Option>
+              Size
             </Option>
+            <Option>XS</Option>
+            <Option>S</Option>
+            <Option>M</Option>
+            <Option>L</Option>
+            <Option>XL</Option>
           </Select>
         </Filter>
         <Filter>
-          <FilterText></FilterText>
+          <FilterText>Sort Products:</FilterText>
           <Select>
-            <Option></Option>
-            <Option></Option>
-            <Option></Option>
+            <Option selected>New Arrivals</Option>
+            <Option>Price (low to high)</Option>
+            <Option>Price (high to low)</Option>
           </Select>
         </Filter>
       </FilterContainer>
       <Products />
+      <Newsletter />
+      <Footer />
     </Container>
   );
 };
