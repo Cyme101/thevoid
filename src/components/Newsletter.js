@@ -6,8 +6,8 @@ const Container = styled.div`
   background-color: #f7ede2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   height: 60vh;
+  justify-content: center;
 `;
 
 const Title = styled.h1`
@@ -25,8 +25,8 @@ const InputContainer = styled.div`
   background-color: #f8f9fa;
   border: 1px solid #fbfaf8;
   display: flex;
-  justify-content: space-between;
   height: 40px;
+  justify-content: space-between;
   width: 50%;
 `;
 
