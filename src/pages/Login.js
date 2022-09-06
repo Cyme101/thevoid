@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   align-items: center;
-  background-image: url("https://bit.ly/3D3Yc3c");
+  background-image: url("https://bit.ly/3REAnTv");
   background-position: center no-repeat;
   background-size: cover;
   display: flex;
