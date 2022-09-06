@@ -39,7 +39,7 @@ const Desc = styled.p`
 `;
 
 const Price = styled.span`
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 100;
 `;
 
@@ -61,7 +61,7 @@ const FilterTitle = styled.span`
 `;
 
 const FilterColor = styled.div`
-  background-color: #fcefde;
+  background-color: ${(props) => props.color};
   border-radius: 50%;
   cursor: pointer;
   height: 20px;
@@ -91,7 +91,8 @@ const AmountContainer = styled.div`
 
 const Amount = styled.span`
   align-items: center;
-  border: 1px solid teal;
+  border: 1px solid #044b7f;
+  border-radius: 8px;
   display: flex;
   height: 30px;
   justify-content: center;
@@ -101,7 +102,7 @@ const Amount = styled.span`
 
 const Button = styled.button`
   background-color: white;
-  border: 2px solid teal;
+  border: 2px solid #044b7f;
   cursor: pointer;
   font-weight: 500;
   padding: 15px;
@@ -121,17 +122,20 @@ const Product = () => {
           <Image src="https://i.ibb.co/WgqVK33/Jeans-PNG-Image-Transparent-Background.png" />
         </ImgContainer>
         <InfoContainer>
-          <Title>Ripped Jeans</Title>
+          <Title>Ripped Boyfriend Fit Jeans</Title>
           <Desc>
-            This was a returned item then we decided to make bigger holes in it.
+            This was a returned item then our designers decided to make bigger
+            holes in it. These are designed to fit exactly like those grunge
+            jeans you always dreamed of finding.
+            <br></br>
+            <br></br>
+            Made in U.S.A.
           </Desc>
-          <Price>75.00$</Price>
+          <Price>$75.00 CAD</Price>
           <FilterContainer>
             <Filter>
-              <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="blue" />
-              <FilterColor color="gray" />
+              <FilterTitle>Color:</FilterTitle>
+              <FilterColor color="#7ea8be" />
               <FilterColor />
             </Filter>
             <Filter>
