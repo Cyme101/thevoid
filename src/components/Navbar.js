@@ -8,13 +8,14 @@ import { Search } from "@mui/icons-material";
 
 const Container = styled.div`
   height: 60px;
+  padding-bottom: 15px;
 `;
 
 const Wrapper = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 20px 40px;
+  padding: 20px 20px;
 `;
 
 const Language = styled.span`

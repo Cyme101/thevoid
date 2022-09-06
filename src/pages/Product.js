@@ -7,13 +7,11 @@ import Footer from "../components/Footer";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 
-const Container = styled.div`
-  padding: 20px;
-`;
+const Container = styled.div``;
 
 const Wrapper = styled.div`
   display: flex;
-  padding: 50px;
+  padding: 60px;
 `;
 
 const ImgContainer = styled.div`
@@ -21,7 +19,7 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-  height: 90vh;
+  height: 80vh;
   object-fit: cover;
 `;
 

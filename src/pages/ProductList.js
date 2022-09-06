@@ -36,8 +36,8 @@ const Select = styled.select`
 const ProductList = () => {
   return (
     <Container>
-      <Navbar />
       <Announcement />
+      <Navbar />
       <Title>Jackets</Title>
       <FilterContainer>
         <Filter>
