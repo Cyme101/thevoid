@@ -7,7 +7,7 @@ import Login from "./pages/Login";
 import Bag from "./pages/Bag";
 
 const App = () => {
-  return <Bag />;
+  return <Home />;
 };
 
 export default App;
