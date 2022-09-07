@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   align-items: center;
@@ -17,6 +18,7 @@ const Wrapper = styled.div`
   opacity: 0.9;
   padding: 20px;
   width: 25%;
+  ${mobile({ width: "75%" })}
 `;
 
 const Title = styled.h1`
@@ -27,7 +29,7 @@ const Title = styled.h1`
 
 const Form = styled.form`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 `;
 
 const Input = styled.input`
@@ -45,6 +47,7 @@ const Button = styled.button`
   margin-top: 15px;
   padding: 15px 20px;
   width: 30%;
+  ${mobile({ width: "40%" })}
 `;
 
 const Register = () => {
