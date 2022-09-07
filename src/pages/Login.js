@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { mobile } from "../responsive";
+
 const Container = styled.div`
   align-items: center;
   background-image: url("https://bit.ly/3REAnTv");
@@ -17,6 +19,7 @@ const Wrapper = styled.div`
   opacity: 0.9;
   padding: 30px 20px;
   width: 25%;
+  ${mobile({ width: "75%" })}
 `;
 
 const Title = styled.h1`
@@ -47,6 +50,7 @@ const Button = styled.button`
   margin: 30px 0 10px 0;
   padding: 15px 20px;
   width: 30%;
+  ${mobile({ width: "40%" })}
 `;
 
 const Link = styled.a`
