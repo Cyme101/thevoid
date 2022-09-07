@@ -3,6 +3,7 @@ import styled from "styled-components";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { sliderItems } from "../Data";
+import {mobile} from "../responsive"
 
 const Container = styled.div`
   display: flex;
@@ -11,6 +12,7 @@ const Container = styled.div`
   overflow: hidden;
   position: relative;
   width: 100%;
+  ${mobile({ display: "none" })}
 `;
 
 const Arrow = styled.div`
