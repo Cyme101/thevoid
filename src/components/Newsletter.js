@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Send } from "@mui/icons-material";
+import { mobile } from "../responsive";
+
 
 const Container = styled.div`
   align-items: center;
@@ -8,17 +10,20 @@ const Container = styled.div`
   flex-direction: column;
   height: 60vh;
   justify-content: center;
+  ${mobile({ height: "50vh" })}
 `;
 
 const Title = styled.h1`
   font-size: 70px;
   margin-bottom: 20px;
+  ${mobile({ fontSize: "50px", textAlign: "center" })}
 `;
 
 const Desc = styled.p`
   font-size: 22px;
   font-weight: 300;
   margin-bottom: 20px;
+  ${mobile({ textAlign: "center" })}
 `;
 
 const InputContainer = styled.div`
@@ -28,6 +33,7 @@ const InputContainer = styled.div`
   height: 40px;
   justify-content: space-between;
   width: 50%;
+  ${mobile({ width: "80%" })}
 `;
 
 const Input = styled.input`
