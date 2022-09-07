@@ -35,7 +35,9 @@ const TopButton = styled.button`
   padding: 10px;
 `;
 
-const TopInfo = styled.div``;
+const TopInfo = styled.div`
+  display: flex;
+`;
 
 const TopText = styled.span`
   cursor: pointer;
@@ -43,7 +45,11 @@ const TopText = styled.span`
   text-decoration: underline;
 `;
 
-const TopWishList = styled.div``;
+const TopWishList = styled.div`
+  cursor: pointer;
+  margin: 0px 10px;
+  text-decoration: underline;
+`;
 
 const Bottom = styled.div`
   display: flex;
@@ -119,7 +125,35 @@ const Hr = styled.hr`
 `;
 
 const Summary = styled.div`
+  border: 1px solid gray;
+  border-radius: 10px;
   flex: 1;
+  height: 50vh;
+  padding: 20px;
+`;
+
+const SummaryTitle = styled.h1`
+  font-weight: 300;
+`;
+
+const SummaryItem = styled.div`
+  display: flex;
+  font-size: ${(props) => props.type === "total" && "24px"};
+  font-weight: ${(props) => props.type === "total" && "500"};
+  justify-content: space-between;
+  margin: 20px 0;
+`;
+
+const SummaryItemText = styled.span``;
+
+const SummaryItemPrice = styled.span``;
+
+const Button = styled.button`
+  background-color: black;
+  color: white;
+  font-weight: 500;
+  padding: 10px;
+  width: 100%;
 `;
 
 const Bag = () => {
@@ -133,7 +167,7 @@ const Bag = () => {
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopInfo>
             <TopText>Shopping Bag(3)</TopText>
-            <TopWishList></TopWishList>
+            <TopWishList>Your WishList(0)</TopWishList>
           </TopInfo>
           <TopButton type="filled">CHECKOUT</TopButton>
         </Top>
@@ -144,7 +178,7 @@ const Bag = () => {
                 <Image src="https://i.ibb.co/CV8bSjV/Bomber-Jacket-Transparent-Images.png" />
                 <Details>
                   <ProductName>
-                    <b>PRODUCT:</b> PREPARE FOR WAR BOMBER JACKET
+                    <b>PRODUCT:</b> VENTURER PREPARE FOR WAR BOMBER JACKET
                   </ProductName>
                   <ProductId>
                     <b>ID:</b> RN30004
@@ -194,7 +228,8 @@ const Bag = () => {
                 <Image src="https://i.ibb.co/rfhzhpP/photo-1619521440807-ba72afd67b12-removebg-preview.png" />
                 <Details>
                   <ProductName>
-                    <b>PRODUCT:</b> Converse x Comme des Garçons PLAY Chuck 70 High Top
+                    <b>PRODUCT:</b> Converse x Comme des Garçons PLAY Chuck 70
+                    High Top
                   </ProductName>
                   <ProductId>
                     <b>ID:</b> 16620479x
@@ -217,7 +252,22 @@ const Bag = () => {
             <Hr />
           </ProductInfo>
 
-          <Summary>summary</Summary>
+          <Summary>
+            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+            <SummaryItem>
+              <SummaryItemText>Subtotal</SummaryItemText>
+              <SummaryItemPrice>$474.00 CAD</SummaryItemPrice>
+            </SummaryItem>
+            <SummaryItem>
+              <SummaryItemText>Shipping</SummaryItemText>
+              <SummaryItemPrice>FREE</SummaryItemPrice>
+            </SummaryItem>
+            <SummaryItem type="total">
+              <SummaryItemText>Total</SummaryItemText>
+              <SummaryItemPrice>$474.00 CAD</SummaryItemPrice>
+            </SummaryItem>
+            <Button>CHECKOUT</Button>
+          </Summary>
         </Bottom>
       </Wrapper>
       <Footer />

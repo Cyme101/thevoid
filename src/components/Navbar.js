@@ -81,7 +81,7 @@ const Navbar = () => {
           <MenuItem>SIGN UP</MenuItem>
           <MenuItem>LOG IN</MenuItem>
           <MenuItem>
-            <Badge badgeContent={4} color="info">
+            <Badge badgeContent={3} color="info">
               <ShoppingBagOutlinedIcon style={{ color: 46494, fontSize: 30 }} />
             </Badge>
           </MenuItem>
