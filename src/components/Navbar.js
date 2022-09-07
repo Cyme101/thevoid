@@ -16,6 +16,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
+  margin-top: 10px;
   ${mobile({ padding: "5px 0px", margin: "8px" })}
 `;
 
