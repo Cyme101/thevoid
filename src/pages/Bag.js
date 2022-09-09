@@ -5,11 +5,13 @@ import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { mobile } from "../responsive";
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 20px;
+  ${mobile({ padding: "10px" })}
 `;
 
 const Title = styled.h1`
@@ -37,6 +39,7 @@ const TopButton = styled.button`
 
 const TopInfo = styled.div`
   display: flex;
+  ${mobile({ display: "none" })}
 `;
 
 const TopText = styled.span`
@@ -54,6 +57,7 @@ const TopWishList = styled.div`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
+  ${mobile({ flexDirection: "column" })}
 `;
 
 const ProductInfo = styled.div`
@@ -63,6 +67,7 @@ const ProductInfo = styled.div`
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
+  ${mobile({ flexDirection: "column" })}
 `;
 
 const ProductDetail = styled.div`
@@ -79,17 +84,20 @@ const Details = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  ${mobile({ lineHeight: "1.4" })}
 `;
 
 const ProductName = styled.span``;
 
-const ProductId = styled.span``;
+const ProductId = styled.span`
+`;
 
 const ProductColor = styled.div`
   background-color: ${(props) => props.color};
   border-radius: 50%;
   height: 20px;
   width: 20px;
+  ${mobile({ margin: "12px 0" })}
 `;
 
 const ProductSize = styled.span``;
@@ -111,10 +119,13 @@ const ProductAmountContainer = styled.div`
 const ProductAmount = styled.div`
   font-size: 22px;
   margin: 6px;
+  ${mobile({ margin: "5px 15px" })}
 `;
+
 const ProductPrice = styled.div`
   font-size: 28px;
   font-weight: 300;
+  ${mobile({ marginBottom: "20px" })}
 `;
 
 const Hr = styled.hr`

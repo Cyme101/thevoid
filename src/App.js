@@ -3,11 +3,20 @@ import ProductList from "./pages/ProductList";
 import Product from "./pages/Product";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-
 import Bag from "./pages/Bag";
+import { Route, Routes } from "react-router-dom";
 
 const App = () => {
-  return <Product />;
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/productlist" element={<ProductList />} />
+      <Route path="/product" element={<Product />} />
+      <Route path="/bag" element={<Bag />} />
+    </Routes>
+  );
 };
 
 export default App;
