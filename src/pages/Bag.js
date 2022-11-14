@@ -1,7 +1,6 @@
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
-
+import { Add, Remove } from "@mui/icons-material";
 import styled from "styled-components";
+
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -84,20 +83,17 @@ const Details = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  ${mobile({ lineHeight: "1.4" })}
 `;
 
 const ProductName = styled.span``;
 
-const ProductId = styled.span`
-`;
+const ProductId = styled.span``;
 
 const ProductColor = styled.div`
   background-color: ${(props) => props.color};
   border-radius: 50%;
   height: 20px;
   width: 20px;
-  ${mobile({ margin: "12px 0" })}
 `;
 
 const ProductSize = styled.span``;
@@ -140,11 +136,12 @@ const Summary = styled.div`
   border-radius: 10px;
   flex: 1;
   height: 50vh;
-  padding: 20px;
+  padding: 16px;
 `;
 
 const SummaryTitle = styled.h1`
   font-weight: 300;
+  padding-top: 20px;
 `;
 
 const SummaryItem = styled.div`
@@ -152,7 +149,7 @@ const SummaryItem = styled.div`
   font-size: ${(props) => props.type === "total" && "24px"};
   font-weight: ${(props) => props.type === "total" && "500"};
   justify-content: space-between;
-  margin: 20px 0;
+  margin: 30px 0;
 `;
 
 const SummaryItemText = styled.span``;
@@ -162,7 +159,7 @@ const SummaryItemPrice = styled.span``;
 const Button = styled.button`
   background-color: black;
   color: white;
-  font-weight: 500;
+  font-weight: 600;
   padding: 10px;
   width: 100%;
 `;
@@ -202,9 +199,9 @@ const Bag = () => {
               </ProductDetail>
               <PriceDetail>
                 <ProductAmountContainer>
-                  <AddIcon />
+                  <Add />
                   <ProductAmount>1</ProductAmount>
-                  <RemoveIcon />
+                  <Remove />
                 </ProductAmountContainer>
                 <ProductPrice>$230.00 CAD</ProductPrice>
               </PriceDetail>
@@ -227,9 +224,9 @@ const Bag = () => {
               </ProductDetail>
               <PriceDetail>
                 <ProductAmountContainer>
-                  <AddIcon />
+                  <Add />
                   <ProductAmount>1</ProductAmount>
-                  <RemoveIcon />
+                  <Remove />
                 </ProductAmountContainer>
                 <ProductPrice>$44.00 CAD</ProductPrice>
               </PriceDetail>
@@ -253,9 +250,9 @@ const Bag = () => {
               </ProductDetail>
               <PriceDetail>
                 <ProductAmountContainer>
-                  <AddIcon />
+                  <Add />
                   <ProductAmount>1</ProductAmount>
-                  <RemoveIcon />
+                  <Remove />
                 </ProductAmountContainer>
                 <ProductPrice>$200.00 CAD</ProductPrice>
               </PriceDetail>
