@@ -8,7 +8,6 @@ import { mobile } from "../responsive";
 const Container = styled.div`
   display: flex;
   height: 100vh;
-  margin-top: 10px;
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -22,15 +21,15 @@ const Arrow = styled.div`
   bottom: 0;
   cursor: pointer;
   display: flex;
-  height: 40px;
+  height: 50px;
   justify-content: center;
-  left: ${(props) => props.direction === "left" && "15px"};
-  right: ${(props) => props.direction === "right" && "15px"};
+  left: ${(props) => props.direction === "left" && "10px"};
+  right: ${(props) => props.direction === "right" && "10px"};
   margin: auto;
   opacity: 0.6;
   position: absolute;
   top: 0;
-  width: 40px;
+  width: 50px;
   z-index: 2;
 `;
 
@@ -55,25 +54,23 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-  height: 100%;
-  margin-left: 80px;
+  height: 90%;
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
-  margin-right: 125px;
-  padding: 20px;
+  padding: 10px;
 `;
 
 const Title = styled.h1`
-  font-size: 70px;
+  font-size: 60px;
 `;
 
 const Desc = styled.p`
-  margin: 40px 0px;
+  margin: 50px 0;
   font-size: 24px;
   font-weight: 500;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 `;
 
 const Button = styled.button`
