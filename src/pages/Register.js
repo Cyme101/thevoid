@@ -3,8 +3,11 @@ import { mobile } from "../responsive";
 
 const Container = styled.div`
   align-items: center;
-  background-image: url("https://bit.ly/3D3Yc3c");
-  background-position: center no-repeat;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2)
+    ),
+    url("https://bit.ly/3D3Yc3c") no-repeat center;
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -17,13 +20,14 @@ const Wrapper = styled.div`
   background-color: white;
   opacity: 0.9;
   padding: 20px;
-  width: 25%;
+  width: 40%;
   ${mobile({ width: "75%" })}
 `;
 
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 600;
+  margin-bottom: 10px;
   text-align: center;
 `;
 
@@ -34,7 +38,7 @@ const Form = styled.form`
 
 const Input = styled.input`
   flex: 1;
-  margin: 20px 10px 0 0;
+  margin: 10px 0;
   min-width: 40%;
   padding: 10px;
 `;
@@ -44,10 +48,9 @@ const Button = styled.button`
   border: none;
   color: white;
   cursor: pointer;
-  margin-top: 15px;
-  padding: 15px 20px;
-  width: 30%;
-  ${mobile({ width: "40%" })}
+  margin: 30px 0 10px 0;
+  padding: 15px;
+  width: 40%;
 `;
 
 const Register = () => {
@@ -58,7 +61,6 @@ const Register = () => {
         <Form>
           <Input placeholder="First Name" />
           <Input placeholder="Last Name" />
-          <Input placeholder="Username" />
           <Input placeholder="Email" />
           <Input placeholder="Password" />
           <Input placeholder="Confirm Password" />

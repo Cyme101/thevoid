@@ -1,18 +1,17 @@
 import styled from "styled-components";
+import { Add, Remove } from "@mui/icons-material";
+
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
-
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
 import { mobile } from "../responsive";
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
   display: flex;
-  padding: 60px;
+  padding: 50px;
   ${mobile({ flexDirection: "column", padding: "10px" })}
 `;
 
@@ -24,26 +23,27 @@ const ImgContainer = styled.div`
 const Image = styled.img`
   height: 80vh;
   object-fit: cover;
+  width: 100%;
   ${mobile({ height: "40vh" })}
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
-  padding: 0px 50px;
-  ${mobile({ padding: "15px 10px" })}
+  padding: 10px 50px;
+  ${mobile({ padding: "10px" })}
 `;
 
 const Title = styled.h1`
-  font-weight: 200;
+  font-weight: 300;
 `;
 
 const Desc = styled.p`
-  margin: 20px 0px;
+  margin: 30px 0px;
 `;
 
 const Price = styled.span`
   font-size: 30px;
-  font-weight: 100;
+  font-weight: 200;
 `;
 
 const FilterContainer = styled.div`
@@ -57,6 +57,7 @@ const FilterContainer = styled.div`
 const Filter = styled.div`
   align-items: center;
   display: flex;
+  margin-right: 20px;
 `;
 
 const FilterTitle = styled.span`
@@ -69,12 +70,12 @@ const FilterColor = styled.div`
   border-radius: 50%;
   cursor: pointer;
   height: 20px;
+  margin: 0px 4px;
   width: 20px;
-  margin: 0px 5px;
 `;
 
 const FilterSize = styled.select`
-  margin-left: 10px;
+  margin-left: 8px;
   padding: 5px;
 `;
 
@@ -84,6 +85,7 @@ const AddContainer = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
+  padding: 15px 10px;
   width: 50%;
   ${mobile({ width: "100%" })}
 `;
@@ -139,9 +141,10 @@ const Product = () => {
           <Price>$75.00 CAD</Price>
           <FilterContainer>
             <Filter>
-              <FilterTitle>Color:</FilterTitle>
-              <FilterColor color="#7ea8be" />
-              <FilterColor />
+              <FilterTitle>Color </FilterTitle>
+              <FilterColor color="#6F8FAF" />
+              <FilterColor color="#090909" />
+              <FilterColor color="#5dadec" />
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>
@@ -156,9 +159,9 @@ const Product = () => {
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <RemoveIcon />
+              <Remove />
               <Amount>1</Amount>
-              <AddIcon />
+              <Add />
             </AmountContainer>
             <Button>ADD TO BAG</Button>
           </AddContainer>

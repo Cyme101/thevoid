@@ -10,8 +10,8 @@ const Container = styled.div`
     url("https://bit.ly/3REAnTv") no-repeat center;
   background-size: cover;
   display: flex;
-  justify-content: center;
   height: 100vh;
+  justify-content: center;
   opacity: 0.8;
   width: 100vw;
 `;
@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   background-color: white;
   opacity: 0.9;
   padding: 20px;
-  width: 25%;
+  width: 40%;
   ${mobile({ width: "75%" })}
 `;
 
@@ -71,7 +71,7 @@ const Login = () => {
       <Wrapper>
         <Title>LOGIN</Title>
         <Form>
-          <Input placeholder="Username" />
+          <Input placeholder="Email" />
           <Input placeholder="Password" />
           <Link>Forgot your password?</Link>
           <Button>SIGN IN</Button>
