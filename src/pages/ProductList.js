@@ -18,7 +18,7 @@ const FilterContainer = styled.div`
 `;
 
 const Filter = styled.div`
-  margin: 20px;
+  margin: 15px;
   ${mobile({ width: "0px 20px", display: "flex", flexDirection: "column" })}
 `;
 
@@ -33,15 +33,15 @@ const Option = styled.option``;
 
 const Select = styled.select`
   margin-right: 20px;
-  padding: 10px;
+  padding: 8px;
   ${mobile({ margin: "10px 0px" })}
 `;
 
 const ProductList = () => {
   return (
     <Container>
-      <Announcement />
       <Navbar />
+      <Announcement />
       <Title>Unisex</Title>
       <FilterContainer>
         <Filter>
