@@ -1,23 +1,23 @@
 export const sliderItems = [
   {
     id: 1,
-    img: "https://i.ibb.co/stTBjZH/kaia.png",
-    title: "END OF SUMMER SALE",
-    desc: "UP TO 50% OFF ON ALL YVES ST-LAURENT LEATHER JACKETS",
+    img: "https://i.ibb.co/XVWkYLd/wab-removebg.png",
+    title: "AUTUMN SALE / BEST SELLERS",
+    desc: "UP TO 25% OFF ON SELECTED 90s STYLES.",
     bg: "e2e2df",
   },
   {
     id: 2,
     img: "https://i.ibb.co/yRbTCZy/coat-back-removebg-65kb.png",
-    title: "AUTUMN/WINTER 23",
-    desc: "SHOP MEN'S COLLECTIONS",
+    title: "WINTER/SPRING '23",
+    desc: "SHOP MEN'S AVANT-GARDE COLLECTIONS",
     bg: "f5fafd",
   },
   {
     id: 3,
     img: "https://i.ibb.co/MswZBjt/bless-the-youth.png",
-    title: "COSTALAMEL",
-    desc: "SHOP 90s STYLES",
+    title: "COSTALAMEL from Barcelona",
+    desc: "BACK IN THE 90s STYLE",
     bg: "e5dcde",
   },
 ];
