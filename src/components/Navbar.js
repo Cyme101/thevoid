@@ -5,7 +5,6 @@ import Badge from "@mui/material/Badge";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { Search } from "@mui/icons-material";
 import { mobile } from "../responsive";
-import { tablet } from "../responsive";
 
 const Container = styled.div`
   height: 60px;
@@ -19,14 +18,12 @@ const Wrapper = styled.div`
   padding: 10px 20px;
   margin-top: 10px;
   ${mobile({ padding: "5px 0px", margin: "8px" })}
-
 `;
 
 const Language = styled.span`
   font: 14px;
   cursor: pointer;
   ${mobile({ display: "none" })}
-  ${tablet({ display: "none" })}
 `;
 
 const Left = styled.div`
