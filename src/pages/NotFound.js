@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   align-items: center;
@@ -88,18 +89,14 @@ const Text = styled.h2`
 
 const Button = styled.button`
   background-color: #090909;
-  background-image: none;
   border: 1px solid #090909;
   border-radius: 4px;
-  box-shadow: #fff 4px 4px 0 0,#090909 4px 4px 0 1px;
+  box-shadow: #fff 4px 4px 0 0, #090909 4px 4px 0 1px;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
-  display: inline-block;
-  font-family: Urbanist, Arial, sans-serif;
   font-size: 20px;
-  font-weight: 400;
-  line-height: 20px;
+  font-weight: 600;
   margin: 0 5px 10px 0;
   overflow: visible;
   padding: 12px 40px;
@@ -109,36 +106,17 @@ const Button = styled.button`
   user-select: none;
   -webkit-user-select: none;
   vertical-align: middle;
-  white-space: nowrap;
-}
 
-  &:focus {
-    text-decoration: none;
-  }
-  
-  &:hover {
-    text-decoration: none;
-  }
-
-  &:active {
-    box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
-    outline: 0;
-  }
-
-  @media (min-width: 768px) {
-   .button {
-    padding: 12px 50px;
-    }
-  }
+  ${mobile({ padding: "12px 50px" })}
 `;
 
 const NotFound = () => {
   return (
     <Container>
       <Number>404</Number>
-      <Text>Oh No! I'm sorry! You can't shop here.</Text>
+      <Text>Oh no! I'm sorry! You can't shop here.</Text>
       <Link to="/">
-        <Button>hOME.</Button>
+        <Button>HOME</Button>
       </Link>
     </Container>
   );
