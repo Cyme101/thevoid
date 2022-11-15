@@ -3,7 +3,7 @@ import styled from "styled-components";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { sliderItems } from "../Data";
-import { mobile } from "../responsive";
+import { mobile, tablet } from "../responsive";
 
 const Container = styled.div`
   display: flex;
@@ -55,15 +55,18 @@ const ImgContainer = styled.div`
 
 const Image = styled.img`
   height: 90%;
+  ${tablet({ height: "80%" })}
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 10px;
+  ${tablet({ overflow: "hidden" })}
 `;
 
 const Title = styled.h1`
   font-size: 60px;
+  ${tablet({ fontSize: "50px" })}
 `;
 
 const Desc = styled.p`
@@ -71,6 +74,7 @@ const Desc = styled.p`
   font-size: 24px;
   font-weight: 500;
   letter-spacing: 2px;
+  ${tablet({ fontSize: "20px" })}
 `;
 
 const Button = styled.button`
