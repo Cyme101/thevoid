@@ -8,7 +8,7 @@ import { mobile } from "../responsive";
 
 const Container = styled.div`
   height: 60px;
-  ${mobile({ height: "45px" })}
+  ${mobile({ height: "50px" })}
 `;
 
 const Wrapper = styled.div`
@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   padding: 10px 20px;
   margin-top: 10px;
+  ${mobile({ padding: "10px 0px" })}
 `;
 
 const Language = styled.span`
@@ -41,6 +42,7 @@ const SearchContainer = styled.div`
 
 const Input = styled.input`
   border: none;
+  ${mobile({ width: "50px" })}
 `;
 
 const Center = styled.div`
@@ -50,7 +52,7 @@ const Center = styled.div`
 
 const Logo = styled.h1`
   font-weight: bolder;
-  ${mobile({ fontSize: "26px" })}
+  ${mobile({ fontSize: "24px", marginLeft: "30px" })}
 `;
 
 const Right = styled.div`
@@ -58,13 +60,14 @@ const Right = styled.div`
   display: flex;
   flex: 1;
   justify-content: flex-end;
+  ${mobile({ flex: 2, justifyContent: "center" })}
 `;
 
 const MenuItem = styled.div`
   cursor: pointer;
   font-size: 14px;
   margin-left: 25px;
-  ${mobile({ fontSize: "14px", marginRight: "12px" })}
+  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
 const Navbar = () => {
