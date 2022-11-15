@@ -9,8 +9,8 @@ export const sliderItems = [
   {
     id: 2,
     img: "https://i.ibb.co/yRbTCZy/coat-back-removebg-65kb.png",
-    title: "WINTER/SPRING '23",
-    desc: "SHOP MEN'S AVANT-GARDE COLLECTIONS",
+    title: "AUTUMN / WINTER(AW) '23",
+    desc: "SHOP MEN'S AVANT-GARDE FASHION",
     bg: "f5fafd",
   },
   {

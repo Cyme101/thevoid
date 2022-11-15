@@ -9,11 +9,12 @@ import PlaceIcon from "@mui/icons-material/Place";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import EmailIcon from "@mui/icons-material/Email";
 
-import { mobile } from "../responsive";
+import { mobile, tablet } from "../responsive";
 
 const Container = styled.div`
   display: flex;
   ${mobile({ flexDirection: "column" })}
+  ${tablet({ flexDirection: "column" })}
 `;
 
 const Left = styled.div`

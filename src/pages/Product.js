@@ -5,7 +5,7 @@ import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
-import { mobile } from "../responsive";
+import { mobile, tablet } from "../responsive";
 
 const Container = styled.div``;
 
@@ -13,11 +13,13 @@ const Wrapper = styled.div`
   display: flex;
   padding: 50px;
   ${mobile({ flexDirection: "column", padding: "10px" })}
+  ${tablet({ flexDirection: "column", padding: "10px" })}
 `;
 
 const ImgContainer = styled.div`
   flex: 1;
   ${mobile({ textAlign: "center" })}
+  ${tablet({ textAlign: "center" })}
 `;
 
 const Image = styled.img`
@@ -25,12 +27,14 @@ const Image = styled.img`
   object-fit: cover;
   width: 100%;
   ${mobile({ height: "40vh" })}
+  ${tablet({ height: "40vh" })}
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 10px 50px;
   ${mobile({ padding: "10px" })}
+  ${tablet({ padding: "10px" })}
 `;
 
 const Title = styled.h1`
@@ -52,6 +56,7 @@ const FilterContainer = styled.div`
   margin: 30px 0px;
   width: 50%;
   ${mobile({ width: "100%" })}
+  ${tablet({ width: "100%" })}
 `;
 
 const Filter = styled.div`
@@ -86,8 +91,9 @@ const AddContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 15px 10px;
-  width: 50%;
+  width: 80%;
   ${mobile({ width: "100%" })}
+  ${tablet({ width: "100%" })}
 `;
 
 const AmountContainer = styled.div`
