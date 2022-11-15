@@ -3,15 +3,16 @@ import styled from "styled-components";
 
 const Container = styled.div`
   align-items: center;
-  background-color: #02223c;
+  background-color: #faf9f6;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   height: 100vh;
   width: 100vw;
 `;
 
-const Error = styled.h1`
-  color: red;
+const Number = styled.h1`
+  color: #02223c;
   font-size: 60px;
   text-align: center;
   animation: glitch 1s linear infinite;
@@ -79,24 +80,66 @@ const Error = styled.h1`
 `;
 
 const Text = styled.h2`
-  color: grey;
-  font-size: 30px;
+  color: #090909;
+  font-size: 24px;
+  margin: 32px 0;
+  text-align: center;
 `;
 
 const Button = styled.button`
+  background-color: #090909;
+  background-image: none;
+  border: 1px solid #090909;
+  border-radius: 4px;
+  box-shadow: #fff 4px 4px 0 0,#090909 4px 4px 0 1px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Urbanist, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 12px 40px;
+  text-align: center;
+  text-transform: none;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
 
-`
+  &:focus {
+    text-decoration: none;
+  }
+  
+  &:hover {
+    text-decoration: none;
+  }
+
+  &:active {
+    box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+    outline: 0;
+  }
+
+  @media (min-width: 768px) {
+   .button {
+    padding: 12px 50px;
+    }
+  }
+`;
 
 const NotFound = () => {
   return (
     <Container>
-      <Error>
-        <h1>404</h1>
-        <Text>Oh No! I'm sorry! You can't shop here.</Text>
-      </Error>
+      <Number>404</Number>
+      <Text>Oh No! I'm sorry! You can't shop here.</Text>
       <Link to="/">
         <Button>hOME.</Button>
-        </Link>
+      </Link>
     </Container>
   );
 };
