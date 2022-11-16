@@ -12,76 +12,66 @@ const Container = styled.div`
   width: 100vw;
 `;
 
-const Number = styled.h1`
-  color: #02223c;
-  font-size: 60px;
-  text-align: center;
-  animation: glitch 1s linear infinite;
+const NumberGlitch = styled.h1`
+  font-size: 5rem;
+  text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+    0.025em 0.04em 0 #fffc00;
+  animation: glitch 725ms infinite;
 
-  @keyframes glitch {
-    2%,
-    64% {
-      transform: translate(2px, 0) skew(0deg);
-    }
-    4%,
-    60% {
-      transform: translate(-2px, 0) skew(0deg);
-    }
-    62% {
-      transform: translate(0, 0) skew(5deg);
-    }
-  }
-
-  div:before,
-  div:after {
-    content: attr(title);
+  .glitch span {
     position: absolute;
+    top: 0;
     left: 0;
   }
 
-  div:before {
-    animation: glitchTop 1s linear infinite;
-    clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+  .glitch span:first-child {
+    animation: glitch 500ms infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    transform: translate(-0.04em, -0.03em);
+    opacity: 0.75;
   }
 
-  @keyframes glitchTop {
-    2%,
-    64% {
-      transform: translate(2px, -2px);
-    }
-    4%,
-    60% {
-      transform: translate(-2px, 2px);
-    }
-    62% {
-      transform: translate(13px, -1px) skew(-13deg);
-    }
+  .glitch span:last-child {
+    animation: glitch 375ms infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    transform: translate(0.04em, 0.03em);
+    opacity: 0.75;
   }
 
-  div:after {
-    animation: glitchBotom 1.5s linear infinite;
-    clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
-    -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
-  }
-
-  @keyframes glitchBotom {
-    2%,
-    64% {
-      transform: translate(-2px, 0);
+  @keyframes glitch {
+    0% {
+      text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+        0.025em 0.04em 0 #fffc00;
     }
-    4%,
-    60% {
-      transform: translate(-2px, 0);
+    15% {
+      text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+        0.025em 0.04em 0 #fffc00;
     }
-    62% {
-      transform: translate(-22px, 5px) skew(21deg);
+    16% {
+      text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+        -0.05em -0.05em 0 #fffc00;
+    }
+    49% {
+      text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+        -0.05em -0.05em 0 #fffc00;
+    }
+    50% {
+      text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+        0 -0.04em 0 #fffc00;
+    }
+    99% {
+      text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+        0 -0.04em 0 #fffc00;
+    }
+    100% {
+      text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff,
+        -0.04em -0.025em 0 #fffc00;
     }
   }
 `;
 
 const Text = styled.h2`
-  color: #090909;
+  color: #0188d1;
   font-size: 24px;
   margin: 32px 0;
   text-align: center;
@@ -113,7 +103,9 @@ const Button = styled.button`
 const NotFound = () => {
   return (
     <Container>
-      <Number>404</Number>
+      <NumberGlitch>
+        <span aria-hidden="true">404</span>
+      </NumberGlitch>
       <Text>Oh no! I'm sorry! You can't shop here.</Text>
       <Link to="/">
         <Button>HOME</Button>
