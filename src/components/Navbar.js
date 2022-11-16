@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import Badge from "@mui/material/Badge";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
@@ -64,6 +65,7 @@ const Right = styled.div`
 `;
 
 const MenuItem = styled.div`
+  color: #090909;
   cursor: pointer;
   font-size: 14px;
   margin-left: 25px;
@@ -85,8 +87,12 @@ const Navbar = () => {
           <Logo>tHE/vOID.</Logo>
         </Center>
         <Right>
-          <MenuItem>SIGN UP</MenuItem>
-          <MenuItem>LOG IN</MenuItem>
+          <Link to="/register" style={{ textDecoration: "none" }}>
+            <MenuItem>SIGN UP</MenuItem>
+          </Link>
+          <Link to="login" style={{ textDecoration: "none" }}>
+            <MenuItem>LOG IN</MenuItem>
+          </Link>
           <MenuItem>
             <Badge badgeContent={3} color="info">
               <ShoppingBagOutlinedIcon style={{ color: 46494, fontSize: 30 }} />
