@@ -93,11 +93,15 @@ const Navbar = () => {
           <Link to="login" style={{ textDecoration: "none" }}>
             <MenuItem>LOG IN</MenuItem>
           </Link>
-          <MenuItem>
-            <Badge badgeContent={3} color="info">
-              <ShoppingBagOutlinedIcon style={{ color: 46494, fontSize: 30 }} />
-            </Badge>
-          </MenuItem>
+          <Link to="/bag">
+            <MenuItem>
+              <Badge badgeContent={3} color="info">
+                <ShoppingBagOutlinedIcon
+                  style={{ color: 46494, fontSize: 30 }}
+                />
+              </Badge>
+            </MenuItem>
+          </Link>
         </Right>
       </Wrapper>
     </Container>

@@ -47,5 +47,8 @@
   },
   "resolutions": {
     "styled-components": "^5"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
