@@ -1,6 +1,5 @@
 import { Add, Remove } from "@mui/icons-material";
 import styled from "styled-components";
-
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -24,6 +23,7 @@ const Top = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 30px;
+  ${mobile({ padding: "20px" })}
 `;
 
 const TopButton = styled.button`

@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import Announcement from "../components/Announcement";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Container = styled.div`
   align-items: center;
@@ -67,18 +70,23 @@ const Link = styled.a`
 
 const Login = () => {
   return (
-    <Container>
-      <Wrapper>
-        <Title>LOGIN</Title>
-        <Form>
-          <Input placeholder="Email" />
-          <Input placeholder="Password" />
-          <Link>Forgot your password?</Link>
-          <Button>SIGN IN</Button>
-          <Link>Create account</Link>
-        </Form>
-      </Wrapper>
-    </Container>
+    <>
+      <Navbar />
+      <Announcement />
+      <Container>
+        <Wrapper>
+          <Title>LOGIN</Title>
+          <Form>
+            <Input placeholder="Email" />
+            <Input placeholder="Password" />
+            <Link>Forgot your password?</Link>
+            <Button>SIGN IN</Button>
+            <Link>Create account</Link>
+          </Form>
+        </Wrapper>
+      </Container>
+      <Footer />
+    </>
   );
 };
 

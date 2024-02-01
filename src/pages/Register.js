@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import Navbar from "../components/Navbar";
+import Announcement from "../components/Announcement";
+import Footer from "../components/Footer";
 
 const Container = styled.div`
   align-items: center;
@@ -55,19 +58,24 @@ const Button = styled.button`
 
 const Register = () => {
   return (
-    <Container>
-      <Wrapper>
-        <Title>CREATE ACCOUNT</Title>
-        <Form>
-          <Input placeholder="First Name" />
-          <Input placeholder="Last Name" />
-          <Input placeholder="Email" />
-          <Input placeholder="Password" />
-          <Input placeholder="Confirm Password" />
-          <Button>CREATE</Button>
-        </Form>
-      </Wrapper>
-    </Container>
+    <>
+      <Navbar />
+      <Announcement />
+      <Container>
+        <Wrapper>
+          <Title>CREATE ACCOUNT</Title>
+          <Form>
+            <Input placeholder="First Name" />
+            <Input placeholder="Last Name" />
+            <Input placeholder="Email" />
+            <Input placeholder="Password" />
+            <Input placeholder="Confirm Password" />
+            <Button>CREATE</Button>
+          </Form>
+        </Wrapper>
+      </Container>
+      <Footer />
+    </>
   );
 };
 
