@@ -90,7 +90,7 @@ const Navbar = () => {
           <Link to="/register" style={{ textDecoration: "none" }}>
             <MenuItem>SIGN UP</MenuItem>
           </Link>
-          <Link to="login" style={{ textDecoration: "none" }}>
+          <Link to="/login" style={{ textDecoration: "none" }}>
             <MenuItem>LOG IN</MenuItem>
           </Link>
           <Link to="/bag">
