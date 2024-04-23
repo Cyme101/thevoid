@@ -49,6 +49,6 @@
     "styled-components": "^5"
   },
   "devDependencies": {
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^5.0.0"
   }
 }
