@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { colors } from "../theme";
 
 const Container = styled.div`
   align-items: center;
-  background-color: #02223c;
+  background-color: ${colors.navy};
   color: white;
   display: flex;
   font-size: 16px;

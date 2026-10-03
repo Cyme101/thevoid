@@ -18,6 +18,7 @@ import {
   prefersReducedMotion,
 } from "../gsap";
 import { ButtonLink } from "./Button";
+import { colors } from "../theme";
 
 const AUTOPLAY_SECONDS = 6;
 
@@ -150,7 +151,7 @@ const Controls = styled.div`
 
 const Dot = styled.button`
   background-color: ${(props) =>
-    props["aria-current"] ? "#090909" : "rgba(9, 9, 9, 0.25)"};
+    props["aria-current"] ? colors.ink : "rgba(9, 9, 9, 0.25)"};
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -165,7 +166,7 @@ const Dot = styled.button`
 const PlayButton = styled.button`
   background: none;
   border: none;
-  color: #090909;
+  color: ${colors.ink};
   cursor: pointer;
   display: flex;
   margin-left: 6px;

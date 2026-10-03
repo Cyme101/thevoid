@@ -11,6 +11,7 @@ import { useCart } from "../cart";
 import { useWishlist } from "../wishlist";
 import { formatPrice } from "../price";
 import { mobile } from "../responsive";
+import { colors } from "../theme";
 
 const Circle = styled.div`
   aspect-ratio: 1;
@@ -32,7 +33,7 @@ const Image = styled(Picture)`
 // Slides up from the bottom of the image on hover; always shown on touch.
 const QuickAdd = styled.button`
   align-items: center;
-  background-color: #090909;
+  background-color: ${colors.ink};
   border: none;
   bottom: 0;
   color: white;
@@ -54,7 +55,7 @@ const QuickAdd = styled.button`
   z-index: 2;
 
   &:hover {
-    background-color: #02223c;
+    background-color: ${colors.navy};
   }
 
   &:focus-visible {
@@ -78,7 +79,7 @@ const Wishlist = styled.button`
   background-color: white;
   border: none;
   border-radius: 50%;
-  color: #090909;
+  color: ${colors.ink};
   cursor: pointer;
   display: flex;
   opacity: ${(props) => (props["aria-pressed"] ? 1 : 0)};
@@ -112,7 +113,7 @@ const Wishlist = styled.button`
 const ImagePanel = styled.div`
   align-items: center;
   aspect-ratio: 4 / 5;
-  background-color: #f5fbfc;
+  background-color: ${colors.surface};
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -122,7 +123,7 @@ const ImagePanel = styled.div`
 const Name = styled(Link)`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  color: #090909;
+  color: ${colors.ink};
   display: -webkit-box;
   font-size: 15px;
   font-weight: 500;
@@ -174,7 +175,7 @@ const Swatch = styled.span`
 `;
 
 const Card = styled.article`
-  border: 1px solid #e6eaee;
+  border: 1px solid ${colors.border};
   display: flex;
   flex-direction: column;
   padding-bottom: 14px;
@@ -185,7 +186,7 @@ const Card = styled.article`
   ${mobile({ paddingBottom: "10px" })}
 
   &:hover {
-    border-color: #cfd6dc;
+    border-color: ${colors.borderStrong};
     box-shadow: 0 8px 24px rgba(9, 9, 9, 0.06);
   }
 
@@ -206,7 +207,7 @@ const Card = styled.article`
   }
 
   &:has(${Name}:focus-visible) {
-    outline: 2px solid #044b7f;
+    outline: 2px solid ${colors.brand};
     outline-offset: 4px;
   }
 `;

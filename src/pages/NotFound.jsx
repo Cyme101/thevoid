@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { colors } from "../theme";
 
 const Container = styled.div`
   align-items: center;
@@ -96,12 +97,12 @@ const Text = styled.h2`
 const Button = styled(Link)`
   display: inline-block;
   text-decoration: none;
-  background-color: #090909;
-  border: 1px solid #090909;
+  background-color: ${colors.ink};
+  border: 1px solid ${colors.ink};
   border-radius: 4px;
   box-shadow:
     #fff 4px 4px 0 0,
-    #090909 4px 4px 0 1px;
+    ${colors.ink} 4px 4px 0 1px;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;

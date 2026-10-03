@@ -21,6 +21,7 @@ import { useCart } from "../cart";
 import { useWishlist } from "../wishlist";
 import { formatPrice } from "../price";
 import Button from "../components/Button";
+import { colors } from "../theme";
 
 const Container = styled.div``;
 
@@ -34,7 +35,7 @@ const Wrapper = styled.div`
 // Light panel (same as the product cards) with the whole product centered.
 const ImgContainer = styled.div`
   align-items: center;
-  background-color: #f5fbfc;
+  background-color: ${colors.surface};
   box-sizing: border-box;
   display: flex;
   flex: 1;
@@ -98,7 +99,9 @@ const FilterColor = styled.button`
   border: none;
   border-radius: 50%;
   box-shadow: ${(props) =>
-    props["aria-pressed"] ? "0 0 0 2px white, 0 0 0 4px #044b7f" : "none"};
+    props["aria-pressed"]
+      ? `0 0 0 2px white, 0 0 0 4px ${colors.brand}`
+      : "none"};
   cursor: pointer;
   height: 20px;
   margin: 0px 4px;
@@ -144,7 +147,7 @@ const QuantityButton = styled.button`
 
 const Amount = styled.span`
   align-items: center;
-  border: 1px solid #044b7f;
+  border: 1px solid ${colors.brand};
   border-radius: 8px;
   display: flex;
   height: 30px;

@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { Send } from "@mui/icons-material";
 import { mobile } from "../responsive";
+import { colors } from "../theme";
 
 const Container = styled.div`
   align-items: center;
-  background-color: #f7ede2;
+  background-color: ${colors.cream};
   display: flex;
   flex-direction: column;
   height: 60vh;
@@ -44,7 +45,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  background-color: #02223c;
+  background-color: ${colors.navy};
   border: none;
   color: white;
   cursor: pointer;

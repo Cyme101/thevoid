@@ -8,6 +8,7 @@ import Picture from "../components/Picture";
 import { mobile, tablet } from "../responsive";
 import { useScrollReveal } from "../gsap";
 import { ButtonLink } from "../components/Button";
+import { colors } from "../theme";
 
 const Hero = styled.section`
   align-items: center;
@@ -55,7 +56,7 @@ const Lead = styled.p`
 `;
 
 const Steps = styled.section`
-  background-color: #f5fbfc;
+  background-color: ${colors.surface};
   display: grid;
   gap: 40px;
   grid-template-columns: repeat(3, 1fr);
@@ -65,7 +66,7 @@ const Steps = styled.section`
 `;
 
 const Step = styled.div`
-  border-top: 1px solid #090909;
+  border-top: 1px solid ${colors.ink};
   padding-top: 20px;
 `;
 

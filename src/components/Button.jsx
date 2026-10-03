@@ -1,39 +1,40 @@
 import { Link } from "react-router";
 import styled, { css } from "styled-components";
 import { mobile } from "../responsive";
+import { colors } from "../theme";
 
 const variants = {
   // Solid black; navy on hover.
   filled: css`
-    background-color: #090909;
-    border-color: #090909;
+    background-color: ${colors.ink};
+    border-color: ${colors.ink};
     color: white;
 
     &:hover:not(:disabled) {
-      background-color: #02223c;
-      border-color: #02223c;
+      background-color: ${colors.navy};
+      border-color: ${colors.navy};
     }
   `,
   // Black outline that fills black on hover.
   outline: css`
     background-color: transparent;
-    border-color: #090909;
-    color: #090909;
+    border-color: ${colors.ink};
+    color: ${colors.ink};
 
     &:hover:not(:disabled) {
-      background-color: #090909;
+      background-color: ${colors.ink};
       color: white;
     }
   `,
   // Brand blue, used on the account forms.
   accent: css`
-    background-color: #044b7f;
-    border-color: #044b7f;
+    background-color: ${colors.brand};
+    border-color: ${colors.brand};
     color: white;
 
     &:hover:not(:disabled) {
-      background-color: #02223c;
-      border-color: #02223c;
+      background-color: ${colors.navy};
+      border-color: ${colors.navy};
     }
   `,
 };

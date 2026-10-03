@@ -13,6 +13,7 @@ import { cartCount, useCart } from "../cart";
 import { useWishlist } from "../wishlist";
 import { productCategories } from "../Data";
 import { gsap, useGSAP, prefersReducedMotion } from "../gsap";
+import { colors } from "../theme";
 
 const Container = styled.header``;
 
@@ -38,7 +39,7 @@ const Left = styled.div`
 `;
 
 const SearchContainer = styled.form`
-  border: 1px solid #e1e5ee;
+  border: 1px solid ${colors.border};
   align-items: center;
   display: flex;
   margin-left: 24px;
@@ -95,7 +96,7 @@ const Right = styled.div`
 `;
 
 const MenuItem = styled.div`
-  color: #090909;
+  color: ${colors.ink};
   cursor: pointer;
   font-size: 14px;
   margin-left: 25px;
@@ -119,8 +120,8 @@ const BagIcon = styled.span`
 
 // Second row: the shop sections and the about page.
 const ShopNav = styled.nav`
-  border-bottom: 1px solid #eef0f2;
-  border-top: 1px solid #eef0f2;
+  border-bottom: 1px solid ${colors.divider};
+  border-top: 1px solid ${colors.divider};
   display: flex;
   gap: 36px;
   justify-content: center;
@@ -136,7 +137,7 @@ const ShopNav = styled.nav`
 `;
 
 const ShopLink = styled(Link)`
-  color: #090909;
+  color: ${colors.ink};
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 1.5px;
@@ -147,7 +148,7 @@ const ShopLink = styled(Link)`
 
   /* Underline: shown for the current section, slides in on hover */
   &::after {
-    background-color: #090909;
+    background-color: ${colors.ink};
     bottom: 0;
     content: "";
     height: 1px;
@@ -271,7 +272,7 @@ const Navbar = () => {
             <MenuItem>
               <Badge badgeContent={savedCount} color="info">
                 <FavoriteBorderOutlinedIcon
-                  style={{ color: "#090909", fontSize: 28 }}
+                  style={{ color: colors.ink, fontSize: 28 }}
                 />
               </Badge>
             </MenuItem>
@@ -281,7 +282,7 @@ const Navbar = () => {
               <BagIcon ref={bagRef}>
                 <Badge badgeContent={count} color="info">
                   <ShoppingBagOutlinedIcon
-                    style={{ color: "#090909", fontSize: 30 }}
+                    style={{ color: colors.ink, fontSize: 30 }}
                   />
                 </Badge>
               </BagIcon>

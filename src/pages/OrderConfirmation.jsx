@@ -7,6 +7,7 @@ import OrderSummary from "../components/OrderSummary";
 import { findOrder } from "../orders";
 import { mobile, tablet } from "../responsive";
 import { ButtonLink } from "../components/Button";
+import { colors } from "../theme";
 
 const draw = keyframes`
   to { stroke-dashoffset: 0; }
@@ -27,7 +28,7 @@ const Check = styled.svg`
   circle,
   path {
     fill: none;
-    stroke: #090909;
+    stroke: ${colors.ink};
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 2.5;
@@ -77,7 +78,7 @@ const Meta = styled.dl`
   }
 
   dt {
-    color: #6b7075;
+    color: ${colors.muted};
     font-size: 12px;
     letter-spacing: 1.5px;
     margin-bottom: 4px;
@@ -108,7 +109,7 @@ const Column = styled.div`
 `;
 
 const Card = styled.section`
-  border: 1px solid #e6eaee;
+  border: 1px solid ${colors.border};
   padding: 24px;
   ${mobile({ padding: "18px" })}
 
@@ -131,7 +132,7 @@ const Card = styled.section`
   }
 
   ol + p {
-    color: #6b7075;
+    color: ${colors.muted};
     font-size: 14px;
     margin-top: 12px;
   }

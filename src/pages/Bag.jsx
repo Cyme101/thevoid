@@ -18,6 +18,7 @@ import {
 import { formatPrice } from "../price";
 import { useWishlist } from "../wishlist";
 import Button, { ButtonLink } from "../components/Button";
+import { colors } from "../theme";
 
 const Container = styled.div``;
 
@@ -139,7 +140,7 @@ const ProductPrice = styled.div`
 `;
 
 const Hr = styled.hr`
-  background-color: #eee;
+  background-color: ${colors.divider};
   border: none;
   color: gray;
   height: 1px;

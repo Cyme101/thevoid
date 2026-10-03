@@ -9,6 +9,7 @@ import { useCart } from "../cart";
 import { newOrderNumber, saveOrder } from "../orders";
 import { mobile, tablet } from "../responsive";
 import Button, { ButtonLink } from "../components/Button";
+import { colors } from "../theme";
 
 const PROVINCES = [
   "Alberta",
@@ -77,7 +78,7 @@ const Field = styled.label`
 
   input,
   select {
-    border: 1px solid #cfd6dc;
+    border: 1px solid ${colors.borderStrong};
     border-radius: 0;
     font-size: 15px;
     padding: 12px;
@@ -85,25 +86,25 @@ const Field = styled.label`
 
   input:focus,
   select:focus {
-    border-color: #044b7f;
-    outline: 2px solid #044b7f;
+    border-color: ${colors.brand};
+    outline: 2px solid ${colors.brand};
     outline-offset: -1px;
   }
 
   input[readonly] {
     background-color: #f5f6f7;
-    color: #555;
+    color: ${colors.muted};
   }
 `;
 
 const Optional = styled.span`
-  color: #6b7075;
+  color: ${colors.muted};
   font-weight: 300;
 `;
 
 const Notice = styled.p`
-  background-color: #f5fbfc;
-  border-left: 3px solid #044b7f;
+  background-color: ${colors.surface};
+  border-left: 3px solid ${colors.brand};
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 20px;
