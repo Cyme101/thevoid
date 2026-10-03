@@ -1,7 +1,9 @@
+import { useRef } from "react";
 import styled from "styled-components";
 import { categories } from "../Data";
 import CategoryItem from "./CategoryItem";
 import { mobile } from "../responsive";
+import { useScrollReveal } from "../gsap";
 
 const Container = styled.div`
   display: flex;
@@ -11,8 +13,11 @@ const Container = styled.div`
 `;
 
 const Categories = () => {
+  const containerRef = useRef(null);
+  useScrollReveal(containerRef, { y: 60, stagger: 0.15 });
+
   return (
-    <Container>
+    <Container ref={containerRef}>
       {categories.map((item) => (
         <CategoryItem item={item} key={item.id} />
       ))}

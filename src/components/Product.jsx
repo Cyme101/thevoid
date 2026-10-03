@@ -18,9 +18,36 @@ const Info = styled.div`
   left: 0;
   opacity: 0;
   position: absolute;
-  transition: all 1s ease;
+  transition: opacity 0.5s ease;
   width: 100%;
   z-index: 4;
+
+  /* Icons pop in one after another when the overlay appears */
+  & [data-icon] {
+    transform: translateY(12px) scale(0.8);
+    transition:
+      transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+      scale 0.3s ease,
+      background-color 0.3s ease;
+  }
+  & [data-icon]:nth-child(3) {
+    transition-delay: 0.06s;
+  }
+  & [data-icon]:nth-child(4) {
+    transition-delay: 0.12s;
+  }
+
+  /* Touch screens have no hover: keep the icons visible along the bottom */
+  @media (hover: none) {
+    align-items: flex-end;
+    background-color: transparent;
+    opacity: 1;
+    padding-bottom: 8px;
+
+    & [data-icon] {
+      transform: none;
+    }
+  }
 `;
 
 const Container = styled.div`
@@ -36,6 +63,11 @@ const Container = styled.div`
 
   &:hover ${Info}, &:focus-within ${Info} {
     opacity: 1;
+  }
+
+  &:hover ${Info} [data-icon],
+  &:focus-within ${Info} [data-icon] {
+    transform: none;
   }
 `;
 
@@ -71,7 +103,6 @@ const Icon = styled.div`
   height: 40px;
   justify-content: center;
   margin: 10px;
-  transition: all 0.5s ease;
   width: 40px;
 
   &:hover {
@@ -101,15 +132,21 @@ const Product = ({ item }) => {
         <Icon
           as="button"
           type="button"
+          data-icon
           onClick={addToBag}
           aria-label={`Add ${item.name} to bag`}
         >
           <ShoppingCartOutlinedIcon />
         </Icon>
-        <Icon as={Link} to={productPath} aria-label={`View ${item.name}`}>
+        <Icon
+          as={Link}
+          to={productPath}
+          aria-label={`View ${item.name}`}
+          data-icon
+        >
           <SearchOutlinedIcon />
         </Icon>
-        <Icon aria-hidden="true">
+        <Icon aria-hidden="true" data-icon>
           <FavoriteBorderOutlinedIcon />
         </Icon>
       </Info>
