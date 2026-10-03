@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
 import {
@@ -22,6 +22,8 @@ import { useWishlist } from "../wishlist";
 import { formatPrice } from "../price";
 import Button from "../components/Button";
 import { colors } from "../theme";
+import { useFlash } from "../useFlash";
+import QuantityButton from "../components/QuantityButton";
 
 const Container = styled.div``;
 
@@ -131,20 +133,6 @@ const AmountContainer = styled.div`
   font-weight: 700;
 `;
 
-const QuantityButton = styled.button`
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  display: flex;
-  padding: 0;
-
-  &:disabled {
-    cursor: default;
-    opacity: 0.3;
-  }
-`;
-
 const Amount = styled.span`
   align-items: center;
   border: 1px solid ${colors.brand};
@@ -168,18 +156,12 @@ const ProductDetails = ({ product }) => {
   const [color, setColor] = useState(product.colors[0].name);
   const [size, setSize] = useState(product.sizes[0]);
   const [quantity, setQuantity] = useState(1);
-  const [added, setAdded] = useState(false);
-
-  // Show "ADDED" on the button briefly after adding to the bag.
-  useEffect(() => {
-    if (!added) return;
-    const timer = setTimeout(() => setAdded(false), 1500);
-    return () => clearTimeout(timer);
-  }, [added]);
+  // Shows "ADDED ✓" on the button briefly after adding to the bag.
+  const [added, flashAdded] = useFlash();
 
   const addToBag = () => {
     add({ id: product.id, color, size, quantity });
-    setAdded(true);
+    flashAdded();
   };
 
   return (

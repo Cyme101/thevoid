@@ -19,6 +19,7 @@ import { formatPrice } from "../price";
 import { useWishlist } from "../wishlist";
 import Button, { ButtonLink } from "../components/Button";
 import { colors } from "../theme";
+import QuantityButton from "../components/QuantityButton";
 
 const Container = styled.div``;
 
@@ -116,15 +117,6 @@ const ProductAmountContainer = styled.div`
   align-items: center;
   display: flex;
   margin-bottom: 20px;
-`;
-
-const QuantityButton = styled.button`
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  display: flex;
-  padding: 0;
 `;
 
 const ProductAmount = styled.div`

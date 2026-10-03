@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 import { Link } from "react-router";
 import {
@@ -12,6 +11,7 @@ import { useWishlist } from "../wishlist";
 import { formatPrice } from "../price";
 import { mobile } from "../responsive";
 import { colors } from "../theme";
+import { useFlash } from "../useFlash";
 
 const Circle = styled.div`
   aspect-ratio: 1;
@@ -216,14 +216,8 @@ const Product = ({ item }) => {
   const { add } = useCart();
   const wishlist = useWishlist();
   const saved = wishlist.has(item.id);
-  const [added, setAdded] = useState(false);
-
-  // Show "ADDED" on the button briefly after adding to the bag.
-  useEffect(() => {
-    if (!added) return;
-    const timer = setTimeout(() => setAdded(false), 1500);
-    return () => clearTimeout(timer);
-  }, [added]);
+  // Shows "ADDED ✓" on the button briefly after adding to the bag.
+  const [added, flashAdded] = useFlash();
 
   const addToBag = () => {
     add({
@@ -232,7 +226,7 @@ const Product = ({ item }) => {
       size: item.sizes[0],
       quantity: 1,
     });
-    setAdded(true);
+    flashAdded();
   };
 
   return (
