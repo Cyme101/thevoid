@@ -1,144 +1,243 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router";
 import {
   FavoriteBorderOutlined as FavoriteBorderOutlinedIcon,
-  ShoppingCartOutlined as ShoppingCartOutlinedIcon,
+  ShoppingBagOutlined as ShoppingBagOutlinedIcon,
 } from "@mui/icons-material";
 import Picture from "./Picture";
 import { useCart } from "../cart";
+import { formatPrice } from "../price";
+import { mobile } from "../responsive";
 
-const Info = styled.div`
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  display: flex;
-  height: 100%;
-  justify-content: center;
-  left: 0;
-  opacity: 0;
+const Circle = styled.div`
+  aspect-ratio: 1;
+  background-color: white;
+  border-radius: 50%;
   position: absolute;
-  transition: opacity 0.5s ease;
-  width: 100%;
-  z-index: 4;
-
-  /* Icons pop in one after another when the overlay appears */
-  & [data-icon] {
-    transform: translateY(12px) scale(0.8);
-    transition:
-      transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-      scale 0.3s ease,
-      background-color 0.3s ease;
-  }
-  & [data-icon]:nth-child(3) {
-    transition-delay: 0.06s;
-  }
-
-  /* Touch screens have no hover: keep the icons visible along the bottom */
-  @media (hover: none) {
-    align-items: flex-end;
-    background-color: transparent;
-    opacity: 1;
-    padding-bottom: 8px;
-
-    & [data-icon] {
-      transform: none;
-    }
-  }
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 68%;
 `;
 
-const Container = styled.div`
-  align-items: center;
-  background-color: #f5fbfc;
-  display: flex;
-  flex: 1;
-  height: 350px;
-  justify-content: center;
-  margin: 5px;
-  min-width: 280px;
+const Image = styled(Picture)`
+  max-height: 78%;
+  max-width: 78%;
+  object-fit: contain;
   position: relative;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+`;
 
-  &:hover ${Info}, &:focus-within ${Info} {
-    opacity: 1;
+// Slides up from the bottom of the image on hover; always shown on touch.
+const QuickAdd = styled.button`
+  align-items: center;
+  background-color: #090909;
+  border: none;
+  bottom: 0;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  font-size: 13px;
+  font-weight: 600;
+  gap: 8px;
+  justify-content: center;
+  left: 0;
+  letter-spacing: 1px;
+  padding: 12px;
+  position: absolute;
+  right: 0;
+  transform: translateY(100%);
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease;
+  z-index: 2;
+
+  &:hover {
+    background-color: #02223c;
   }
 
-  &:hover ${Info} [data-icon],
-  &:focus-within ${Info} [data-icon] {
+  &:focus-visible {
+    transform: none;
+  }
+
+  @media (hover: none) {
+    font-size: 11px;
+    padding: 9px;
     transform: none;
   }
 `;
 
-const Circle = styled.div`
+const Wishlist = styled.span`
   background-color: white;
   border-radius: 50%;
-  height: 200px;
-  position: absolute;
-  width: 200px;
-`;
-
-const Image = styled(Picture)`
-  height: 80%;
-  z-index: 4;
-`;
-
-// Covers the card so a click anywhere opens the product page.
-const CardLink = styled(Link)`
-  inset: 0;
-  position: absolute;
-`;
-
-const Icon = styled.div`
-  align-items: center;
-  background-color: white;
-  border: none;
-  border-radius: 50%;
-  color: inherit;
-  cursor: pointer;
-  padding: 0;
-  position: relative;
   display: flex;
-  height: 40px;
+  opacity: 0;
+  padding: 7px;
+  pointer-events: none;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  transition: opacity 0.3s ease;
+
+  @media (hover: none) {
+    opacity: 1;
+  }
+`;
+
+const ImagePanel = styled.div`
+  align-items: center;
+  aspect-ratio: 4 / 5;
+  background-color: #f5fbfc;
+  display: flex;
   justify-content: center;
-  margin: 10px;
-  width: 40px;
+  overflow: hidden;
+  position: relative;
+`;
+
+const Name = styled(Link)`
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: #090909;
+  display: -webkit-box;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.35;
+  margin-top: 14px;
+  overflow: hidden;
+  padding: 0 14px;
+  text-decoration: none;
+  ${mobile({ fontSize: "13px", marginTop: "10px", padding: "0 10px" })}
+
+  /* Stretches the link over the whole card, so a click anywhere opens it */
+  &::after {
+    content: "";
+    inset: 0;
+    position: absolute;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+`;
+
+const Details = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  padding: 0 14px;
+  ${mobile({ padding: "0 10px" })}
+`;
+
+const Price = styled.span`
+  font-size: 15px;
+  font-weight: 300;
+  ${mobile({ fontSize: "13px" })}
+`;
+
+const Swatches = styled.span`
+  display: flex;
+  gap: 5px;
+`;
+
+const Swatch = styled.span`
+  background-color: ${(props) => props.$color};
+  border: 1px solid rgba(9, 9, 9, 0.15);
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+`;
+
+const Card = styled.article`
+  border: 1px solid #e6eaee;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 14px;
+  position: relative;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  ${mobile({ paddingBottom: "10px" })}
 
   &:hover {
-    background-color: #ade8f4;
-    scale: 1.2;
+    border-color: #cfd6dc;
+    box-shadow: 0 8px 24px rgba(9, 9, 9, 0.06);
+  }
+
+  &:hover ${Circle} {
+    transform: scale(1.08);
+  }
+
+  &:hover ${Image} {
+    transform: translateY(-6px) scale(1.03);
+  }
+
+  &:hover ${QuickAdd} {
+    transform: none;
+  }
+
+  &:hover ${Wishlist}, &:focus-within ${Wishlist} {
+    opacity: 1;
+  }
+
+  &:has(${Name}:focus-visible) {
+    outline: 2px solid #044b7f;
+    outline-offset: 4px;
   }
 `;
 
 const Product = ({ item }) => {
   const { add } = useCart();
-  const productPath = `/product/${item.id}`;
+  const [added, setAdded] = useState(false);
 
-  const addToBag = () =>
+  // Show "ADDED" on the button briefly after adding to the bag.
+  useEffect(() => {
+    if (!added) return;
+    const timer = setTimeout(() => setAdded(false), 1500);
+    return () => clearTimeout(timer);
+  }, [added]);
+
+  const addToBag = () => {
     add({
       id: item.id,
       color: item.colors[0].name,
       size: item.sizes[0],
       quantity: 1,
     });
+    setAdded(true);
+  };
 
   return (
-    <Container>
-      <Circle />
-      <Image name={item.img} alt={item.alt} sizes="320px" loading="lazy" />
-      <Info>
-        <CardLink to={productPath} aria-label={item.name} />
-        <Icon
-          as="button"
+    <Card>
+      <ImagePanel>
+        <Circle />
+        <Image
+          name={item.img}
+          alt={item.alt}
+          sizes="(max-width: 767px) 50vw, 340px"
+          loading="lazy"
+        />
+        <Wishlist aria-hidden="true">
+          <FavoriteBorderOutlinedIcon style={{ fontSize: 18 }} />
+        </Wishlist>
+        <QuickAdd
           type="button"
-          data-icon
           onClick={addToBag}
           aria-label={`Add ${item.name} to bag`}
         >
-          <ShoppingCartOutlinedIcon />
-        </Icon>
-        <Icon aria-hidden="true" data-icon>
-          <FavoriteBorderOutlinedIcon />
-        </Icon>
-      </Info>
-    </Container>
+          <ShoppingBagOutlinedIcon style={{ fontSize: 18 }} />
+          {added ? "ADDED ✓" : "ADD TO BAG"}
+        </QuickAdd>
+      </ImagePanel>
+      <Name to={`/product/${item.id}`}>{item.name}</Name>
+      <Details>
+        <Price>{formatPrice(item.price)}</Price>
+        <Swatches>
+          {item.colors.map((color) => (
+            <Swatch key={color.name} $color={color.hex} title={color.name} />
+          ))}
+        </Swatches>
+      </Details>
+    </Card>
   );
 };
 
