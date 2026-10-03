@@ -8,6 +8,7 @@ import {
   Search,
 } from "@mui/icons-material";
 import { mobile } from "../responsive";
+import { cartCount, useCart } from "../cart";
 
 const Container = styled.div`
   height: 60px;
@@ -24,7 +25,7 @@ const Wrapper = styled.div`
 `;
 
 const Language = styled.span`
-  font: 14px;
+  font-size: 14px;
   cursor: pointer;
   ${mobile({ display: "none" })}
 `;
@@ -55,6 +56,12 @@ const Center = styled.div`
 
 const Logo = styled.h1`
   font-weight: bolder;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
   ${mobile({ fontSize: "24px", marginLeft: "30px" })}
 `;
 
@@ -75,18 +82,23 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+  const { lines } = useCart();
+  const count = cartCount(lines);
+
   return (
     <Container>
       <Wrapper>
         <Left>
           <Language>FR</Language>
           <SearchContainer>
-            <Input placeholder="Search" />
+            <Input placeholder="Search" aria-label="Search" />
             <Search style={{ color: "gray", fontSize: 18 }} />
           </SearchContainer>
         </Left>
         <Center>
-          <Logo>tHE/vOID.</Logo>
+          <Logo>
+            <Link to="/">tHE/vOID.</Link>
+          </Logo>
         </Center>
         <Right>
           <Link to="/register" style={{ textDecoration: "none" }}>
@@ -95,11 +107,11 @@ const Navbar = () => {
           <Link to="/login" style={{ textDecoration: "none" }}>
             <MenuItem>LOG IN</MenuItem>
           </Link>
-          <Link to="/bag">
+          <Link to="/bag" aria-label={`Bag, ${count} items`}>
             <MenuItem>
-              <Badge badgeContent={3} color="info">
+              <Badge badgeContent={count} color="info">
                 <ShoppingBagOutlinedIcon
-                  style={{ color: 46494, fontSize: 30 }}
+                  style={{ color: "#090909", fontSize: 30 }}
                 />
               </Badge>
             </MenuItem>

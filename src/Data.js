@@ -46,46 +46,112 @@ export const categories = [
   },
 ];
 
-export const popularProducts = [
+// Product names, prices and descriptions marked "placeholder" are
+// stand-ins until the real catalogue is available.
+const APPAREL_SIZES = ["XS", "S", "M", "L", "XL"];
+const BLACK = { name: "Black", hex: "#090909" };
+
+export const products = [
   {
-    id: 1,
+    id: "cdg-converse",
+    sku: "16620479x",
+    name: "Converse x Comme des Garçons PLAY Chuck 70 High Top",
+    price: 200,
     img: "product-cdg-converse",
     alt: "Comme des Garçons PLAY x Converse black high-top sneaker",
+    desc: [
+      "The heart-logo Chuck 70, sourced second hand and fully restored.", // placeholder
+    ],
+    colors: [BLACK],
+    sizes: ["W 5", "W 6", "W 7", "W 8", "W 9"],
   },
   {
-    id: 2,
+    id: "bomber-jacket",
+    sku: "RN30004",
+    name: "Venturer Prepare for War Bomber Jacket",
+    price: 230,
     img: "product-bomber-jacket",
     alt: "Black bomber jacket with patches",
+    desc: [
+      "A vintage bomber reworked with patches sourced from our archive.", // placeholder
+    ],
+    colors: [BLACK],
+    sizes: APPAREL_SIZES,
   },
   {
-    id: 3,
+    id: "ripped-jeans",
+    sku: "RBF-0075", // placeholder
+    name: "Ripped Boyfriend Fit Jeans",
+    price: 75,
     img: "product-ripped-jeans",
     alt: "Light-wash ripped jeans",
-    width: "250",
+    desc: [
+      "This was a returned item then our designers decided to make bigger holes in it. These are designed to fit exactly like those grunge jeans you always dreamed of finding.",
+      "Made in U.S.A.",
+    ],
+    colors: [
+      { name: "Stone blue", hex: "#6F8FAF" },
+      BLACK,
+      { name: "Sky blue", hex: "#5dadec" },
+    ],
+    sizes: APPAREL_SIZES,
   },
   {
-    id: 4,
+    id: "balenciaga-hoodie",
+    sku: "BAL-H-0180", // placeholder
+    name: "Balenciaga Logo Hoodie", // placeholder
+    price: 180, // placeholder
     img: "product-balenciaga-hoodie",
     alt: "Black Balenciaga logo hoodie",
+    desc: ["Pre-loved oversized logo hoodie, cleaned and re-finished."], // placeholder
+    colors: [BLACK],
+    sizes: APPAREL_SIZES,
   },
   {
-    id: 5,
+    id: "plaid-skirt",
+    sku: "TPS-0065", // placeholder
+    name: "Tartan Pleated Skirt", // placeholder
+    price: 65, // placeholder
     img: "product-plaid-skirt",
     alt: "Red tartan pleated skirt",
+    desc: ["A 90s school-uniform classic, re-cut with a higher waist."], // placeholder
+    colors: [{ name: "Red tartan", hex: "#b3202a" }],
+    sizes: APPAREL_SIZES,
   },
   {
-    id: 6,
+    id: "leather-jacket",
+    sku: "LMJ-0260", // placeholder
+    name: "Leather Motorcycle Jacket", // placeholder
+    price: 260, // placeholder
     img: "product-leather-jacket",
     alt: "Black leather motorcycle jacket",
+    desc: ["Broken-in leather biker, re-lined and given new hardware."], // placeholder
+    colors: [BLACK],
+    sizes: APPAREL_SIZES,
   },
   {
-    id: 7,
+    id: "nike-dunk",
+    sku: "NDH-0150", // placeholder
+    name: "Nike Dunk High", // placeholder
+    price: 150, // placeholder
     img: "product-nike-dunk",
     alt: "Pastel Nike Dunk high sneakers",
+    desc: ["Pastel-toned Dunk Highs, deep-cleaned and re-laced."], // placeholder
+    colors: [{ name: "Pastel", hex: "#e9b8a4" }],
+    sizes: ["W 5", "W 6", "W 7", "W 8", "W 9"],
   },
   {
-    id: 8,
+    id: "obey-cap",
+    sku: "OBE-CAP-1234567-QA66",
+    name: "Brand Patch Strapback Hat",
+    price: 44,
     img: "product-obey-cap",
     alt: "Black Obey snapback cap with red logo patch",
+    desc: ["Classic box-logo strapback, one size fits most."], // placeholder
+    colors: [BLACK],
+    sizes: ["O/S"],
   },
 ];
+
+export const findProduct = (id) =>
+  products.find((product) => product.id === id);

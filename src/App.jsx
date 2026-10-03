@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import ProductList from "./pages/ProductList";
@@ -5,19 +7,30 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Bag from "./pages/Bag";
 import NotFound from "./pages/NotFound";
-import { Route, Routes } from "react-router";
+
+// Start each new page at the top instead of the previous scroll position.
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 const App = () => {
   return (
-    <Routes>
-      <Route path="*" element={<NotFound />} />
-      <Route path="/" element={<Home />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/productlist" element={<ProductList />} />
-      <Route path="/product" element={<Product />} />
-      <Route path="/bag" element={<Bag />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/productlist" element={<ProductList />} />
+        <Route path="/product/:id" element={<Product />} />
+        <Route path="/bag" element={<Bag />} />
+      </Routes>
+    </>
   );
 };
 

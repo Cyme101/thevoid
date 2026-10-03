@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { imageUrl } from "../images";
@@ -7,15 +8,11 @@ import Footer from "../components/Footer";
 
 const Container = styled.div`
   align-items: center;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2)
-    ),
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
     url("${imageUrl("register-background")}") no-repeat center;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2)
-    ),
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
     image-set(
       url("${imageUrl("register-background", "avif")}") type("image/avif"),
       url("${imageUrl("register-background")}") type("image/webp")
@@ -65,7 +62,24 @@ const Button = styled.button`
   width: 40%;
 `;
 
+const Note = styled.p`
+  font-size: 14px;
+  margin-top: 10px;
+`;
+
 const Register = () => {
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    setMessage(
+      form.get("password") === form.get("confirmPassword")
+        ? "Account creation isn't available yet."
+        : "Passwords don't match."
+    );
+  };
+
   return (
     <>
       <Navbar />
@@ -73,13 +87,48 @@ const Register = () => {
       <Container>
         <Wrapper>
           <Title>CREATE ACCOUNT</Title>
-          <Form>
-            <Input placeholder="First Name" />
-            <Input placeholder="Last Name" />
-            <Input placeholder="Email" />
-            <Input placeholder="Password" />
-            <Input placeholder="Confirm Password" />
-            <Button>CREATE</Button>
+          <Form onSubmit={handleSubmit}>
+            <Input
+              name="firstName"
+              placeholder="First Name"
+              aria-label="First name"
+              autoComplete="given-name"
+              required
+            />
+            <Input
+              name="lastName"
+              placeholder="Last Name"
+              aria-label="Last name"
+              autoComplete="family-name"
+              required
+            />
+            <Input
+              name="email"
+              type="email"
+              placeholder="Email"
+              aria-label="Email"
+              autoComplete="email"
+              required
+            />
+            <Input
+              name="password"
+              type="password"
+              placeholder="Password"
+              aria-label="Password"
+              autoComplete="new-password"
+              minLength={8}
+              required
+            />
+            <Input
+              name="confirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+              aria-label="Confirm password"
+              autoComplete="new-password"
+              required
+            />
+            <Button type="submit">CREATE</Button>
+            {message && <Note role="status">{message}</Note>}
           </Form>
         </Wrapper>
       </Container>
