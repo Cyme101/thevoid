@@ -17,6 +17,9 @@ import {
 } from "../cart";
 import { formatPrice } from "../price";
 import { useWishlist } from "../wishlist";
+import Button, { ButtonLink } from "../components/Button";
+import { colors } from "../theme";
+import QuantityButton from "../components/QuantityButton";
 
 const Container = styled.div``;
 
@@ -37,24 +40,6 @@ const Top = styled.div`
   justify-content: space-between;
   padding: 30px;
   ${mobile({ padding: "20px" })}
-`;
-
-const TopButton = styled.button`
-  background-color: ${(props) =>
-    props.$variant === "filled" ? "black" : "transparent"};
-  border: ${(props) =>
-    props.$variant === "filled" ? "none" : "2px solid #767676"};
-  color: ${(props) => (props.$variant === "filled" ? "white" : "black")};
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 10px;
-  text-decoration: none;
-
-  &:disabled {
-    cursor: default;
-    opacity: 0.4;
-  }
 `;
 
 const TopInfo = styled.div`
@@ -134,15 +119,6 @@ const ProductAmountContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-const QuantityButton = styled.button`
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  display: flex;
-  padding: 0;
-`;
-
 const ProductAmount = styled.div`
   font-size: 22px;
   margin: 6px;
@@ -156,7 +132,7 @@ const ProductPrice = styled.div`
 `;
 
 const Hr = styled.hr`
-  background-color: #eee;
+  background-color: ${colors.divider};
   border: none;
   color: gray;
   height: 1px;
@@ -186,20 +162,6 @@ const SummaryItem = styled.div`
 const SummaryItemText = styled.span``;
 
 const SummaryItemPrice = styled.span``;
-
-const Button = styled.button`
-  background-color: black;
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
-  padding: 10px;
-  width: 100%;
-
-  &:disabled {
-    cursor: default;
-    opacity: 0.4;
-  }
-`;
 
 const ShippingHint = styled.p`
   font-size: 13px;
@@ -237,23 +199,24 @@ const Bag = () => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <TopButton as={Link} to="/productlist">
+          <ButtonLink to="/productlist" $size="sm">
             CONTINUE SHOPPING
-          </TopButton>
+          </ButtonLink>
           <TopInfo>
             <TopText>Shopping Bag({count})</TopText>
             <TopWishList to="/wishlist">
               Your WishList({savedCount})
             </TopWishList>
           </TopInfo>
-          <TopButton
+          <Button
             type="button"
             $variant="filled"
+            $size="sm"
             disabled={isEmpty}
             onClick={goToCheckout}
           >
             CHECKOUT
-          </TopButton>
+          </Button>
         </Top>
         <Bottom>
           <ProductInfo>
@@ -351,7 +314,13 @@ const Bag = () => {
               </SummaryItemPrice>
             </SummaryItem>
             <TaxNote>Taxes calculated at checkout.</TaxNote>
-            <Button type="button" disabled={isEmpty} onClick={goToCheckout}>
+            <Button
+              type="button"
+              $variant="filled"
+              $fullWidth
+              disabled={isEmpty}
+              onClick={goToCheckout}
+            >
               CHECKOUT
             </Button>
           </Summary>

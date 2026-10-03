@@ -1,5 +1,6 @@
 import { createContext, useContext } from "react";
 import { findProduct } from "./Data";
+import { readList, writeList } from "./storage";
 
 export const FREE_SHIPPING_THRESHOLD = 100;
 export const STANDARD_SHIPPING = 15; // placeholder flat rate, in CAD
@@ -45,22 +46,12 @@ export const cartReducer = (lines, action) => {
 const STORAGE_KEY = "thevoid-cart";
 
 // Drop lines whose product no longer exists in the catalogue.
-export const loadCart = () => {
-  try {
-    const lines = JSON.parse(localStorage.getItem(STORAGE_KEY)) ?? [];
-    return lines.filter((line) => findProduct(line.id) && line.quantity > 0);
-  } catch {
-    return [];
-  }
-};
+export const loadCart = () =>
+  readList(STORAGE_KEY).filter(
+    (line) => findProduct(line.id) && line.quantity > 0
+  );
 
-export const saveCart = (lines) => {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(lines));
-  } catch {
-    // Storage can be unavailable (private mode, quota); the cart still works.
-  }
-};
+export const saveCart = (lines) => writeList(STORAGE_KEY, lines);
 
 export const cartCount = (lines) =>
   lines.reduce((count, line) => count + line.quantity, 0);

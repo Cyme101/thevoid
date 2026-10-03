@@ -1,4 +1,4 @@
-import { Link, useLocation, useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import styled, { keyframes } from "styled-components";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
@@ -6,6 +6,8 @@ import Footer from "../components/Footer";
 import OrderSummary from "../components/OrderSummary";
 import { findOrder } from "../orders";
 import { mobile, tablet } from "../responsive";
+import { ButtonLink } from "../components/Button";
+import { colors } from "../theme";
 
 const draw = keyframes`
   to { stroke-dashoffset: 0; }
@@ -26,7 +28,7 @@ const Check = styled.svg`
   circle,
   path {
     fill: none;
-    stroke: #090909;
+    stroke: ${colors.ink};
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 2.5;
@@ -76,7 +78,7 @@ const Meta = styled.dl`
   }
 
   dt {
-    color: #6b7075;
+    color: ${colors.muted};
     font-size: 12px;
     letter-spacing: 1.5px;
     margin-bottom: 4px;
@@ -107,7 +109,7 @@ const Column = styled.div`
 `;
 
 const Card = styled.section`
-  border: 1px solid #e6eaee;
+  border: 1px solid ${colors.border};
   padding: 24px;
   ${mobile({ padding: "18px" })}
 
@@ -130,7 +132,7 @@ const Card = styled.section`
   }
 
   ol + p {
-    color: #6b7075;
+    color: ${colors.muted};
     font-size: 14px;
     margin-top: 12px;
   }
@@ -148,21 +150,6 @@ const Actions = styled.div`
   gap: 12px;
   justify-content: center;
   padding: 0 20px 70px;
-`;
-
-const Button = styled(Link)`
-  background-color: ${(props) => (props.$filled ? "#090909" : "white")};
-  border: 2px solid #090909;
-  color: ${(props) => (props.$filled ? "white" : "#090909")};
-  font-size: 15px;
-  font-weight: 500;
-  padding: 12px 22px;
-  text-decoration: none;
-  transition: opacity 0.3s ease;
-
-  &:hover {
-    opacity: 0.8;
-  }
 `;
 
 const NotFound = styled.div`
@@ -265,10 +252,10 @@ const OrderConfirmation = () => {
             </Column>
           </Body>
           <Actions>
-            <Button to="/productlist" $filled>
+            <ButtonLink to="/productlist" $variant="filled">
               CONTINUE SHOPPING
-            </Button>
-            <Button to="/">BACK TO HOME</Button>
+            </ButtonLink>
+            <ButtonLink to="/">BACK TO HOME</ButtonLink>
           </Actions>
         </>
       ) : (
@@ -276,9 +263,9 @@ const OrderConfirmation = () => {
           <h1>Order not found</h1>
           We couldn't find order {number} on this device.
           <Actions style={{ paddingTop: 24 }}>
-            <Button to="/productlist" $filled>
+            <ButtonLink to="/productlist" $variant="filled">
               SHOP ALL
-            </Button>
+            </ButtonLink>
           </Actions>
         </NotFound>
       )}

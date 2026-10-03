@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
@@ -8,6 +8,8 @@ import OrderSummary, { orderItems } from "../components/OrderSummary";
 import { useCart } from "../cart";
 import { newOrderNumber, saveOrder } from "../orders";
 import { mobile, tablet } from "../responsive";
+import Button, { ButtonLink } from "../components/Button";
+import { colors } from "../theme";
 
 const PROVINCES = [
   "Alberta",
@@ -76,7 +78,7 @@ const Field = styled.label`
 
   input,
   select {
-    border: 1px solid #cfd6dc;
+    border: 1px solid ${colors.borderStrong};
     border-radius: 0;
     font-size: 15px;
     padding: 12px;
@@ -84,46 +86,29 @@ const Field = styled.label`
 
   input:focus,
   select:focus {
-    border-color: #044b7f;
-    outline: 2px solid #044b7f;
+    border-color: ${colors.brand};
+    outline: 2px solid ${colors.brand};
     outline-offset: -1px;
   }
 
   input[readonly] {
     background-color: #f5f6f7;
-    color: #555;
+    color: ${colors.muted};
   }
 `;
 
 const Optional = styled.span`
-  color: #6b7075;
+  color: ${colors.muted};
   font-weight: 300;
 `;
 
 const Notice = styled.p`
-  background-color: #f5fbfc;
-  border-left: 3px solid #044b7f;
+  background-color: ${colors.surface};
+  border-left: 3px solid ${colors.brand};
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 20px;
   padding: 14px 16px;
-`;
-
-const PlaceOrder = styled.button`
-  background-color: #090909;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  padding: 16px;
-  transition: background-color 0.3s ease;
-  width: 100%;
-
-  &:hover {
-    background-color: #02223c;
-  }
 `;
 
 const Message = styled.div`
@@ -142,20 +127,13 @@ const Message = styled.div`
   }
 `;
 
-const OutlineLink = styled(Link)`
-  border: 2px solid #090909;
-  color: #090909;
-  display: inline-block;
-  font-size: 15px;
-  font-weight: 500;
-  margin-top: 24px;
-  padding: 12px 22px;
-  text-decoration: none;
+const PlaceOrder = styled(Button)`
+  letter-spacing: 1px;
+  padding: 16px;
+`;
 
-  &:hover {
-    background-color: #090909;
-    color: white;
-  }
+const ShopButton = styled(ButtonLink)`
+  margin-top: 24px;
 `;
 
 // Beside the form on desktop; above it on tablets and phones.
@@ -192,7 +170,7 @@ const Checkout = () => {
         <h1>Your bag is empty</h1>
         Add a few pieces before checking out.
         <br />
-        <OutlineLink to="/productlist">SHOP ALL</OutlineLink>
+        <ShopButton to="/productlist">SHOP ALL</ShopButton>
       </Message>
     );
   } else {
@@ -277,7 +255,9 @@ const Checkout = () => {
             tHE/vOID is a demo store. No payment is taken and nothing will be
             shipped, so there are no card details to enter.
           </Notice>
-          <PlaceOrder type="submit">PLACE ORDER</PlaceOrder>
+          <PlaceOrder type="submit" $variant="filled" $fullWidth>
+            PLACE ORDER
+          </PlaceOrder>
         </Form>
         <CheckoutSummary items={orderItems(lines)} province={province} />
       </Wrapper>

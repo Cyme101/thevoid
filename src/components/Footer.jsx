@@ -11,6 +11,7 @@ import {
 } from "@mui/icons-material";
 
 import { mobile, tablet } from "../responsive";
+import { colors } from "../theme";
 
 const Columns = styled.div`
   display: flex;
@@ -82,7 +83,7 @@ const ListItem = styled.li`
 const Right = styled.div`
   flex: 1;
   padding: 20px;
-  ${mobile({ backgroundColor: "#f5fbfc" })}
+  ${mobile({ backgroundColor: colors.surface })}
 `;
 
 const ContactItem = styled.div`
@@ -103,8 +104,8 @@ const ContactItem = styled.div`
 
 // Small print: the photos still show real brands' logos.
 const SmallPrint = styled.p`
-  border-top: 1px solid #eef0f2;
-  color: #6b7075;
+  border-top: 1px solid ${colors.divider};
+  color: ${colors.muted};
   font-size: 12px;
   line-height: 1.5;
   padding: 14px 20px;

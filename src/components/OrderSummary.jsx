@@ -4,9 +4,10 @@ import { findProduct } from "../Data";
 import { lineKey, shippingCost } from "../cart";
 import { formatPrice } from "../price";
 import { taxesFor } from "../taxes";
+import { colors } from "../theme";
 
 const Summary = styled.aside`
-  border: 1px solid #e6eaee;
+  border: 1px solid ${colors.border};
   box-sizing: border-box;
   padding: 24px;
   width: 100%;
@@ -28,7 +29,7 @@ const Item = styled.div`
 
 const Thumb = styled.div`
   align-items: center;
-  background-color: #f5fbfc;
+  background-color: ${colors.surface};
   display: flex;
   flex: none;
   height: 72px;
@@ -44,7 +45,7 @@ const ThumbImage = styled(Picture)`
 `;
 
 const Quantity = styled.span`
-  background-color: #090909;
+  background-color: ${colors.ink};
   border-radius: 10px;
   box-sizing: border-box;
   color: white;
@@ -64,12 +65,12 @@ const ItemText = styled.div`
 `;
 
 const ItemOptions = styled.div`
-  color: #6b7075;
+  color: ${colors.muted};
   font-size: 13px;
 `;
 
 const Line = styled.div`
-  border-top: ${(props) => (props.$total ? "1px solid #e6eaee" : "none")};
+  border-top: ${(props) => (props.$total ? `1px solid ${colors.border}` : "none")};
   display: flex;
   font-size: ${(props) => (props.$total ? "20px" : "15px")};
   font-weight: ${(props) => (props.$total ? 500 : 300)};
