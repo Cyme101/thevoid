@@ -1,27 +1,27 @@
 export const sliderItems = [
   {
     id: 1,
-    img: "hero-autumn-sale",
-    alt: "Model in a white ringer tee and camo cargo pants crouching",
+    img: "hero-coco",
+    alt: "Model in a white tank top, sunglasses and black pleated trousers",
     title: "AUTUMN SALE / BEST SELLERS",
     desc: "UP TO 25% OFF ON SELECTED 90s STYLES.",
-    bg: "e2e2df",
+    bg: "e9e6e1",
   },
   {
     id: 2,
-    img: "hero-coat-back",
-    alt: "Back view of a model in an oversized black coat and beret",
-    title: "AUTUMN / WINTER(AW) '23",
+    img: "hero-david",
+    alt: "Model in a black bomber jacket, seen from below",
+    title: "AUTUMN / WINTER '26",
     desc: "SHOP MEN'S AVANT-GARDE FASHION",
-    bg: "f5fafd",
+    bg: "dfe7ee",
   },
   {
     id: 3,
-    img: "hero-costalamel",
-    alt: "Model in a cream graphic sweatshirt and black jeans crouching",
+    img: "hero-jack",
+    alt: "Model in a rust baseball cap, teal jacket and jeans",
     title: "BACK IN THE 90s",
     desc: "STREETWEAR WITH A 90s SOUL",
-    bg: "e5dcde",
+    bg: "efe3d0",
   },
 ];
 

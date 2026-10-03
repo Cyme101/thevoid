@@ -192,11 +192,7 @@ const Footer = () => {
       <SmallPrint>
         tHE/vOID is a portfolio project, not a real store. No orders are
         processed. Product photos and logos belong to their respective owners.
-        Hero photography:{" "}
-        <a href="https://www.instagram.com/costalamel/">
-          Costalamel (Barcelona)
-        </a>
-        .{" "}
+        Hero photos from <a href="https://unsplash.com">Unsplash</a>.{" "}
         <a href="https://github.com/Cyme101/thevoid">View the code on GitHub</a>
         .
       </SmallPrint>

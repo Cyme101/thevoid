@@ -26,26 +26,31 @@
       1200
     ]
   },
-  "hero-autumn-sale": {
-    "width": 408,
-    "height": 612,
-    "widths": [
-      408
-    ]
-  },
-  "hero-coat-back": {
-    "width": 408,
-    "height": 612,
-    "widths": [
-      408
-    ]
-  },
-  "hero-costalamel": {
-    "width": 667,
-    "height": 1000,
+  "hero-coco": {
+    "width": 1200,
+    "height": 1810,
     "widths": [
       400,
-      667
+      800,
+      1200
+    ]
+  },
+  "hero-david": {
+    "width": 1044,
+    "height": 2307,
+    "widths": [
+      400,
+      800,
+      1044
+    ]
+  },
+  "hero-jack": {
+    "width": 1110,
+    "height": 2113,
+    "widths": [
+      400,
+      800,
+      1110
     ]
   },
   "login-background": {
@@ -58,15 +63,6 @@
       1600
     ]
   },
-  "product-campaign-hoodie": {
-    "width": 1200,
-    "height": 1044,
-    "widths": [
-      400,
-      800,
-      1200
-    ]
-  },
   "product-bomber-jacket": {
     "width": 1024,
     "height": 1024,
@@ -74,6 +70,15 @@
       400,
       800,
       1024
+    ]
+  },
+  "product-campaign-hoodie": {
+    "width": 1200,
+    "height": 1044,
+    "widths": [
+      400,
+      800,
+      1200
     ]
   },
   "product-heart-hi-top": {
