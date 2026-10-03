@@ -1,5 +1,5 @@
 import { Add, Remove } from "@mui/icons-material";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
@@ -9,6 +9,7 @@ import Picture from "../components/Picture";
 import { findProduct } from "../Data";
 import {
   FREE_SHIPPING_THRESHOLD,
+  shippingCost,
   cartCount,
   cartSubtotal,
   lineKey,
@@ -200,6 +201,18 @@ const Button = styled.button`
   }
 `;
 
+const ShippingHint = styled.p`
+  font-size: 13px;
+  font-weight: 300;
+  margin: -18px 0 20px;
+`;
+
+const TaxNote = styled.p`
+  font-size: 13px;
+  font-weight: 300;
+  margin: -14px 0 16px;
+`;
+
 const Empty = styled.p`
   font-size: 20px;
   font-weight: 300;
@@ -213,7 +226,9 @@ const Bag = () => {
   const count = cartCount(lines);
   const subtotal = cartSubtotal(lines);
   const isEmpty = lines.length === 0;
-  const freeShipping = subtotal >= FREE_SHIPPING_THRESHOLD;
+  const shipping = shippingCost(subtotal);
+  const navigate = useNavigate();
+  const goToCheckout = () => navigate("/checkout");
 
   return (
     <Container>
@@ -231,7 +246,12 @@ const Bag = () => {
               Your WishList({savedCount})
             </TopWishList>
           </TopInfo>
-          <TopButton type="button" $variant="filled" disabled={isEmpty}>
+          <TopButton
+            type="button"
+            $variant="filled"
+            disabled={isEmpty}
+            onClick={goToCheckout}
+          >
             CHECKOUT
           </TopButton>
         </Top>
@@ -315,14 +335,23 @@ const Bag = () => {
             <SummaryItem>
               <SummaryItemText>Shipping</SummaryItemText>
               <SummaryItemPrice>
-                {freeShipping ? "FREE" : "Calculated at checkout"}
+                {shipping === 0 ? "FREE" : formatPrice(shipping)}
               </SummaryItemPrice>
             </SummaryItem>
+            {shipping > 0 && (
+              <ShippingHint>
+                Add {formatPrice(FREE_SHIPPING_THRESHOLD - subtotal)} more for
+                free shipping.
+              </ShippingHint>
+            )}
             <SummaryItem $variant="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>{formatPrice(subtotal)}</SummaryItemPrice>
+              <SummaryItemPrice>
+                {formatPrice(subtotal + shipping)}
+              </SummaryItemPrice>
             </SummaryItem>
-            <Button type="button" disabled={isEmpty}>
+            <TaxNote>Taxes calculated at checkout.</TaxNote>
+            <Button type="button" disabled={isEmpty} onClick={goToCheckout}>
               CHECKOUT
             </Button>
           </Summary>

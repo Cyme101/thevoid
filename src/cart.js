@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 import { findProduct } from "./Data";
 
 export const FREE_SHIPPING_THRESHOLD = 100;
+export const STANDARD_SHIPPING = 15; // placeholder flat rate, in CAD
 
 export const CartContext = createContext(null);
 
@@ -34,6 +35,8 @@ export const cartReducer = (lines, action) => {
         .filter((line) => line.quantity > 0);
     case "remove":
       return lines.filter((line) => lineKey(line) !== action.key);
+    case "clear":
+      return [];
     default:
       throw new Error(`Unknown cart action: ${action.type}`);
   }
@@ -67,3 +70,6 @@ export const cartSubtotal = (lines) =>
     (total, line) => total + findProduct(line.id).price * line.quantity,
     0
   );
+
+export const shippingCost = (subtotal) =>
+  subtotal === 0 || subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : STANDARD_SHIPPING;
