@@ -5,7 +5,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Bag from "./pages/Bag";
 import NotFound from "./pages/NotFound";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 
 const App = () => {
   return (

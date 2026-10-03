@@ -71,7 +71,7 @@ const FilterTitle = styled.span`
 `;
 
 const FilterColor = styled.div`
-  background-color: ${(props) => props.color};
+  background-color: ${(props) => props.$color};
   border-radius: 50%;
   cursor: pointer;
   height: 20px;
@@ -148,9 +148,9 @@ const Product = () => {
           <FilterContainer>
             <Filter>
               <FilterTitle>Color </FilterTitle>
-              <FilterColor color="#6F8FAF" />
-              <FilterColor color="#090909" />
-              <FilterColor color="#5dadec" />
+              <FilterColor $color="#6F8FAF" />
+              <FilterColor $color="#090909" />
+              <FilterColor $color="#5dadec" />
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>

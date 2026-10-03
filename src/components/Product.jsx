@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import {
+  FavoriteBorderOutlined as FavoriteBorderOutlinedIcon,
+  SearchOutlined as SearchOutlinedIcon,
+  ShoppingCartOutlined as ShoppingCartOutlinedIcon,
+} from "@mui/icons-material";
 
 const Info = styled.div`
   align-items: center;
