@@ -38,7 +38,7 @@ let totalOut = 0;
 
 const files = fs
   .readdirSync(srcDir)
-  .filter((file) => /\.(png|jpe?g)$/i.test(file))
+  .filter((file) => /\.(png|jpe?g|webp)$/i.test(file))
   .sort();
 
 for (const file of files) {

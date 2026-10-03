@@ -1,27 +1,27 @@
 export const sliderItems = [
   {
     id: 1,
-    img: "hero-autumn-sale",
-    alt: "Model in a white ringer tee and camo cargo pants crouching",
+    img: "hero-coco",
+    alt: "Model in a white tank top, sunglasses and black pleated trousers",
     title: "AUTUMN SALE / BEST SELLERS",
     desc: "UP TO 25% OFF ON SELECTED 90s STYLES.",
-    bg: "e2e2df",
+    bg: "e9e6e1",
   },
   {
     id: 2,
-    img: "hero-coat-back",
-    alt: "Back view of a model in an oversized black coat and beret",
-    title: "AUTUMN / WINTER(AW) '23",
+    img: "hero-david",
+    alt: "Model in a black bomber jacket, seen from below",
+    title: "AUTUMN / WINTER '26",
     desc: "SHOP MEN'S AVANT-GARDE FASHION",
-    bg: "f5fafd",
+    bg: "dfe7ee",
   },
   {
     id: 3,
-    img: "hero-costalamel",
-    alt: "Model in a cream graphic sweatshirt and black jeans crouching",
-    title: "COSTALAMEL from Barcelona",
-    desc: "BACK IN THE 90s STYLE",
-    bg: "e5dcde",
+    img: "hero-jack",
+    alt: "Model in a rust baseball cap, teal jacket and jeans",
+    title: "BACK IN THE 90s",
+    desc: "STREETWEAR WITH A 90s SOUL",
+    bg: "efe3d0",
   },
 ];
 
@@ -66,15 +66,15 @@ const BLACK = { name: "Black", hex: "#090909" };
 
 export const products = [
   {
-    id: "cdg-converse",
+    id: "heart-hi-top",
     category: "shoes",
     sku: "16620479x",
-    name: "Converse x Comme des Garçons PLAY Chuck 70 High Top",
+    name: "Heart Hi-Top Sneakers",
     price: 200,
-    img: "product-cdg-converse",
-    alt: "Comme des Garçons PLAY x Converse black high-top sneaker",
+    img: "product-heart-hi-top",
+    alt: "Black canvas high-top sneaker with a red heart logo",
     desc: [
-      "The heart-logo Chuck 70, sourced second hand and fully restored.", // placeholder
+      "Heart-logo canvas high-tops, sourced second hand and fully restored.", // placeholder
     ],
     colors: [BLACK],
     sizes: ["W 5", "W 6", "W 7", "W 8", "W 9"],
@@ -83,7 +83,7 @@ export const products = [
     id: "bomber-jacket",
     category: "clothing",
     sku: "RN30004",
-    name: "Venturer Prepare for War Bomber Jacket",
+    name: "Patchwork Bomber Jacket",
     price: 230,
     img: "product-bomber-jacket",
     alt: "Black bomber jacket with patches",
@@ -113,13 +113,13 @@ export const products = [
     sizes: APPAREL_SIZES,
   },
   {
-    id: "balenciaga-hoodie",
+    id: "campaign-hoodie",
     category: "clothing",
-    sku: "BAL-H-0180", // placeholder
-    name: "Balenciaga Logo Hoodie", // placeholder
+    sku: "CLH-0180", // placeholder
+    name: "Campaign Logo Hoodie", // placeholder
     price: 180, // placeholder
-    img: "product-balenciaga-hoodie",
-    alt: "Black Balenciaga logo hoodie",
+    img: "product-campaign-hoodie",
+    alt: "Black hoodie with a logo across the chest",
     desc: ["Pre-loved oversized logo hoodie, cleaned and re-finished."], // placeholder
     colors: [BLACK],
     sizes: APPAREL_SIZES,
@@ -149,25 +149,25 @@ export const products = [
     sizes: APPAREL_SIZES,
   },
   {
-    id: "nike-dunk",
+    id: "pastel-hi-top",
     category: "shoes",
     sku: "NDH-0150", // placeholder
-    name: "Nike Dunk High", // placeholder
+    name: "Pastel High-Top Sneakers", // placeholder
     price: 150, // placeholder
-    img: "product-nike-dunk",
-    alt: "Pastel Nike Dunk high sneakers",
-    desc: ["Pastel-toned Dunk Highs, deep-cleaned and re-laced."], // placeholder
+    img: "product-pastel-hi-top",
+    alt: "Pastel leather high-top sneakers",
+    desc: ["Pastel-toned leather high-tops, deep-cleaned and re-laced."], // placeholder
     colors: [{ name: "Pastel", hex: "#e9b8a4" }],
     sizes: ["W 5", "W 6", "W 7", "W 8", "W 9"],
   },
   {
-    id: "obey-cap",
+    id: "patch-cap",
     category: "accessories",
-    sku: "OBE-CAP-1234567-QA66",
+    sku: "PSC-0044", // placeholder
     name: "Brand Patch Strapback Hat",
     price: 44,
-    img: "product-obey-cap",
-    alt: "Black Obey snapback cap with red logo patch",
+    img: "product-patch-cap",
+    alt: "Black snapback cap with a red logo patch",
     desc: ["Classic box-logo strapback, one size fits most."], // placeholder
     colors: [BLACK],
     sizes: ["O/S"],
@@ -177,7 +177,7 @@ export const products = [
 export const findProduct = (id) =>
   products.find((product) => product.id === id);
 
-// Lowercase and strip accents so "garcons" matches "Garçons".
+// Lowercase and strip accents so "pret" matches "Prêt".
 const normalize = (text) =>
   text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 

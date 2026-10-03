@@ -9,6 +9,7 @@ import {
 } from "@mui/icons-material";
 import { sliderItems } from "../Data";
 import Picture from "./Picture";
+import { imageInfo } from "../images";
 import { mobile, tablet } from "../responsive";
 import {
   gsap,
@@ -19,6 +20,14 @@ import {
 } from "../gsap";
 
 const AUTOPLAY_SECONDS = 6;
+
+// Displayed image width, from its proportions: 92% of the slide's height on
+// desktop, about half the screen height when stacked on tablets and phones.
+const heroSizes = (name) => {
+  const { width, height } = imageInfo(name);
+  const vh = (share) => `${Math.round((share * width) / height)}vh`;
+  return `(max-width: 1023px) ${vh(50)}, ${vh(92)}`;
+};
 
 const Container = styled.section`
   height: 100vh;
@@ -85,16 +94,19 @@ const Slide = styled.div`
 
 const stackedImage = { height: "55%", justifyContent: "center", width: "100%" };
 
+// The models are cropped at the bottom of their photos, so they stand on the
+// bottom edge of the slide.
 const ImgContainer = styled.div`
+  align-items: flex-end;
+  align-self: stretch;
   display: flex;
   flex: none;
-  height: 100%;
   ${tablet(stackedImage)}
   ${mobile(stackedImage)}
 `;
 
 const Image = styled(Picture)`
-  height: 90%;
+  height: 92%;
   ${tablet({ height: "100%" })}
   ${mobile({ height: "100%" })}
 `;
@@ -141,12 +153,16 @@ const Button = styled.button`
   }
 `;
 
+// Light pill behind the dots so they stay readable over a photo.
 const Controls = styled.div`
   align-items: center;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 20px;
   bottom: 24px;
   display: flex;
   gap: 10px;
   left: 50%;
+  padding: 7px 12px;
   position: absolute;
   transform: translateX(-50%);
   z-index: 2;
@@ -349,7 +365,7 @@ const Slider = () => {
               <Image
                 name={item.img}
                 alt={item.alt}
-                sizes="(max-width: 1023px) 32vh, 60vh"
+                sizes={heroSizes(item.img)}
                 draggable={false}
                 {...(i === 0 ? { fetchPriority: "high" } : { loading: "lazy" })}
               />

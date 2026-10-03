@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Full-resolution photos used to make cut-outs (kept locally, not in git)
+/images-src/originals/

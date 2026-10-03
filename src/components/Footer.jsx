@@ -12,7 +12,7 @@ import {
 
 import { mobile, tablet } from "../responsive";
 
-const Container = styled.div`
+const Columns = styled.div`
   display: flex;
   ${mobile({ flexDirection: "column" })}
   ${tablet({ flexDirection: "column" })}
@@ -86,80 +86,117 @@ const Right = styled.div`
 `;
 
 const ContactItem = styled.div`
-  align-items: center;
+  align-items: flex-start;
   display: flex;
+  gap: 10px;
+  line-height: 1.5;
   margin-bottom: 20px;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  a {
+    color: inherit;
+  }
+`;
+
+// Small print: the photos still show real brands' logos.
+const SmallPrint = styled.p`
+  border-top: 1px solid #eef0f2;
+  color: #6b7075;
+  font-size: 12px;
+  line-height: 1.5;
+  padding: 14px 20px;
+  text-align: center;
+
+  a {
+    color: inherit;
+  }
 `;
 
 const Footer = () => {
   return (
-    <Container>
-      <Left>
-        <Logo>tHE/vOID</Logo>
-        <Desc>
-          We are going against the grain and we are focused on sustainability.
-          We are using second hand clothes to make edgy and trendy new garments.
-          Each piece will reveal a better version of yourself.
-          <br></br>
-          <br></br>
-          FILL THE VOID WITH STYLE
-        </Desc>
-        <SocialContainer>
-          <SocialIcon $color="0A80EC">
-            <FacebookRoundedIcon />
-          </SocialIcon>
-          <SocialIcon $color="C10174">
-            <InstagramIcon />
-          </SocialIcon>
-          <SocialIcon $color="1C9CEA">
-            <TwitterIcon />
-          </SocialIcon>
-          <SocialIcon $color="E60023">
-            <PinterestIcon />
-          </SocialIcon>
-        </SocialContainer>
-      </Left>
-      <Center>
-        <Title>HELPFUL LINKS</Title>
-        <List>
-          <ListItem>
-            <Link to="/">HOME</Link>
-          </ListItem>
-          <ListItem>
-            <Link to="/about">ABOUT US</Link>
-          </ListItem>
-          <ListItem>
-            <Link to="/login">MY ACCOUNT</Link>
-          </ListItem>
-          <ListItem>MY ORDERS</ListItem>
-          <ListItem>MY WISHLIST</ListItem>
-          <ListItem>
-            <Link to="/bag">BAG</Link>
-          </ListItem>
-          <ListItem>WOMEN'S</ListItem>
-          <ListItem>MEN'S</ListItem>
-          <ListItem>
-            <Link to="/productlist?category=accessories">ACCESSORIES</Link>
-          </ListItem>
-          <ListItem>POLICIES</ListItem>
-          <ListItem>TERMS OF SERVICE</ListItem>
-          <ListItem>CHAT WITH OUR TEAM</ListItem>
-        </List>
-      </Center>
-      <Right>
-        <Title>CONTACT US</Title>
-        <ContactItem>
-          <PlaceIcon style={{ marginRight: "10px" }} /> 61 East Harvey Drive,
-          Fairport, NY 14450
-        </ContactItem>
-        <ContactItem>
-          <PhoneInTalkIcon style={{ marginRight: "10px" }} /> +1 (212) 555-3336
-        </ContactItem>
-        <ContactItem>
-          <EmailIcon style={{ marginRight: "10px" }} /> contact@thevoid
-        </ContactItem>
-      </Right>
-    </Container>
+    <footer>
+      <Columns>
+        <Left>
+          <Logo>tHE/vOID</Logo>
+          <Desc>
+            We are going against the grain and we are focused on sustainability.
+            We are using second hand clothes to make edgy and trendy new
+            garments. Each piece will reveal a better version of yourself.
+            <br></br>
+            <br></br>
+            FILL THE VOID WITH STYLE
+          </Desc>
+          <SocialContainer>
+            <SocialIcon $color="0A80EC">
+              <FacebookRoundedIcon />
+            </SocialIcon>
+            <SocialIcon $color="C10174">
+              <InstagramIcon />
+            </SocialIcon>
+            <SocialIcon $color="1C9CEA">
+              <TwitterIcon />
+            </SocialIcon>
+            <SocialIcon $color="E60023">
+              <PinterestIcon />
+            </SocialIcon>
+          </SocialContainer>
+        </Left>
+        <Center>
+          <Title>HELPFUL LINKS</Title>
+          <List>
+            <ListItem>
+              <Link to="/">HOME</Link>
+            </ListItem>
+            <ListItem>
+              <Link to="/about">ABOUT US</Link>
+            </ListItem>
+            <ListItem>
+              <Link to="/login">MY ACCOUNT</Link>
+            </ListItem>
+            <ListItem>MY ORDERS</ListItem>
+            <ListItem>MY WISHLIST</ListItem>
+            <ListItem>
+              <Link to="/bag">BAG</Link>
+            </ListItem>
+            <ListItem>WOMEN'S</ListItem>
+            <ListItem>MEN'S</ListItem>
+            <ListItem>
+              <Link to="/productlist?category=accessories">ACCESSORIES</Link>
+            </ListItem>
+            <ListItem>POLICIES</ListItem>
+            <ListItem>TERMS OF SERVICE</ListItem>
+            <ListItem>CHAT WITH OUR TEAM</ListItem>
+          </List>
+        </Center>
+        <Right>
+          <Title>CONTACT US</Title>
+          {/* Placeholders: 555-01xx numbers and .example emails are reserved
+            for fictional use, so they can't reach a real person. */}
+          <ContactItem>
+            <PlaceIcon />
+            123 Fictional Street, Montréal, QC
+          </ContactItem>
+          <ContactItem>
+            <PhoneInTalkIcon />
+            +1 (514) 555-0142
+          </ContactItem>
+          <ContactItem>
+            <EmailIcon />
+            hello@thevoid.example
+          </ContactItem>
+        </Right>
+      </Columns>
+      <SmallPrint>
+        tHE/vOID is a portfolio project, not a real store. No orders are
+        processed. Product photos and logos belong to their respective owners.
+        Hero photos from <a href="https://unsplash.com">Unsplash</a>.{" "}
+        <a href="https://github.com/Cyme101/thevoid">View the code on GitHub</a>
+        .
+      </SmallPrint>
+    </footer>
   );
 };
 
