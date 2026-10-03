@@ -1,4 +1,4 @@
-import React from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 import { Link } from "react-router";
 
@@ -9,6 +9,7 @@ import {
 } from "@mui/icons-material";
 import { mobile } from "../responsive";
 import { cartCount, useCart } from "../cart";
+import { gsap, useGSAP, prefersReducedMotion } from "../gsap";
 
 const Container = styled.div`
   height: 60px;
@@ -21,7 +22,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   padding: 10px 20px;
   margin-top: 10px;
-  ${mobile({ padding: "10px 0px" })}
+  ${mobile({ padding: "10px 14px" })}
 `;
 
 const Language = styled.span`
@@ -62,7 +63,7 @@ const Logo = styled.h1`
     text-decoration: none;
   }
 
-  ${mobile({ fontSize: "24px", marginLeft: "30px" })}
+  ${mobile({ fontSize: "22px", margin: "0 8px" })}
 `;
 
 const Right = styled.div`
@@ -78,12 +79,45 @@ const MenuItem = styled.div`
   cursor: pointer;
   font-size: 14px;
   margin-left: 25px;
+  white-space: nowrap;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
+`;
+
+const BagIcon = styled.span`
+  display: inline-flex;
 `;
 
 const Navbar = () => {
   const { lines } = useCart();
   const count = cartCount(lines);
+  const bagRef = useRef(null);
+  const previousCount = useRef(count);
+
+  // Bounce the bag icon when something is added.
+  useGSAP(
+    () => {
+      if (count > previousCount.current && !prefersReducedMotion()) {
+        gsap.fromTo(
+          bagRef.current,
+          { scale: 1, rotation: 0 },
+          {
+            keyframes: [
+              { scale: 1.25, rotation: -12, duration: 0.15 },
+              { scale: 0.95, rotation: 8, duration: 0.15 },
+              {
+                scale: 1,
+                rotation: 0,
+                duration: 0.3,
+                ease: "elastic.out(1, 0.4)",
+              },
+            ],
+          }
+        );
+      }
+      previousCount.current = count;
+    },
+    { dependencies: [count] }
+  );
 
   return (
     <Container>
@@ -109,11 +143,13 @@ const Navbar = () => {
           </Link>
           <Link to="/bag" aria-label={`Bag, ${count} items`}>
             <MenuItem>
-              <Badge badgeContent={count} color="info">
-                <ShoppingBagOutlinedIcon
-                  style={{ color: "#090909", fontSize: 30 }}
-                />
-              </Badge>
+              <BagIcon ref={bagRef}>
+                <Badge badgeContent={count} color="info">
+                  <ShoppingBagOutlinedIcon
+                    style={{ color: "#090909", fontSize: 30 }}
+                  />
+                </Badge>
+              </BagIcon>
             </MenuItem>
           </Link>
         </Right>
