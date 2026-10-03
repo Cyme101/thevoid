@@ -28,9 +28,9 @@ const Top = styled.div`
 
 const TopButton = styled.button`
   background-color: ${(props) =>
-    props.type === "filled" ? "black" : "transparent"};
-  border: ${(props) => props.type === "filled" && "none"};
-  color: ${(props) => props.type === "filled" && "white"};
+    props.$variant === "filled" ? "black" : "transparent"};
+  border: ${(props) => props.$variant === "filled" && "none"};
+  color: ${(props) => props.$variant === "filled" && "white"};
   cursor: pointer;
   font-weight: 600;
   padding: 10px;
@@ -91,7 +91,7 @@ const ProductName = styled.span``;
 const ProductId = styled.span``;
 
 const ProductColor = styled.div`
-  background-color: ${(props) => props.color};
+  background-color: ${(props) => props.$color};
   border-radius: 50%;
   height: 20px;
   width: 20px;
@@ -147,8 +147,8 @@ const SummaryTitle = styled.h1`
 
 const SummaryItem = styled.div`
   display: flex;
-  font-size: ${(props) => props.type === "total" && "24px"};
-  font-weight: ${(props) => props.type === "total" && "500"};
+  font-size: ${(props) => props.$variant === "total" && "24px"};
+  font-weight: ${(props) => props.$variant === "total" && "500"};
   justify-content: space-between;
   margin: 30px 0;
 `;
@@ -178,7 +178,7 @@ const Bag = () => {
             <TopText>Shopping Bag(3)</TopText>
             <TopWishList>Your WishList(0)</TopWishList>
           </TopInfo>
-          <TopButton type="filled">CHECKOUT</TopButton>
+          <TopButton $variant="filled">CHECKOUT</TopButton>
         </Top>
         <Bottom>
           <ProductInfo>
@@ -192,7 +192,7 @@ const Bag = () => {
                   <ProductId>
                     <b>ID:</b> RN30004
                   </ProductId>
-                  <ProductColor color="black" />
+                  <ProductColor $color="black" />
                   <ProductSize>
                     <b>Size:</b> M
                   </ProductSize>
@@ -217,7 +217,7 @@ const Bag = () => {
                   <ProductId>
                     <b>ID:</b> OBE-CAP-1234567-QA66
                   </ProductId>
-                  <ProductColor color="black" />
+                  <ProductColor $color="black" />
                   <ProductSize>
                     <b>Size:</b> O/S
                   </ProductSize>
@@ -243,7 +243,7 @@ const Bag = () => {
                   <ProductId>
                     <b>ID:</b> 16620479x
                   </ProductId>
-                  <ProductColor color="black" />
+                  <ProductColor $color="black" />
                   <ProductSize>
                     <b>Size:</b> W 6
                   </ProductSize>
@@ -271,7 +271,7 @@ const Bag = () => {
               <SummaryItemText>Shipping</SummaryItemText>
               <SummaryItemPrice>FREE</SummaryItemPrice>
             </SummaryItem>
-            <SummaryItem type="total">
+            <SummaryItem $variant="total">
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$474.00 CAD</SummaryItemPrice>
             </SummaryItem>
