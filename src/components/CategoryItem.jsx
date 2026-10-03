@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import Picture from "./Picture";
 
 const Container = styled.div`
   flex: 1;
@@ -8,7 +9,7 @@ const Container = styled.div`
   position: relative;
 `;
 
-const Image = styled.img`
+const Image = styled(Picture)`
   height: 100%;
   object-fit: cover;
   width: 100%;
@@ -44,7 +45,12 @@ const Button = styled.button`
 const CategoryItem = ({ item }) => {
   return (
     <Container>
-      <Image src={item.img} />
+      <Image
+        name={item.img}
+        alt={item.alt}
+        sizes="(max-width: 767px) 100vw, 33vw"
+        loading="lazy"
+      />
       <Info>
         <Title>{item.title}</Title>
         <Button>SHOP HERE</Button>

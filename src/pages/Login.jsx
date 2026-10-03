@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { imageUrl } from "../images";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -10,7 +11,15 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.2),
       rgba(255, 255, 255, 0.2)
     ),
-    url("https://bit.ly/3REAnTv") no-repeat center;
+    url("${imageUrl("login-background")}") no-repeat center;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2)
+    ),
+    image-set(
+      url("${imageUrl("login-background", "avif")}") type("image/avif"),
+      url("${imageUrl("login-background")}") type("image/webp")
+    );
   background-size: cover;
   display: flex;
   height: 100vh;

@@ -4,6 +4,7 @@ import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { mobile, tablet } from "../responsive";
+import Picture from "../components/Picture";
 
 const Container = styled.div``;
 
@@ -75,7 +76,7 @@ const ProductDetail = styled.div`
   display: flex;
 `;
 
-const Image = styled.img`
+const Image = styled(Picture)`
   width: 200px;
 `;
 
@@ -184,7 +185,11 @@ const Bag = () => {
           <ProductInfo>
             <Product>
               <ProductDetail>
-                <Image src="https://i.ibb.co/CV8bSjV/Bomber-Jacket-Transparent-Images.png" />
+                <Image
+                  name="product-bomber-jacket"
+                  alt="Black bomber jacket with patches"
+                  sizes="200px"
+                />
                 <Details>
                   <ProductName>
                     <b>PRODUCT:</b> VENTURER PREPARE FOR WAR BOMBER JACKET
@@ -209,7 +214,11 @@ const Bag = () => {
             </Product>
             <Product>
               <ProductDetail>
-                <Image src="https://i.ibb.co/xYrsqC9/Obey-Cap-PNG-Transparent-Image.png" />
+                <Image
+                  name="product-obey-cap"
+                  alt="Black Obey snapback cap with red logo patch"
+                  sizes="200px"
+                />
                 <Details>
                   <ProductName>
                     <b>PRODUCT:</b> Brand Patch Strapback Hat
@@ -234,7 +243,11 @@ const Bag = () => {
             </Product>
             <Product>
               <ProductDetail>
-                <Image src="https://i.ibb.co/rfhzhpP/photo-1619521440807-ba72afd67b12-removebg-preview.png" />
+                <Image
+                  name="product-cdg-converse"
+                  alt="Comme des Garçons PLAY x Converse black high-top sneaker"
+                  sizes="200px"
+                />
                 <Details>
                   <ProductName>
                     <b>PRODUCT:</b> Converse x Comme des Garçons PLAY Chuck 70

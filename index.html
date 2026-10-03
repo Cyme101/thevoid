@@ -18,6 +18,15 @@
         font-family: "Urbanist", sans-serif;
         margin: 0;
       }
+      /* Let <img> inside <picture> lay out as if the wrapper weren't there */
+      picture {
+        display: contents;
+      }
+      /* width/height attributes only reserve the aspect ratio; CSS sizes images */
+      img {
+        height: auto;
+        width: auto;
+      }
     </style>
     <link rel="manifest" href="/manifest.json" />
     <title>tHE/vOID</title>
