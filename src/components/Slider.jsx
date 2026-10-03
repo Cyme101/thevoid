@@ -5,6 +5,7 @@ import {
   KeyboardArrowRight as KeyboardArrowRightIcon,
 } from "@mui/icons-material";
 import { sliderItems } from "../Data";
+import Picture from "./Picture";
 import { mobile, tablet } from "../responsive";
 
 const Container = styled.div`
@@ -55,7 +56,7 @@ const ImgContainer = styled.div`
   height: 100%;
 `;
 
-const Image = styled.img`
+const Image = styled(Picture)`
   height: 90%;
   ${tablet({ height: "80%" })}
 `;
@@ -102,10 +103,17 @@ const Slider = () => {
         <KeyboardArrowLeftIcon />
       </Arrow>
       <Wrapper $slideIndex={slideIndex}>
-        {sliderItems.map((item) => (
+        {sliderItems.map((item, index) => (
           <Slide $bg={item.bg} key={item.id}>
             <ImgContainer>
-              <Image src={item.img} />
+              <Image
+                name={item.img}
+                alt={item.alt}
+                sizes="60vh"
+                {...(index === 0
+                  ? { fetchPriority: "high" }
+                  : { loading: "lazy" })}
+              />
             </ImgContainer>
             <InfoContainer>
               <Title>{item.title}</Title>
