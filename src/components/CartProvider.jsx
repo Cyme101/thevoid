@@ -15,6 +15,7 @@ const CartProvider = ({ children }) => {
       setQuantity: (key, quantity) =>
         dispatch({ type: "setQuantity", key, quantity }),
       remove: (key) => dispatch({ type: "remove", key }),
+      clear: () => dispatch({ type: "clear" }),
     }),
     [lines]
   );
