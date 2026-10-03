@@ -11,13 +11,13 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 
-const Products = () => {
+const Products = ({ items = products }) => {
   const containerRef = useRef(null);
-  useScrollReveal(containerRef, { stagger: 0.08 });
+  useScrollReveal(containerRef, { stagger: 0.08, dependencies: [items] });
 
   return (
     <Container ref={containerRef}>
-      {products.map((item) => (
+      {items.map((item) => (
         <Product item={item} key={item.id} />
       ))}
     </Container>

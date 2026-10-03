@@ -155,3 +155,31 @@ export const products = [
 
 export const findProduct = (id) =>
   products.find((product) => product.id === id);
+
+// Lowercase and strip accents so "garcons" matches "Garçons".
+const normalize = (text) =>
+  text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+const words = (text) =>
+  normalize(text)
+    .split(/[^a-z0-9]+/)
+    .filter(Boolean);
+
+// Products where every word of `query` starts a word in the product's name,
+// description or colors ("jack" finds "jacket"; "red" doesn't find "restored").
+export const searchProducts = (query) => {
+  const queryWords = words(query);
+  return products.filter((product) => {
+    const productWords = words(
+      [
+        product.name,
+        product.alt,
+        ...product.desc,
+        ...product.colors.map((c) => c.name),
+      ].join(" ")
+    );
+    return queryWords.every((queryWord) =>
+      productWords.some((word) => word.startsWith(queryWord))
+    );
+  });
+};

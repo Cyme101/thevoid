@@ -12,8 +12,12 @@ export const prefersReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 // Fades the children of `scope` up into place as they scroll into view.
-// Skipped entirely for visitors who prefer reduced motion.
-export const useScrollReveal = (scope, { y = 40, stagger = 0.1 } = {}) =>
+// Skipped entirely for visitors who prefer reduced motion. Runs again when
+// any of `dependencies` changes (e.g. a new list of products).
+export const useScrollReveal = (
+  scope,
+  { y = 40, stagger = 0.1, dependencies = [] } = {}
+) =>
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
@@ -35,5 +39,5 @@ export const useScrollReveal = (scope, { y = 40, stagger = 0.1 } = {}) =>
         });
       });
     },
-    { scope }
+    { scope, dependencies, revertOnUpdate: true }
   );
