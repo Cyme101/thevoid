@@ -14,7 +14,9 @@ const Container = styled.div`
 
 const NumberGlitch = styled.h1`
   font-size: 5rem;
-  text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+  text-shadow:
+    0.05em 0 0 #00fffc,
+    -0.03em -0.04em 0 #fc00ff,
     0.025em 0.04em 0 #fffc00;
   animation: glitch 725ms infinite;
 
@@ -40,31 +42,45 @@ const NumberGlitch = styled.h1`
 
   @keyframes glitch {
     0% {
-      text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+      text-shadow:
+        0.05em 0 0 #00fffc,
+        -0.03em -0.04em 0 #fc00ff,
         0.025em 0.04em 0 #fffc00;
     }
     15% {
-      text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+      text-shadow:
+        0.05em 0 0 #00fffc,
+        -0.03em -0.04em 0 #fc00ff,
         0.025em 0.04em 0 #fffc00;
     }
     16% {
-      text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+      text-shadow:
+        -0.05em -0.025em 0 #00fffc,
+        0.025em 0.035em 0 #fc00ff,
         -0.05em -0.05em 0 #fffc00;
     }
     49% {
-      text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff,
+      text-shadow:
+        -0.05em -0.025em 0 #00fffc,
+        0.025em 0.035em 0 #fc00ff,
         -0.05em -0.05em 0 #fffc00;
     }
     50% {
-      text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+      text-shadow:
+        0.05em 0.035em 0 #00fffc,
+        0.03em 0 0 #fc00ff,
         0 -0.04em 0 #fffc00;
     }
     99% {
-      text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff,
+      text-shadow:
+        0.05em 0.035em 0 #00fffc,
+        0.03em 0 0 #fc00ff,
         0 -0.04em 0 #fffc00;
     }
     100% {
-      text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff,
+      text-shadow:
+        -0.05em 0 0 #00fffc,
+        -0.025em -0.04em 0 #fc00ff,
         -0.04em -0.025em 0 #fffc00;
     }
   }
@@ -77,11 +93,15 @@ const Text = styled.h2`
   text-align: center;
 `;
 
-const Button = styled.button`
+const Button = styled(Link)`
+  display: inline-block;
+  text-decoration: none;
   background-color: #090909;
   border: 1px solid #090909;
   border-radius: 4px;
-  box-shadow: #fff 4px 4px 0 0, #090909 4px 4px 0 1px;
+  box-shadow:
+    #fff 4px 4px 0 0,
+    #090909 4px 4px 0 1px;
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
@@ -107,9 +127,7 @@ const NotFound = () => {
         <span aria-hidden="true">404</span>
       </NumberGlitch>
       <Text>Oh no! I'm sorry! You can't shop here.</Text>
-      <Link to="/">
-        <Button>HOME</Button>
-      </Link>
+      <Button to="/">HOME</Button>
     </Container>
   );
 };

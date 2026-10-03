@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import Picture from "./Picture";
@@ -53,7 +54,9 @@ const CategoryItem = ({ item }) => {
       />
       <Info>
         <Title>{item.title}</Title>
-        <Button>SHOP HERE</Button>
+        <Button as={Link} to="/productlist">
+          SHOP HERE
+        </Button>
       </Info>
     </Container>
   );

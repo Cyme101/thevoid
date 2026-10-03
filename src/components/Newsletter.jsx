@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Send } from "@mui/icons-material";
 import { mobile } from "../responsive";
 
-
 const Container = styled.div`
   align-items: center;
   background-color: #f7ede2;

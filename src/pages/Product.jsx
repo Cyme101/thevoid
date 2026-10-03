@@ -1,3 +1,5 @@
+import { Fragment, useEffect, useState } from "react";
+import { useParams } from "react-router";
 import styled from "styled-components";
 import { Add, Remove } from "@mui/icons-material";
 
@@ -7,6 +9,10 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile, tablet } from "../responsive";
 import Picture from "../components/Picture";
+import NotFound from "./NotFound";
+import { findProduct } from "../Data";
+import { useCart } from "../cart";
+import { formatPrice } from "../price";
 
 const Container = styled.div``;
 
@@ -71,12 +77,16 @@ const FilterTitle = styled.span`
   font-weight: 200;
 `;
 
-const FilterColor = styled.div`
+const FilterColor = styled.button`
   background-color: ${(props) => props.$color};
+  border: none;
   border-radius: 50%;
+  box-shadow: ${(props) =>
+    props["aria-pressed"] ? "0 0 0 2px white, 0 0 0 4px #044b7f" : "none"};
   cursor: pointer;
   height: 20px;
   margin: 0px 4px;
+  padding: 0;
   width: 20px;
 `;
 
@@ -103,6 +113,20 @@ const AmountContainer = styled.div`
   font-weight: 700;
 `;
 
+const QuantityButton = styled.button`
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.3;
+  }
+`;
+
 const Amount = styled.span`
   align-items: center;
   border: 1px solid #044b7f;
@@ -126,7 +150,25 @@ const Button = styled.button`
   }
 `;
 
-const Product = () => {
+const ProductDetails = ({ product }) => {
+  const { add } = useCart();
+  const [color, setColor] = useState(product.colors[0].name);
+  const [size, setSize] = useState(product.sizes[0]);
+  const [quantity, setQuantity] = useState(1);
+  const [added, setAdded] = useState(false);
+
+  // Show "ADDED" on the button briefly after adding to the bag.
+  useEffect(() => {
+    if (!added) return;
+    const timer = setTimeout(() => setAdded(false), 1500);
+    return () => clearTimeout(timer);
+  }, [added]);
+
+  const addToBag = () => {
+    add({ id: product.id, color, size, quantity });
+    setAdded(true);
+  };
+
   return (
     <Container>
       <Navbar />
@@ -134,48 +176,79 @@ const Product = () => {
       <Wrapper>
         <ImgContainer>
           <Image
-            name="product-ripped-jeans"
-            alt="Light-wash ripped jeans"
+            name={product.img}
+            alt={product.alt}
             sizes="(max-width: 1023px) 100vw, 50vw"
             fetchPriority="high"
           />
         </ImgContainer>
         <InfoContainer>
-          <Title>Ripped Boyfriend Fit Jeans</Title>
+          <Title>{product.name}</Title>
           <Desc>
-            This was a returned item then our designers decided to make bigger
-            holes in it. These are designed to fit exactly like those grunge
-            jeans you always dreamed of finding.
-            <br></br>
-            <br></br>
-            Made in U.S.A.
+            {product.desc.map((paragraph, index) => (
+              <Fragment key={index}>
+                {index > 0 && (
+                  <>
+                    <br />
+                    <br />
+                  </>
+                )}
+                {paragraph}
+              </Fragment>
+            ))}
           </Desc>
-          <Price>$75.00 CAD</Price>
+          <Price>{formatPrice(product.price)}</Price>
           <FilterContainer>
             <Filter>
-              <FilterTitle>Color </FilterTitle>
-              <FilterColor $color="#6F8FAF" />
-              <FilterColor $color="#090909" />
-              <FilterColor $color="#5dadec" />
+              <FilterTitle>Color</FilterTitle>
+              {product.colors.map((option) => (
+                <FilterColor
+                  key={option.name}
+                  type="button"
+                  $color={option.hex}
+                  aria-label={option.name}
+                  aria-pressed={option.name === color}
+                  onClick={() => setColor(option.name)}
+                />
+              ))}
             </Filter>
             <Filter>
-              <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
+              <FilterTitle as="label" htmlFor="size">
+                Size
+              </FilterTitle>
+              <FilterSize
+                id="size"
+                value={size}
+                onChange={(event) => setSize(event.target.value)}
+              >
+                {product.sizes.map((option) => (
+                  <FilterSizeOption key={option}>{option}</FilterSizeOption>
+                ))}
               </FilterSize>
             </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <QuantityButton
+                type="button"
+                aria-label="Decrease quantity"
+                disabled={quantity === 1}
+                onClick={() => setQuantity(quantity - 1)}
+              >
+                <Remove />
+              </QuantityButton>
+              <Amount aria-live="polite">{quantity}</Amount>
+              <QuantityButton
+                type="button"
+                aria-label="Increase quantity"
+                onClick={() => setQuantity(quantity + 1)}
+              >
+                <Add />
+              </QuantityButton>
             </AmountContainer>
-            <Button>ADD TO BAG</Button>
+            <Button type="button" onClick={addToBag}>
+              {added ? "ADDED ✓" : "ADD TO BAG"}
+            </Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
@@ -183,6 +256,15 @@ const Product = () => {
       <Footer />
     </Container>
   );
+};
+
+// Keyed by product so color/size/quantity reset when switching products.
+const Product = () => {
+  const { id } = useParams();
+  const product = findProduct(id);
+
+  if (!product) return <NotFound />;
+  return <ProductDetails key={product.id} product={product} />;
 };
 
 export default Product;

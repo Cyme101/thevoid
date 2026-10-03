@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Link as RouterLink } from "react-router";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { imageUrl } from "../images";
@@ -7,15 +9,11 @@ import Footer from "../components/Footer";
 
 const Container = styled.div`
   align-items: center;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2)
-    ),
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
     url("${imageUrl("login-background")}") no-repeat center;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2)
-    ),
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
     image-set(
       url("${imageUrl("login-background", "avif")}") type("image/avif"),
       url("${imageUrl("login-background")}") type("image/webp")
@@ -66,7 +64,8 @@ const Button = styled.button`
   width: 40%;
 `;
 
-const Link = styled.a`
+const Link = styled(RouterLink)`
+  color: inherit;
   cursor: pointer;
   font-size: 14px;
   margin: 5px 0;
@@ -77,7 +76,19 @@ const Link = styled.a`
   }
 `;
 
+const Note = styled.p`
+  font-size: 14px;
+  margin-top: 10px;
+`;
+
 const Login = () => {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setSubmitted(true);
+  };
+
   return (
     <>
       <Navbar />
@@ -85,12 +96,27 @@ const Login = () => {
       <Container>
         <Wrapper>
           <Title>LOGIN</Title>
-          <Form>
-            <Input placeholder="Email" />
-            <Input placeholder="Password" />
-            <Link>Forgot your password?</Link>
-            <Button>SIGN IN</Button>
-            <Link>Create account</Link>
+          <Form onSubmit={handleSubmit}>
+            <Input
+              type="email"
+              placeholder="Email"
+              aria-label="Email"
+              autoComplete="email"
+              required
+            />
+            <Input
+              type="password"
+              placeholder="Password"
+              aria-label="Password"
+              autoComplete="current-password"
+              required
+            />
+            <Link as="span">Forgot your password?</Link>
+            <Button type="submit">SIGN IN</Button>
+            {submitted && (
+              <Note role="status">Sign-in isn't available yet.</Note>
+            )}
+            <Link to="/register">Create account</Link>
           </Form>
         </Wrapper>
       </Container>
