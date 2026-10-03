@@ -6,6 +6,7 @@ import { imageUrl } from "../images";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Button from "../components/Button";
 
 const Container = styled.div`
   align-items: center;
@@ -54,16 +55,6 @@ const Input = styled.input`
   padding: 10px;
 `;
 
-const Button = styled.button`
-  background-color: #044b7f;
-  border: none;
-  color: white;
-  cursor: pointer;
-  margin: 30px 0 10px 0;
-  padding: 15px;
-  width: 40%;
-`;
-
 const Link = styled(RouterLink)`
   color: inherit;
   cursor: pointer;
@@ -74,6 +65,11 @@ const Link = styled(RouterLink)`
   &:hover {
     text-decoration: underline solid black 2px;
   }
+`;
+
+const SubmitButton = styled(Button)`
+  margin: 30px 0 10px;
+  width: 40%;
 `;
 
 const Note = styled.p`
@@ -112,7 +108,9 @@ const Login = () => {
               required
             />
             <Link as="span">Forgot your password?</Link>
-            <Button type="submit">SIGN IN</Button>
+            <SubmitButton type="submit" $variant="accent">
+              SIGN IN
+            </SubmitButton>
             {submitted && (
               <Note role="status">Sign-in isn't available yet.</Note>
             )}

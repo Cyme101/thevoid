@@ -1,4 +1,4 @@
-import { Link, useLocation, useParams } from "react-router";
+import { useLocation, useParams } from "react-router";
 import styled, { keyframes } from "styled-components";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import OrderSummary from "../components/OrderSummary";
 import { findOrder } from "../orders";
 import { mobile, tablet } from "../responsive";
+import { ButtonLink } from "../components/Button";
 
 const draw = keyframes`
   to { stroke-dashoffset: 0; }
@@ -150,21 +151,6 @@ const Actions = styled.div`
   padding: 0 20px 70px;
 `;
 
-const Button = styled(Link)`
-  background-color: ${(props) => (props.$filled ? "#090909" : "white")};
-  border: 2px solid #090909;
-  color: ${(props) => (props.$filled ? "white" : "#090909")};
-  font-size: 15px;
-  font-weight: 500;
-  padding: 12px 22px;
-  text-decoration: none;
-  transition: opacity 0.3s ease;
-
-  &:hover {
-    opacity: 0.8;
-  }
-`;
-
 const NotFound = styled.div`
   font-size: 18px;
   font-weight: 300;
@@ -265,10 +251,10 @@ const OrderConfirmation = () => {
             </Column>
           </Body>
           <Actions>
-            <Button to="/productlist" $filled>
+            <ButtonLink to="/productlist" $variant="filled">
               CONTINUE SHOPPING
-            </Button>
-            <Button to="/">BACK TO HOME</Button>
+            </ButtonLink>
+            <ButtonLink to="/">BACK TO HOME</ButtonLink>
           </Actions>
         </>
       ) : (
@@ -276,9 +262,9 @@ const OrderConfirmation = () => {
           <h1>Order not found</h1>
           We couldn't find order {number} on this device.
           <Actions style={{ paddingTop: 24 }}>
-            <Button to="/productlist" $filled>
+            <ButtonLink to="/productlist" $variant="filled">
               SHOP ALL
-            </Button>
+            </ButtonLink>
           </Actions>
         </NotFound>
       )}

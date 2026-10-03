@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router";
 import styled from "styled-components";
 import {
   KeyboardArrowLeft as KeyboardArrowLeftIcon,
@@ -18,6 +17,7 @@ import {
   SplitText,
   prefersReducedMotion,
 } from "../gsap";
+import { ButtonLink } from "./Button";
 
 const AUTOPLAY_SECONDS = 6;
 
@@ -131,26 +131,6 @@ const Desc = styled.p`
   letter-spacing: 2px;
   ${tablet({ fontSize: "20px", margin: "16px 0 24px" })}
   ${mobile({ fontSize: "15px", letterSpacing: "1px", margin: "12px 0 20px" })}
-`;
-
-const Button = styled.button`
-  background-color: transparent;
-  border: 2px solid #090909;
-  color: #090909;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 20px;
-  padding: 10px 15px;
-  text-decoration: none;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-  ${mobile({ fontSize: "16px" })}
-
-  &:hover {
-    background-color: #090909;
-    color: white;
-  }
 `;
 
 // Light pill behind the dots so they stay readable over a photo.
@@ -373,9 +353,9 @@ const Slider = () => {
             <InfoContainer data-slide-info>
               <Title>{item.title}</Title>
               <Desc data-slide-fade>{item.desc}</Desc>
-              <Button as={Link} to="/productlist" data-slide-fade>
+              <ButtonLink to="/productlist" $size="lg" data-slide-fade>
                 SHOP SALE
-              </Button>
+              </ButtonLink>
             </InfoContainer>
           </Slide>
         ))}

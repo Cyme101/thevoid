@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { Link } from "react-router";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
@@ -8,6 +7,7 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { findProduct } from "../Data";
 import { useWishlist } from "../wishlist";
+import { ButtonLink } from "../components/Button";
 
 const Title = styled.h1`
   margin: 20px;
@@ -26,23 +26,8 @@ const Empty = styled.div`
   text-align: center;
 `;
 
-const Button = styled(Link)`
-  border: 2px solid #090909;
-  color: #090909;
-  display: inline-block;
-  font-size: 15px;
-  font-weight: 500;
+const ShopButton = styled(ButtonLink)`
   margin-top: 24px;
-  padding: 12px 22px;
-  text-decoration: none;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-
-  &:hover {
-    background-color: #090909;
-    color: white;
-  }
 `;
 
 const Wishlist = () => {
@@ -65,7 +50,7 @@ const Wishlist = () => {
           <br />
           Tap the heart on any piece to keep it here.
           <br />
-          <Button to="/productlist">SHOP ALL</Button>
+          <ShopButton to="/productlist">SHOP ALL</ShopButton>
         </Empty>
       )}
       <Newsletter />

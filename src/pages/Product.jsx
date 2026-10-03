@@ -20,6 +20,7 @@ import { findProduct } from "../Data";
 import { useCart } from "../cart";
 import { useWishlist } from "../wishlist";
 import { formatPrice } from "../price";
+import Button from "../components/Button";
 
 const Container = styled.div``;
 
@@ -152,27 +153,9 @@ const Amount = styled.span`
   width: 30px;
 `;
 
-const Button = styled.button`
-  background-color: white;
-  border: 2px solid #044b7f;
-  cursor: pointer;
-  font-weight: 500;
-  padding: 15px;
-
-  &:hover {
-    background-color: #f8eeed;
-  }
-`;
-
 const Actions = styled.div`
   display: flex;
   gap: 10px;
-`;
-
-const SaveButton = styled(Button)`
-  align-items: center;
-  display: flex;
-  gap: 6px;
 `;
 
 const ProductDetails = ({ product }) => {
@@ -278,7 +261,7 @@ const ProductDetails = ({ product }) => {
               <Button type="button" onClick={addToBag}>
                 {added ? "ADDED ✓" : "ADD TO BAG"}
               </Button>
-              <SaveButton
+              <Button
                 type="button"
                 aria-pressed={saved}
                 aria-label={saved ? "Remove from wishlist" : "Save to wishlist"}
@@ -290,7 +273,7 @@ const ProductDetails = ({ product }) => {
                   <FavoriteBorderOutlinedIcon style={{ fontSize: 18 }} />
                 )}
                 {saved ? "SAVED" : "SAVE"}
-              </SaveButton>
+              </Button>
             </Actions>
           </AddContainer>
         </InfoContainer>

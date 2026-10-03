@@ -5,6 +5,7 @@ import { imageUrl } from "../images";
 import Navbar from "../components/Navbar";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
+import Button from "../components/Button";
 
 const Container = styled.div`
   align-items: center;
@@ -52,13 +53,8 @@ const Input = styled.input`
   padding: 10px;
 `;
 
-const Button = styled.button`
-  background-color: #044b7f;
-  border: none;
-  color: white;
-  cursor: pointer;
-  margin: 30px 0 10px 0;
-  padding: 15px;
+const SubmitButton = styled(Button)`
+  margin: 30px 0 10px;
   width: 40%;
 `;
 
@@ -127,7 +123,9 @@ const Register = () => {
               autoComplete="new-password"
               required
             />
-            <Button type="submit">CREATE</Button>
+            <SubmitButton type="submit" $variant="accent">
+              CREATE
+            </SubmitButton>
             {message && <Note role="status">{message}</Note>}
           </Form>
         </Wrapper>

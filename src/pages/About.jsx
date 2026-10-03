@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { Link } from "react-router";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
@@ -8,6 +7,7 @@ import Footer from "../components/Footer";
 import Picture from "../components/Picture";
 import { mobile, tablet } from "../responsive";
 import { useScrollReveal } from "../gsap";
+import { ButtonLink } from "../components/Button";
 
 const Hero = styled.section`
   align-items: center;
@@ -52,24 +52,6 @@ const Lead = styled.p`
   line-height: 1.6;
   margin-bottom: 32px;
   ${mobile({ fontSize: "17px" })}
-`;
-
-const Button = styled(Link)`
-  border: 2px solid #090909;
-  color: #090909;
-  display: inline-block;
-  font-size: 16px;
-  font-weight: 500;
-  padding: 12px 22px;
-  text-decoration: none;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-
-  &:hover {
-    background-color: #090909;
-    color: white;
-  }
 `;
 
 const Steps = styled.section`
@@ -141,7 +123,7 @@ const About = () => {
             We are using second hand clothes to make edgy and trendy new
             garments. Each piece will reveal a better version of yourself.
           </Lead>
-          <Button to="/productlist">SHOP THE COLLECTION</Button>
+          <ButtonLink to="/productlist">SHOP THE COLLECTION</ButtonLink>
         </HeroText>
       </Hero>
       <Steps ref={stepsRef} aria-label="How it works">
