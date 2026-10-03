@@ -1,0 +1,134 @@
+{
+  "category-coats": {
+    "width": 1200,
+    "height": 1457,
+    "widths": [
+      400,
+      800,
+      1200
+    ]
+  },
+  "category-jeans": {
+    "width": 1200,
+    "height": 1500,
+    "widths": [
+      400,
+      800,
+      1200
+    ]
+  },
+  "category-sneakers": {
+    "width": 1200,
+    "height": 1600,
+    "widths": [
+      400,
+      800,
+      1200
+    ]
+  },
+  "hero-autumn-sale": {
+    "width": 408,
+    "height": 612,
+    "widths": [
+      408
+    ]
+  },
+  "hero-coat-back": {
+    "width": 408,
+    "height": 612,
+    "widths": [
+      408
+    ]
+  },
+  "hero-costalamel": {
+    "width": 667,
+    "height": 1000,
+    "widths": [
+      400,
+      667
+    ]
+  },
+  "login-background": {
+    "width": 1600,
+    "height": 1037,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600
+    ]
+  },
+  "product-balenciaga-hoodie": {
+    "width": 1200,
+    "height": 1044,
+    "widths": [
+      400,
+      800,
+      1200
+    ]
+  },
+  "product-bomber-jacket": {
+    "width": 1024,
+    "height": 1024,
+    "widths": [
+      400,
+      800,
+      1024
+    ]
+  },
+  "product-cdg-converse": {
+    "width": 408,
+    "height": 612,
+    "widths": [
+      408
+    ]
+  },
+  "product-leather-jacket": {
+    "width": 410,
+    "height": 494,
+    "widths": [
+      410
+    ]
+  },
+  "product-nike-dunk": {
+    "width": 408,
+    "height": 612,
+    "widths": [
+      408
+    ]
+  },
+  "product-obey-cap": {
+    "width": 460,
+    "height": 612,
+    "widths": [
+      400,
+      460
+    ]
+  },
+  "product-plaid-skirt": {
+    "width": 500,
+    "height": 500,
+    "widths": [
+      400,
+      500
+    ]
+  },
+  "product-ripped-jeans": {
+    "width": 558,
+    "height": 744,
+    "widths": [
+      400,
+      558
+    ]
+  },
+  "register-background": {
+    "width": 1600,
+    "height": 1067,
+    "widths": [
+      400,
+      800,
+      1200,
+      1600
+    ]
+  }
+}

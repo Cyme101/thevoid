@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile, tablet } from "../responsive";
+import Picture from "../components/Picture";
 
 const Container = styled.div``;
 
@@ -22,7 +23,7 @@ const ImgContainer = styled.div`
   ${tablet({ textAlign: "center" })}
 `;
 
-const Image = styled.img`
+const Image = styled(Picture)`
   height: 80vh;
   object-fit: cover;
   width: 100%;
@@ -132,7 +133,12 @@ const Product = () => {
       <Announcement />
       <Wrapper>
         <ImgContainer>
-          <Image src="https://i.ibb.co/WgqVK33/Jeans-PNG-Image-Transparent-Background.png" />
+          <Image
+            name="product-ripped-jeans"
+            alt="Light-wash ripped jeans"
+            sizes="(max-width: 1023px) 100vw, 50vw"
+            fetchPriority="high"
+          />
         </ImgContainer>
         <InfoContainer>
           <Title>Ripped Boyfriend Fit Jeans</Title>
