@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { imageUrl } from "../images";
 import Navbar from "../components/Navbar";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -10,7 +11,15 @@ const Container = styled.div`
       rgba(255, 255, 255, 0.2),
       rgba(255, 255, 255, 0.2)
     ),
-    url("https://bit.ly/3D3Yc3c") no-repeat center;
+    url("${imageUrl("register-background")}") no-repeat center;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2)
+    ),
+    image-set(
+      url("${imageUrl("register-background", "avif")}") type("image/avif"),
+      url("${imageUrl("register-background")}") type("image/webp")
+    );
   background-size: cover;
   display: flex;
   justify-content: center;

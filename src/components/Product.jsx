@@ -4,6 +4,7 @@ import {
   SearchOutlined as SearchOutlinedIcon,
   ShoppingCartOutlined as ShoppingCartOutlinedIcon,
 } from "@mui/icons-material";
+import Picture from "./Picture";
 
 const Info = styled.div`
   align-items: center;
@@ -44,7 +45,7 @@ const Circle = styled.div`
   width: 200px;
 `;
 
-const Image = styled.img`
+const Image = styled(Picture)`
   height: 80%;
   z-index: 4;
 `;
@@ -70,7 +71,7 @@ const Product = ({ item }) => {
   return (
     <Container>
       <Circle />
-      <Image src={item.img} />
+      <Image name={item.img} alt={item.alt} sizes="320px" loading="lazy" />
       <Info>
         <Icon>
           <ShoppingCartOutlinedIcon />
