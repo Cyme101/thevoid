@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Link } from "react-router";
 import {
   FavoriteBorderOutlined as FavoriteBorderOutlinedIcon,
-  SearchOutlined as SearchOutlinedIcon,
   ShoppingCartOutlined as ShoppingCartOutlinedIcon,
 } from "@mui/icons-material";
 import Picture from "./Picture";
@@ -32,9 +31,6 @@ const Info = styled.div`
   }
   & [data-icon]:nth-child(3) {
     transition-delay: 0.06s;
-  }
-  & [data-icon]:nth-child(4) {
-    transition-delay: 0.12s;
   }
 
   /* Touch screens have no hover: keep the icons visible along the bottom */
@@ -137,14 +133,6 @@ const Product = ({ item }) => {
           aria-label={`Add ${item.name} to bag`}
         >
           <ShoppingCartOutlinedIcon />
-        </Icon>
-        <Icon
-          as={Link}
-          to={productPath}
-          aria-label={`View ${item.name}`}
-          data-icon
-        >
-          <SearchOutlinedIcon />
         </Icon>
         <Icon aria-hidden="true" data-icon>
           <FavoriteBorderOutlinedIcon />

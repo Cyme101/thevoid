@@ -1,6 +1,6 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { Link } from "react-router";
+import { Link, useNavigate, useSearchParams } from "react-router";
 
 import { Badge } from "@mui/material";
 import {
@@ -37,7 +37,7 @@ const Left = styled.div`
   flex: 1;
 `;
 
-const SearchContainer = styled.div`
+const SearchContainer = styled.form`
   border: 1px solid #e1e5ee;
   align-items: center;
   display: flex;
@@ -48,6 +48,19 @@ const SearchContainer = styled.div`
 const Input = styled.input`
   border: none;
   ${mobile({ width: "50px" })}
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const SearchButton = styled.button`
+  background: none;
+  border: none;
+  color: gray;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
 `;
 
 const Center = styled.div`
@@ -91,6 +104,23 @@ const Navbar = () => {
   const { lines } = useCart();
   const count = cartCount(lines);
   const bagRef = useRef(null);
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("q") ?? "";
+  const [search, setSearch] = useState(query);
+
+  // Keep the box in sync with the URL (e.g. back/forward between searches).
+  useEffect(() => {
+    setSearch(query);
+  }, [query]);
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const term = search.trim();
+    navigate(
+      term ? `/productlist?q=${encodeURIComponent(term)}` : "/productlist"
+    );
+  };
   const previousCount = useRef(count);
 
   // Bounce the bag icon when something is added.
@@ -124,9 +154,17 @@ const Navbar = () => {
       <Wrapper>
         <Left>
           <Language>FR</Language>
-          <SearchContainer>
-            <Input placeholder="Search" aria-label="Search" />
-            <Search style={{ color: "gray", fontSize: 18 }} />
+          <SearchContainer role="search" onSubmit={handleSearch}>
+            <Input
+              type="search"
+              placeholder="Search"
+              aria-label="Search products"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+            />
+            <SearchButton type="submit" aria-label="Search">
+              <Search style={{ fontSize: 18 }} />
+            </SearchButton>
           </SearchContainer>
         </Left>
         <Center>
