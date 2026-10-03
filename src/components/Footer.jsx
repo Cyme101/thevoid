@@ -115,6 +115,17 @@ const SmallPrint = styled.p`
   }
 `;
 
+const helpfulLinks = [
+  { label: "HOME", to: "/" },
+  { label: "ABOUT US", to: "/about" },
+  { label: "MY ACCOUNT", to: "/login" },
+  { label: "MY WISHLIST", to: "/wishlist" },
+  { label: "BAG", to: "/bag" },
+  { label: "CLOTHING", to: "/productlist?category=clothing" },
+  { label: "SHOES", to: "/productlist?category=shoes" },
+  { label: "ACCESSORIES", to: "/productlist?category=accessories" },
+];
+
 const Footer = () => {
   return (
     <footer>
@@ -147,30 +158,11 @@ const Footer = () => {
         <Center>
           <Title>HELPFUL LINKS</Title>
           <List>
-            <ListItem>
-              <Link to="/">HOME</Link>
-            </ListItem>
-            <ListItem>
-              <Link to="/about">ABOUT US</Link>
-            </ListItem>
-            <ListItem>
-              <Link to="/login">MY ACCOUNT</Link>
-            </ListItem>
-            <ListItem>MY ORDERS</ListItem>
-            <ListItem>
-              <Link to="/wishlist">MY WISHLIST</Link>
-            </ListItem>
-            <ListItem>
-              <Link to="/bag">BAG</Link>
-            </ListItem>
-            <ListItem>WOMEN'S</ListItem>
-            <ListItem>MEN'S</ListItem>
-            <ListItem>
-              <Link to="/productlist?category=accessories">ACCESSORIES</Link>
-            </ListItem>
-            <ListItem>POLICIES</ListItem>
-            <ListItem>TERMS OF SERVICE</ListItem>
-            <ListItem>CHAT WITH OUR TEAM</ListItem>
+            {helpfulLinks.map((link) => (
+              <ListItem key={link.to}>
+                <Link to={link.to}>{link.label}</Link>
+              </ListItem>
+            ))}
           </List>
         </Center>
         <Right>
