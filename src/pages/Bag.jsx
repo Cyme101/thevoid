@@ -15,6 +15,7 @@ import {
   useCart,
 } from "../cart";
 import { formatPrice } from "../price";
+import { useWishlist } from "../wishlist";
 
 const Container = styled.div``;
 
@@ -66,8 +67,8 @@ const TopText = styled.span`
   text-decoration: underline;
 `;
 
-const TopWishList = styled.div`
-  cursor: pointer;
+const TopWishList = styled(Link)`
+  color: inherit;
   margin: 0px 10px;
   text-decoration: underline;
 `;
@@ -208,6 +209,7 @@ const Empty = styled.p`
 
 const Bag = () => {
   const { lines, setQuantity } = useCart();
+  const savedCount = useWishlist().ids.length;
   const count = cartCount(lines);
   const subtotal = cartSubtotal(lines);
   const isEmpty = lines.length === 0;
@@ -225,7 +227,9 @@ const Bag = () => {
           </TopButton>
           <TopInfo>
             <TopText>Shopping Bag({count})</TopText>
-            <TopWishList>Your WishList(0)</TopWishList>
+            <TopWishList to="/wishlist">
+              Your WishList({savedCount})
+            </TopWishList>
           </TopInfo>
           <TopButton type="button" $variant="filled" disabled={isEmpty}>
             CHECKOUT

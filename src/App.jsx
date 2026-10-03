@@ -7,6 +7,7 @@ import ProductList from "./pages/ProductList";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Bag from "./pages/Bag";
+import Wishlist from "./pages/Wishlist";
 import NotFound from "./pages/NotFound";
 
 // Start each new page at the top instead of the previous scroll position.
@@ -31,6 +32,7 @@ const App = () => {
         <Route path="/productlist" element={<ProductList />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/bag" element={<Bag />} />
+        <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
     </>
   );
