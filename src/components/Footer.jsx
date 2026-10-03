@@ -157,7 +157,9 @@ const Footer = () => {
               <Link to="/login">MY ACCOUNT</Link>
             </ListItem>
             <ListItem>MY ORDERS</ListItem>
-            <ListItem>MY WISHLIST</ListItem>
+            <ListItem>
+              <Link to="/wishlist">MY WISHLIST</Link>
+            </ListItem>
             <ListItem>
               <Link to="/bag">BAG</Link>
             </ListItem>

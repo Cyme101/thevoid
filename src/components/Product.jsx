@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { Link } from "react-router";
 import {
+  Favorite as FavoriteIcon,
   FavoriteBorderOutlined as FavoriteBorderOutlinedIcon,
   ShoppingBagOutlined as ShoppingBagOutlinedIcon,
 } from "@mui/icons-material";
 import Picture from "./Picture";
 import { useCart } from "../cart";
+import { useWishlist } from "../wishlist";
 import { formatPrice } from "../price";
 import { mobile } from "../responsive";
 
@@ -66,17 +68,41 @@ const QuickAdd = styled.button`
   }
 `;
 
-const Wishlist = styled.span`
+const pop = keyframes`
+  40% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+`;
+
+// Shown on hover, and always once the product is saved (or on touch).
+const Wishlist = styled.button`
   background-color: white;
+  border: none;
   border-radius: 50%;
+  color: #090909;
+  cursor: pointer;
   display: flex;
-  opacity: 0;
+  opacity: ${(props) => (props["aria-pressed"] ? 1 : 0)};
   padding: 7px;
-  pointer-events: none;
   position: absolute;
   right: 12px;
   top: 12px;
-  transition: opacity 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    background-color 0.3s ease;
+  z-index: 2;
+  ${(props) =>
+    props["aria-pressed"] &&
+    css`
+      animation: ${pop} 0.35s ease;
+    `}
+
+  &:hover {
+    background-color: #f1f3f5;
+  }
+
+  &:focus-visible {
+    opacity: 1;
+  }
 
   @media (hover: none) {
     opacity: 1;
@@ -187,6 +213,8 @@ const Card = styled.article`
 
 const Product = ({ item }) => {
   const { add } = useCart();
+  const wishlist = useWishlist();
+  const saved = wishlist.has(item.id);
   const [added, setAdded] = useState(false);
 
   // Show "ADDED" on the button briefly after adding to the bag.
@@ -216,8 +244,21 @@ const Product = ({ item }) => {
           sizes="(max-width: 767px) 50vw, 340px"
           loading="lazy"
         />
-        <Wishlist aria-hidden="true">
-          <FavoriteBorderOutlinedIcon style={{ fontSize: 18 }} />
+        <Wishlist
+          type="button"
+          aria-pressed={saved}
+          aria-label={
+            saved
+              ? `Remove ${item.name} from wishlist`
+              : `Save ${item.name} to wishlist`
+          }
+          onClick={() => wishlist.toggle(item.id)}
+        >
+          {saved ? (
+            <FavoriteIcon style={{ fontSize: 18 }} />
+          ) : (
+            <FavoriteBorderOutlinedIcon style={{ fontSize: 18 }} />
+          )}
         </Wishlist>
         <QuickAdd
           type="button"

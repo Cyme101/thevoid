@@ -4,11 +4,13 @@ import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
 
 import { Badge } from "@mui/material";
 import {
+  FavoriteBorderOutlined as FavoriteBorderOutlinedIcon,
   ShoppingBagOutlined as ShoppingBagOutlinedIcon,
   Search,
 } from "@mui/icons-material";
 import { mobile } from "../responsive";
 import { cartCount, useCart } from "../cart";
+import { useWishlist } from "../wishlist";
 import { productCategories } from "../Data";
 import { gsap, useGSAP, prefersReducedMotion } from "../gsap";
 
@@ -41,6 +43,7 @@ const SearchContainer = styled.form`
   display: flex;
   margin-left: 24px;
   padding: 5px;
+  ${mobile({ marginLeft: "0" })}
 `;
 
 const Input = styled.input`
@@ -75,6 +78,12 @@ const Logo = styled.h1`
   }
 
   ${mobile({ fontSize: "22px", margin: "0 8px" })}
+
+  /* Smallest phones (e.g. 320px wide) */
+  @media (max-width: 359px) {
+    font-size: 19px;
+    margin: 0 6px;
+  }
 `;
 
 const Right = styled.div`
@@ -92,6 +101,16 @@ const MenuItem = styled.div`
   margin-left: 25px;
   white-space: nowrap;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
+
+  @media (max-width: 359px) {
+    margin-left: 7px;
+  }
+`;
+
+// Hidden on phones to make room; the login page links to account creation.
+const SignUpLink = styled(Link)`
+  text-decoration: none;
+  ${mobile({ display: "none" })}
 `;
 
 const BagIcon = styled.span`
@@ -170,6 +189,7 @@ const shopLinks = [
 const Navbar = () => {
   const { lines } = useCart();
   const count = cartCount(lines);
+  const savedCount = useWishlist().ids.length;
   const bagRef = useRef(null);
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -241,11 +261,20 @@ const Navbar = () => {
           </Logo>
         </Center>
         <Right>
-          <Link to="/register" style={{ textDecoration: "none" }}>
+          <SignUpLink to="/register">
             <MenuItem>SIGN UP</MenuItem>
-          </Link>
+          </SignUpLink>
           <Link to="/login" style={{ textDecoration: "none" }}>
             <MenuItem>LOG IN</MenuItem>
+          </Link>
+          <Link to="/wishlist" aria-label={`Wishlist, ${savedCount} saved`}>
+            <MenuItem>
+              <Badge badgeContent={savedCount} color="info">
+                <FavoriteBorderOutlinedIcon
+                  style={{ color: "#090909", fontSize: 28 }}
+                />
+              </Badge>
+            </MenuItem>
           </Link>
           <Link to="/bag" aria-label={`Bag, ${count} items`}>
             <MenuItem>

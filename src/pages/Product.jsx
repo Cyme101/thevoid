@@ -1,7 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
-import { Add, Remove } from "@mui/icons-material";
+import {
+  Add,
+  Favorite as FavoriteIcon,
+  FavoriteBorderOutlined as FavoriteBorderOutlinedIcon,
+  Remove,
+} from "@mui/icons-material";
 
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
@@ -13,6 +18,7 @@ import { imageInfo } from "../images";
 import NotFound from "./NotFound";
 import { findProduct } from "../Data";
 import { useCart } from "../cart";
+import { useWishlist } from "../wishlist";
 import { formatPrice } from "../price";
 
 const Container = styled.div``;
@@ -158,8 +164,21 @@ const Button = styled.button`
   }
 `;
 
+const Actions = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+const SaveButton = styled(Button)`
+  align-items: center;
+  display: flex;
+  gap: 6px;
+`;
+
 const ProductDetails = ({ product }) => {
   const { add } = useCart();
+  const wishlist = useWishlist();
+  const saved = wishlist.has(product.id);
   const [color, setColor] = useState(product.colors[0].name);
   const [size, setSize] = useState(product.sizes[0]);
   const [quantity, setQuantity] = useState(1);
@@ -255,9 +274,24 @@ const ProductDetails = ({ product }) => {
                 <Add />
               </QuantityButton>
             </AmountContainer>
-            <Button type="button" onClick={addToBag}>
-              {added ? "ADDED ✓" : "ADD TO BAG"}
-            </Button>
+            <Actions>
+              <Button type="button" onClick={addToBag}>
+                {added ? "ADDED ✓" : "ADD TO BAG"}
+              </Button>
+              <SaveButton
+                type="button"
+                aria-pressed={saved}
+                aria-label={saved ? "Remove from wishlist" : "Save to wishlist"}
+                onClick={() => wishlist.toggle(product.id)}
+              >
+                {saved ? (
+                  <FavoriteIcon style={{ fontSize: 18 }} />
+                ) : (
+                  <FavoriteBorderOutlinedIcon style={{ fontSize: 18 }} />
+                )}
+                {saved ? "SAVED" : "SAVE"}
+              </SaveButton>
+            </Actions>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
