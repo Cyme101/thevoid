@@ -82,8 +82,8 @@ const Register = () => {
 
   return (
     <>
-      <Navbar />
       <Announcement />
+      <Navbar />
       <Container>
         <Wrapper>
           <Title>CREATE ACCOUNT</Title>

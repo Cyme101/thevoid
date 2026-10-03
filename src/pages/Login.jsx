@@ -91,8 +91,8 @@ const Login = () => {
 
   return (
     <>
-      <Navbar />
       <Announcement />
+      <Navbar />
       <Container>
         <Wrapper>
           <Title>LOGIN</Title>

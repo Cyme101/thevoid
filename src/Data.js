@@ -31,20 +31,33 @@ export const categories = [
     img: "category-sneakers",
     alt: "White high-top sneakers on a concrete floor",
     title: "SNEAKERS!",
+    to: "/productlist?category=shoes",
   },
   {
     id: 2,
     img: "category-coats",
     alt: "Model wearing a long pink teddy coat",
     title: "COATS",
+    to: "/productlist?q=jacket",
   },
   {
     id: 3,
     img: "category-jeans",
     alt: "Model in a denim jacket and jeans",
     title: "JEANS ON JEANS",
+    to: "/productlist?q=jeans",
   },
 ];
+
+// Shop sections shown in the navigation and used to filter the product list.
+export const productCategories = [
+  { id: "clothing", label: "Clothing" },
+  { id: "shoes", label: "Shoes" },
+  { id: "accessories", label: "Accessories" },
+];
+
+export const findCategory = (id) =>
+  productCategories.find((category) => category.id === id);
 
 // Product names, prices and descriptions marked "placeholder" are
 // stand-ins until the real catalogue is available.
@@ -54,6 +67,7 @@ const BLACK = { name: "Black", hex: "#090909" };
 export const products = [
   {
     id: "cdg-converse",
+    category: "shoes",
     sku: "16620479x",
     name: "Converse x Comme des Garçons PLAY Chuck 70 High Top",
     price: 200,
@@ -67,6 +81,7 @@ export const products = [
   },
   {
     id: "bomber-jacket",
+    category: "clothing",
     sku: "RN30004",
     name: "Venturer Prepare for War Bomber Jacket",
     price: 230,
@@ -80,6 +95,7 @@ export const products = [
   },
   {
     id: "ripped-jeans",
+    category: "clothing",
     sku: "RBF-0075", // placeholder
     name: "Ripped Boyfriend Fit Jeans",
     price: 75,
@@ -98,6 +114,7 @@ export const products = [
   },
   {
     id: "balenciaga-hoodie",
+    category: "clothing",
     sku: "BAL-H-0180", // placeholder
     name: "Balenciaga Logo Hoodie", // placeholder
     price: 180, // placeholder
@@ -109,6 +126,7 @@ export const products = [
   },
   {
     id: "plaid-skirt",
+    category: "clothing",
     sku: "TPS-0065", // placeholder
     name: "Tartan Pleated Skirt", // placeholder
     price: 65, // placeholder
@@ -120,6 +138,7 @@ export const products = [
   },
   {
     id: "leather-jacket",
+    category: "clothing",
     sku: "LMJ-0260", // placeholder
     name: "Leather Motorcycle Jacket", // placeholder
     price: 260, // placeholder
@@ -131,6 +150,7 @@ export const products = [
   },
   {
     id: "nike-dunk",
+    category: "shoes",
     sku: "NDH-0150", // placeholder
     name: "Nike Dunk High", // placeholder
     price: 150, // placeholder
@@ -142,6 +162,7 @@ export const products = [
   },
   {
     id: "obey-cap",
+    category: "accessories",
     sku: "OBE-CAP-1234567-QA66",
     name: "Brand Patch Strapback Hat",
     price: 44,
