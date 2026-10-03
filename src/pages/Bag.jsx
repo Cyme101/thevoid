@@ -208,15 +208,6 @@ const Bag = () => {
               Your WishList({savedCount})
             </TopWishList>
           </TopInfo>
-          <Button
-            type="button"
-            $variant="filled"
-            $size="sm"
-            disabled={isEmpty}
-            onClick={goToCheckout}
-          >
-            CHECKOUT
-          </Button>
         </Top>
         <Bottom>
           <ProductInfo>
