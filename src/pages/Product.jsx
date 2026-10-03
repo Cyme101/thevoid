@@ -9,6 +9,7 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile, tablet } from "../responsive";
 import Picture from "../components/Picture";
+import { imageInfo } from "../images";
 import NotFound from "./NotFound";
 import { findProduct } from "../Data";
 import { useCart } from "../cart";
@@ -23,18 +24,25 @@ const Wrapper = styled.div`
   ${tablet({ flexDirection: "column", padding: "10px" })}
 `;
 
+// Light panel (same as the product cards) with the whole product centered.
 const ImgContainer = styled.div`
+  align-items: center;
+  background-color: #f5fbfc;
+  box-sizing: border-box;
+  display: flex;
   flex: 1;
-  ${mobile({ textAlign: "center" })}
-  ${tablet({ textAlign: "center" })}
+  height: 80vh;
+  justify-content: center;
+  padding: 40px;
+  ${mobile({ height: "45vh", padding: "20px" })}
+  ${tablet({ height: "50vh", padding: "24px" })}
 `;
 
+// Never cropped. The inline max-width also keeps it from being shown
+// larger than the image's real size.
 const Image = styled(Picture)`
-  height: 80vh;
-  object-fit: cover;
-  width: 100%;
-  ${mobile({ height: "40vh" })}
-  ${tablet({ height: "40vh" })}
+  max-height: 100%;
+  object-fit: contain;
 `;
 
 const InfoContainer = styled.div`
@@ -75,6 +83,7 @@ const Filter = styled.div`
 const FilterTitle = styled.span`
   font-size: 20px;
   font-weight: 200;
+  margin-right: 8px;
 `;
 
 const FilterColor = styled.button`
@@ -91,7 +100,6 @@ const FilterColor = styled.button`
 `;
 
 const FilterSize = styled.select`
-  margin-left: 8px;
   padding: 5px;
 `;
 
@@ -180,6 +188,7 @@ const ProductDetails = ({ product }) => {
             alt={product.alt}
             sizes="(max-width: 1023px) 100vw, 50vw"
             fetchPriority="high"
+            style={{ maxWidth: `min(100%, ${imageInfo(product.img).width}px)` }}
           />
         </ImgContainer>
         <InfoContainer>
