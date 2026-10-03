@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Bag from "./pages/Bag";
 import Wishlist from "./pages/Wishlist";
 import Checkout from "./pages/Checkout";
+import OrderConfirmation from "./pages/OrderConfirmation";
 import NotFound from "./pages/NotFound";
 
 // Start each new page at the top instead of the previous scroll position.
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/bag" element={<Bag />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/order/:number" element={<OrderConfirmation />} />
       </Routes>
     </>
   );

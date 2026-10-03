@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Picture from "../components/Picture";
-import { findProduct } from "../Data";
-import { cartSubtotal, lineKey, shippingCost, useCart } from "../cart";
-import { formatPrice } from "../price";
-import { taxesFor } from "../taxes";
+import OrderSummary, { orderItems } from "../components/OrderSummary";
+import { useCart } from "../cart";
+import { newOrderNumber, saveOrder } from "../orders";
 import { mobile, tablet } from "../responsive";
 
 const PROVINCES = [
@@ -128,84 +126,6 @@ const PlaceOrder = styled.button`
   }
 `;
 
-// Beside the form on desktop; above it on tablets and phones.
-const Summary = styled.aside`
-  align-self: flex-start;
-  border: 1px solid #e6eaee;
-  box-sizing: border-box;
-  flex: 2;
-  padding: 24px;
-  width: 100%;
-  ${tablet({ order: -1 })}
-  ${mobile({ order: -1, padding: "18px" })}
-`;
-
-const SummaryTitle = styled.h2`
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  margin-bottom: 18px;
-`;
-
-const Item = styled.div`
-  align-items: center;
-  display: flex;
-  gap: 14px;
-  margin-bottom: 16px;
-`;
-
-const Thumb = styled.div`
-  align-items: center;
-  background-color: #f5fbfc;
-  display: flex;
-  flex: none;
-  height: 72px;
-  justify-content: center;
-  position: relative;
-  width: 60px;
-`;
-
-const ThumbImage = styled(Picture)`
-  max-height: 85%;
-  max-width: 85%;
-  object-fit: contain;
-`;
-
-const Quantity = styled.span`
-  background-color: #090909;
-  border-radius: 10px;
-  color: white;
-  font-size: 11px;
-  min-width: 20px;
-  padding: 2px 6px;
-  position: absolute;
-  right: -8px;
-  text-align: center;
-  top: -8px;
-  box-sizing: border-box;
-`;
-
-const ItemText = styled.div`
-  flex: 1;
-  font-size: 14px;
-  line-height: 1.4;
-`;
-
-const ItemOptions = styled.div`
-  color: #6b7075;
-  font-size: 13px;
-`;
-
-const Line = styled.div`
-  display: flex;
-  font-size: ${(props) => (props.$total ? "20px" : "15px")};
-  font-weight: ${(props) => (props.$total ? 500 : 300)};
-  justify-content: space-between;
-  margin-top: ${(props) => (props.$total ? "16px" : "10px")};
-  padding-top: ${(props) => (props.$total ? "16px" : "0")};
-  border-top: ${(props) => (props.$total ? "1px solid #e6eaee" : "none")};
-`;
-
 const Message = styled.div`
   font-size: 18px;
   font-weight: 300;
@@ -238,105 +158,35 @@ const OutlineLink = styled(Link)`
   }
 `;
 
-// Items and totals, used both before and after placing the order.
-const OrderSummary = ({ lines, province, title = "ORDER SUMMARY" }) => {
-  const subtotal = cartSubtotal(lines);
-  const shipping = shippingCost(subtotal);
-  const taxes = taxesFor(province, subtotal + shipping);
-  const total =
-    subtotal + shipping + taxes.reduce((sum, tax) => sum + tax.amount, 0);
-
-  return (
-    <Summary aria-label="Order summary">
-      <SummaryTitle>{title}</SummaryTitle>
-      {lines.map((line) => {
-        const product = findProduct(line.id);
-        return (
-          <Item key={lineKey(line)}>
-            <Thumb>
-              <ThumbImage name={product.img} alt={product.alt} sizes="60px" />
-              <Quantity aria-label={`Quantity ${line.quantity}`}>
-                {line.quantity}
-              </Quantity>
-            </Thumb>
-            <ItemText>
-              {product.name}
-              <ItemOptions>
-                {line.color} / {line.size}
-              </ItemOptions>
-            </ItemText>
-            <span>{formatPrice(product.price * line.quantity)}</span>
-          </Item>
-        );
-      })}
-      <Line>
-        <span>Subtotal</span>
-        <span>{formatPrice(subtotal)}</span>
-      </Line>
-      <Line>
-        <span>Shipping</span>
-        <span>{shipping === 0 ? "FREE" : formatPrice(shipping)}</span>
-      </Line>
-      {taxes.map((tax) => (
-        <Line key={tax.label}>
-          <span>{tax.label}</span>
-          <span>{formatPrice(tax.amount)}</span>
-        </Line>
-      ))}
-      <Line $total>
-        <span>Total</span>
-        <span>{formatPrice(total)}</span>
-      </Line>
-    </Summary>
-  );
-};
-
-const orderNumber = () =>
-  `TV-${Date.now().toString(36).slice(-6).toUpperCase()}`;
+// Beside the form on desktop; above it on tablets and phones.
+const CheckoutSummary = styled(OrderSummary)`
+  align-self: flex-start;
+  flex: 2;
+  ${tablet({ order: -1 })}
+  ${mobile({ order: -1, padding: "18px" })}
+`;
 
 const Checkout = () => {
   const { lines, clear } = useCart();
-  const [order, setOrder] = useState(null);
   const [province, setProvince] = useState("Quebec");
+  const navigate = useNavigate();
 
   const placeOrder = (event) => {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    setOrder({
-      number: orderNumber(),
-      firstName: form.get("firstName"),
-      email: form.get("email"),
-      lines,
-      province,
-    });
+    const form = Object.fromEntries(new FormData(event.currentTarget));
+    const order = {
+      ...form,
+      number: newOrderNumber(),
+      placedAt: new Date().toISOString(),
+      items: orderItems(lines),
+    };
+    saveOrder(order);
     clear();
-    window.scrollTo(0, 0);
+    navigate(`/order/${order.number}`, { state: { order } });
   };
 
   let content;
-  if (order) {
-    content = (
-      <>
-        <Message role="status">
-          <h1>Thank you, {order.firstName}!</h1>
-          Order <strong>{order.number}</strong> is confirmed.
-          <br />
-          This is a demo store: no payment was taken, no email is sent to{" "}
-          {order.email}, and nothing will ship.
-        </Message>
-        <Wrapper>
-          <OrderSummary
-            lines={order.lines}
-            province={order.province}
-            title="YOUR ORDER"
-          />
-        </Wrapper>
-        <Message>
-          <OutlineLink to="/productlist">CONTINUE SHOPPING</OutlineLink>
-        </Message>
-      </>
-    );
-  } else if (lines.length === 0) {
+  if (lines.length === 0) {
     content = (
       <Message>
         <h1>Your bag is empty</h1>
@@ -429,7 +279,7 @@ const Checkout = () => {
           </Notice>
           <PlaceOrder type="submit">PLACE ORDER</PlaceOrder>
         </Form>
-        <OrderSummary lines={lines} province={province} />
+        <CheckoutSummary items={orderItems(lines)} province={province} />
       </Wrapper>
     );
   }
