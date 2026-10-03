@@ -1,10 +1,20 @@
 import { Add, Remove } from "@mui/icons-material";
+import { Link } from "react-router";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { mobile, tablet } from "../responsive";
 import Picture from "../components/Picture";
+import { findProduct } from "../Data";
+import {
+  FREE_SHIPPING_THRESHOLD,
+  cartCount,
+  cartSubtotal,
+  lineKey,
+  useCart,
+} from "../cart";
+import { formatPrice } from "../price";
 
 const Container = styled.div``;
 
@@ -30,11 +40,19 @@ const Top = styled.div`
 const TopButton = styled.button`
   background-color: ${(props) =>
     props.$variant === "filled" ? "black" : "transparent"};
-  border: ${(props) => props.$variant === "filled" && "none"};
-  color: ${(props) => props.$variant === "filled" && "white"};
+  border: ${(props) =>
+    props.$variant === "filled" ? "none" : "2px solid #767676"};
+  color: ${(props) => (props.$variant === "filled" ? "white" : "black")};
   cursor: pointer;
+  font-size: 13px;
   font-weight: 600;
   padding: 10px;
+  text-decoration: none;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
 `;
 
 const TopInfo = styled.div`
@@ -114,6 +132,15 @@ const ProductAmountContainer = styled.div`
   margin-bottom: 20px;
 `;
 
+const QuantityButton = styled.button`
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+`;
+
 const ProductAmount = styled.div`
   font-size: 22px;
   margin: 6px;
@@ -161,12 +188,31 @@ const SummaryItemPrice = styled.span``;
 const Button = styled.button`
   background-color: black;
   color: white;
+  cursor: pointer;
   font-weight: 600;
   padding: 10px;
   width: 100%;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
+`;
+
+const Empty = styled.p`
+  font-size: 20px;
+  font-weight: 300;
+  padding: 30px 0;
+  text-align: center;
 `;
 
 const Bag = () => {
+  const { lines, setQuantity } = useCart();
+  const count = cartCount(lines);
+  const subtotal = cartSubtotal(lines);
+  const isEmpty = lines.length === 0;
+  const freeShipping = subtotal >= FREE_SHIPPING_THRESHOLD;
+
   return (
     <Container>
       <Navbar />
@@ -174,121 +220,107 @@ const Bag = () => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
+          <TopButton as={Link} to="/productlist">
+            CONTINUE SHOPPING
+          </TopButton>
           <TopInfo>
-            <TopText>Shopping Bag(3)</TopText>
+            <TopText>Shopping Bag({count})</TopText>
             <TopWishList>Your WishList(0)</TopWishList>
           </TopInfo>
-          <TopButton $variant="filled">CHECKOUT</TopButton>
+          <TopButton type="button" $variant="filled" disabled={isEmpty}>
+            CHECKOUT
+          </TopButton>
         </Top>
         <Bottom>
           <ProductInfo>
-            <Product>
-              <ProductDetail>
-                <Image
-                  name="product-bomber-jacket"
-                  alt="Black bomber jacket with patches"
-                  sizes="200px"
-                />
-                <Details>
-                  <ProductName>
-                    <b>PRODUCT:</b> VENTURER PREPARE FOR WAR BOMBER JACKET
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> RN30004
-                  </ProductId>
-                  <ProductColor $color="black" />
-                  <ProductSize>
-                    <b>Size:</b> M
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$230.00 CAD</ProductPrice>
-              </PriceDetail>
-            </Product>
-            <Product>
-              <ProductDetail>
-                <Image
-                  name="product-obey-cap"
-                  alt="Black Obey snapback cap with red logo patch"
-                  sizes="200px"
-                />
-                <Details>
-                  <ProductName>
-                    <b>PRODUCT:</b> Brand Patch Strapback Hat
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> OBE-CAP-1234567-QA66
-                  </ProductId>
-                  <ProductColor $color="black" />
-                  <ProductSize>
-                    <b>Size:</b> O/S
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$44.00 CAD</ProductPrice>
-              </PriceDetail>
-            </Product>
-            <Product>
-              <ProductDetail>
-                <Image
-                  name="product-cdg-converse"
-                  alt="Comme des Garçons PLAY x Converse black high-top sneaker"
-                  sizes="200px"
-                />
-                <Details>
-                  <ProductName>
-                    <b>PRODUCT:</b> Converse x Comme des Garçons PLAY Chuck 70
-                    High Top
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 16620479x
-                  </ProductId>
-                  <ProductColor $color="black" />
-                  <ProductSize>
-                    <b>Size:</b> W 6
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice>$200.00 CAD</ProductPrice>
-              </PriceDetail>
-            </Product>
-            <Hr />
+            {isEmpty && <Empty>Your bag is empty.</Empty>}
+            {lines.map((line) => {
+              const product = findProduct(line.id);
+              const key = lineKey(line);
+              const color = product.colors.find((c) => c.name === line.color);
+
+              return (
+                <div key={key}>
+                  <Product>
+                    <ProductDetail>
+                      <Link to={`/product/${product.id}`}>
+                        <Image
+                          name={product.img}
+                          alt={product.alt}
+                          sizes="200px"
+                        />
+                      </Link>
+                      <Details>
+                        <ProductName>
+                          <b>PRODUCT:</b> {product.name}
+                        </ProductName>
+                        <ProductId>
+                          <b>ID:</b> {product.sku}
+                        </ProductId>
+                        <ProductColor
+                          $color={color?.hex}
+                          title={line.color}
+                          aria-label={`Color: ${line.color}`}
+                        />
+                        <ProductSize>
+                          <b>Size:</b> {line.size}
+                        </ProductSize>
+                      </Details>
+                    </ProductDetail>
+                    <PriceDetail>
+                      <ProductAmountContainer>
+                        <QuantityButton
+                          type="button"
+                          aria-label={`Add one ${product.name}`}
+                          onClick={() => setQuantity(key, line.quantity + 1)}
+                        >
+                          <Add />
+                        </QuantityButton>
+                        <ProductAmount aria-live="polite">
+                          {line.quantity}
+                        </ProductAmount>
+                        <QuantityButton
+                          type="button"
+                          aria-label={
+                            line.quantity === 1
+                              ? `Remove ${product.name} from bag`
+                              : `Remove one ${product.name}`
+                          }
+                          onClick={() => setQuantity(key, line.quantity - 1)}
+                        >
+                          <Remove />
+                        </QuantityButton>
+                      </ProductAmountContainer>
+                      <ProductPrice>
+                        {formatPrice(product.price * line.quantity)}
+                      </ProductPrice>
+                    </PriceDetail>
+                  </Product>
+                  <Hr />
+                </div>
+              );
+            })}
           </ProductInfo>
 
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$474.00 CAD</SummaryItemPrice>
+              <SummaryItemPrice>{formatPrice(subtotal)}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Shipping</SummaryItemText>
-              <SummaryItemPrice>FREE</SummaryItemPrice>
+              <SummaryItemPrice>
+                {freeShipping ? "FREE" : "Calculated at checkout"}
+              </SummaryItemPrice>
             </SummaryItem>
             <SummaryItem $variant="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$474.00 CAD</SummaryItemPrice>
+              <SummaryItemPrice>{formatPrice(subtotal)}</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT</Button>
+            <Button type="button" disabled={isEmpty}>
+              CHECKOUT
+            </Button>
           </Summary>
         </Bottom>
       </Wrapper>

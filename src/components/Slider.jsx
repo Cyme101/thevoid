@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router";
 import styled from "styled-components";
 import {
   KeyboardArrowLeft as KeyboardArrowLeftIcon,
@@ -17,9 +18,10 @@ const Container = styled.div`
   ${mobile({ display: "none" })}
 `;
 
-const Arrow = styled.div`
+const Arrow = styled.button`
   align-items: center;
   background-color: #f7f9f9;
+  border: none;
   border-radius: 50%;
   bottom: 0;
   cursor: pointer;
@@ -91,15 +93,20 @@ const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
     if (direction === "left") {
-      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
+      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : sliderItems.length - 1);
     } else {
-      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
+      setSlideIndex(slideIndex < sliderItems.length - 1 ? slideIndex + 1 : 0);
     }
   };
 
   return (
     <Container>
-      <Arrow $direction="left" onClick={() => handleClick("left")}>
+      <Arrow
+        type="button"
+        $direction="left"
+        aria-label="Previous slide"
+        onClick={() => handleClick("left")}
+      >
         <KeyboardArrowLeftIcon />
       </Arrow>
       <Wrapper $slideIndex={slideIndex}>
@@ -118,12 +125,19 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Button>SHOP SALE</Button>
+              <Button as={Link} to="/productlist">
+                SHOP SALE
+              </Button>
             </InfoContainer>
           </Slide>
         ))}
       </Wrapper>
-      <Arrow $direction="right" onClick={() => handleClick("right")}>
+      <Arrow
+        type="button"
+        $direction="right"
+        aria-label="Next slide"
+        onClick={() => handleClick("right")}
+      >
         <KeyboardArrowRightIcon />
       </Arrow>
     </Container>

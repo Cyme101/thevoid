@@ -19,7 +19,7 @@ const FilterContainer = styled.div`
 
 const Filter = styled.div`
   margin: 15px;
-  ${mobile({ width: "0px 20px", display: "flex", flexDirection: "column" })}
+  ${mobile({ margin: "0px 20px", display: "flex", flexDirection: "column" })}
 `;
 
 const FilterText = styled.span`
@@ -46,8 +46,8 @@ const ProductList = () => {
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
-          <Select>
-            <Option disabled selected>
+          <Select defaultValue="" aria-label="Color">
+            <Option value="" disabled>
               Color
             </Option>
             <Option>Black</Option>
@@ -57,8 +57,8 @@ const ProductList = () => {
             <Option>Teal</Option>
             <Option>White</Option>
           </Select>
-          <Select>
-            <Option disabled selected>
+          <Select defaultValue="" aria-label="Size">
+            <Option value="" disabled>
               Size
             </Option>
             <Option>XS</Option>
@@ -70,8 +70,8 @@ const ProductList = () => {
         </Filter>
         <Filter>
           <FilterText>Sort Products:</FilterText>
-          <Select>
-            <Option selected>New Arrivals</Option>
+          <Select aria-label="Sort products">
+            <Option>New Arrivals</Option>
             <Option>Price (low to high)</Option>
             <Option>Price (high to low)</Option>
           </Select>
