@@ -1,13 +1,13 @@
 import styled from "styled-components";
-
-import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import PinterestIcon from "@mui/icons-material/Pinterest";
-import TwitterIcon from "@mui/icons-material/Twitter";
-
-import PlaceIcon from "@mui/icons-material/Place";
-import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
-import EmailIcon from "@mui/icons-material/Email";
+import {
+  FacebookRounded as FacebookRoundedIcon,
+  Instagram as InstagramIcon,
+  Pinterest as PinterestIcon,
+  Twitter as TwitterIcon,
+  Place as PlaceIcon,
+  PhoneInTalk as PhoneInTalkIcon,
+  Email as EmailIcon,
+} from "@mui/icons-material";
 
 import { mobile, tablet } from "../responsive";
 
@@ -36,7 +36,7 @@ const SocialContainer = styled.div`
 
 const SocialIcon = styled.div`
   align-items: center;
-  background-color: #${(props) => props.color};
+  background-color: #${(props) => props.$color};
   border-radius: 50%;
   color: white;
   display: flex;
@@ -95,16 +95,16 @@ const Footer = () => {
           FILL THE VOID WITH STYLE
         </Desc>
         <SocialContainer>
-          <SocialIcon color="0A80EC">
+          <SocialIcon $color="0A80EC">
             <FacebookRoundedIcon />
           </SocialIcon>
-          <SocialIcon color="C10174">
+          <SocialIcon $color="C10174">
             <InstagramIcon />
           </SocialIcon>
-          <SocialIcon color="1C9CEA">
+          <SocialIcon $color="1C9CEA">
             <TwitterIcon />
           </SocialIcon>
-          <SocialIcon color="E60023">
+          <SocialIcon $color="E60023">
             <PinterestIcon />
           </SocialIcon>
         </SocialContainer>

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+import {
+  KeyboardArrowLeft as KeyboardArrowLeftIcon,
+  KeyboardArrowRight as KeyboardArrowRightIcon,
+} from "@mui/icons-material";
 import { sliderItems } from "../Data";
 import { mobile, tablet } from "../responsive";
 
@@ -23,8 +25,8 @@ const Arrow = styled.div`
   display: flex;
   height: 50px;
   justify-content: center;
-  left: ${(props) => props.direction === "left" && "10px"};
-  right: ${(props) => props.direction === "right" && "10px"};
+  left: ${(props) => props.$direction === "left" && "10px"};
+  right: ${(props) => props.$direction === "right" && "10px"};
   margin: auto;
   opacity: 0.6;
   position: absolute;
@@ -37,12 +39,12 @@ const Wrapper = styled.div`
   display: flex;
   height: 100%;
   transition: all 1.5s ease;
-  transform: translateX(${(props) => props.slideIndex * -100}vw);
+  transform: translateX(${(props) => props.$slideIndex * -100}vw);
 `;
 
 const Slide = styled.div`
   align-items: center;
-  background-color: #${(props) => props.bg};
+  background-color: #${(props) => props.$bg};
   display: flex;
   height: 100vh;
   width: 100vw;
@@ -96,12 +98,12 @@ const Slider = () => {
 
   return (
     <Container>
-      <Arrow direction="left" onClick={() => handleClick("left")}>
+      <Arrow $direction="left" onClick={() => handleClick("left")}>
         <KeyboardArrowLeftIcon />
       </Arrow>
-      <Wrapper slideIndex={slideIndex}>
+      <Wrapper $slideIndex={slideIndex}>
         {sliderItems.map((item) => (
-          <Slide bg={item.bg} key={item.id}>
+          <Slide $bg={item.bg} key={item.id}>
             <ImgContainer>
               <Image src={item.img} />
             </ImgContainer>
@@ -113,7 +115,7 @@ const Slider = () => {
           </Slide>
         ))}
       </Wrapper>
-      <Arrow direction="right" onClick={() => handleClick("right")}>
+      <Arrow $direction="right" onClick={() => handleClick("right")}>
         <KeyboardArrowRightIcon />
       </Arrow>
     </Container>

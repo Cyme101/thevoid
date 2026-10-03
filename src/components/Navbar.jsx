@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
-import Badge from "@mui/material/Badge";
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
-import { Search } from "@mui/icons-material";
+import { Badge } from "@mui/material";
+import {
+  ShoppingBagOutlined as ShoppingBagOutlinedIcon,
+  Search,
+} from "@mui/icons-material";
 import { mobile } from "../responsive";
 
 const Container = styled.div`
