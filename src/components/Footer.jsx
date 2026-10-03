@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import styled from "styled-components";
 import {
   FacebookRounded as FacebookRoundedIcon,
@@ -67,6 +68,15 @@ const List = styled.ul`
 const ListItem = styled.li`
   margin-bottom: 10px;
   width: 50%;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
 `;
 
 const Right = styled.div`
@@ -112,14 +122,25 @@ const Footer = () => {
       <Center>
         <Title>HELPFUL LINKS</Title>
         <List>
-          <ListItem>HOME</ListItem>
-          <ListItem>MY ACCOUNT</ListItem>
+          <ListItem>
+            <Link to="/">HOME</Link>
+          </ListItem>
+          <ListItem>
+            <Link to="/about">ABOUT US</Link>
+          </ListItem>
+          <ListItem>
+            <Link to="/login">MY ACCOUNT</Link>
+          </ListItem>
           <ListItem>MY ORDERS</ListItem>
           <ListItem>MY WISHLIST</ListItem>
-          <ListItem>BAG</ListItem>
+          <ListItem>
+            <Link to="/bag">BAG</Link>
+          </ListItem>
           <ListItem>WOMEN'S</ListItem>
           <ListItem>MEN'S</ListItem>
-          <ListItem>ACCESSORIES</ListItem>
+          <ListItem>
+            <Link to="/productlist?category=accessories">ACCESSORIES</Link>
+          </ListItem>
           <ListItem>POLICIES</ListItem>
           <ListItem>TERMS OF SERVICE</ListItem>
           <ListItem>CHAT WITH OUR TEAM</ListItem>

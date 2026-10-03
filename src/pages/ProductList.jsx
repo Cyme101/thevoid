@@ -7,7 +7,7 @@ import Products from "../components/Products";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
-import { searchProducts } from "../Data";
+import { findCategory, searchProducts } from "../Data";
 
 const Container = styled.div``;
 
@@ -62,22 +62,30 @@ const Select = styled.select`
 const ProductList = () => {
   const [searchParams] = useSearchParams();
   const query = (searchParams.get("q") ?? "").trim();
-  const results = useMemo(() => searchProducts(query), [query]);
+  const category = findCategory(searchParams.get("category"));
+  const results = useMemo(
+    () =>
+      searchProducts(query).filter(
+        (product) => !category || product.category === category.id
+      ),
+    [query, category]
+  );
+
+  let title = "All Products";
+  if (query) {
+    title = `Results for “${query}”${category ? ` in ${category.label}` : ""}`;
+  } else if (category) {
+    title = category.label;
+  }
 
   return (
     <Container>
-      <Navbar />
       <Announcement />
-      {query ? (
-        <>
-          <Title>Results for “{query}”</Title>
-          <ResultCount role="status">
-            {results.length} {results.length === 1 ? "product" : "products"}
-          </ResultCount>
-        </>
-      ) : (
-        <Title>Unisex</Title>
-      )}
+      <Navbar />
+      <Title>{title}</Title>
+      <ResultCount role="status">
+        {results.length} {results.length === 1 ? "product" : "products"}
+      </ResultCount>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
@@ -116,7 +124,7 @@ const ProductList = () => {
         <Products items={results} />
       ) : (
         <NoResults>
-          No products match “{query}”.
+          {query ? `No products match “${query}”.` : "No products here yet."}
           <br />
           <Link to="/productlist">See all products</Link>
         </NoResults>

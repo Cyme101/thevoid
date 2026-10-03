@@ -179,8 +179,8 @@ const ProductDetails = ({ product }) => {
 
   return (
     <Container>
-      <Navbar />
       <Announcement />
+      <Navbar />
       <Wrapper>
         <ImgContainer>
           <Image

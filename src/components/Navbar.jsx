@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { Link, useNavigate, useSearchParams } from "react-router";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
 
 import { Badge } from "@mui/material";
 import {
@@ -9,12 +9,10 @@ import {
 } from "@mui/icons-material";
 import { mobile } from "../responsive";
 import { cartCount, useCart } from "../cart";
+import { productCategories } from "../Data";
 import { gsap, useGSAP, prefersReducedMotion } from "../gsap";
 
-const Container = styled.div`
-  height: 60px;
-  ${mobile({ height: "50px" })}
-`;
+const Container = styled.header``;
 
 const Wrapper = styled.div`
   align-items: center;
@@ -100,11 +98,81 @@ const BagIcon = styled.span`
   display: inline-flex;
 `;
 
+// Second row: the shop sections and the about page.
+const ShopNav = styled.nav`
+  border-bottom: 1px solid #eef0f2;
+  border-top: 1px solid #eef0f2;
+  display: flex;
+  gap: 36px;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 12px 20px;
+  ${mobile({
+    gap: "22px",
+    justifyContent: "flex-start",
+    overflowX: "auto",
+    padding: "10px 14px",
+    scrollbarWidth: "none",
+  })}
+`;
+
+const ShopLink = styled(Link)`
+  color: #090909;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  padding-bottom: 3px;
+  position: relative;
+  text-decoration: none;
+  white-space: nowrap;
+
+  /* Underline: shown for the current section, slides in on hover */
+  &::after {
+    background-color: #090909;
+    bottom: 0;
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    transform: scaleX(${(props) => (props["aria-current"] ? 1 : 0)});
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    width: 100%;
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+  }
+`;
+
+const isProductList = (pathname) => pathname === "/productlist";
+
+const shopLinks = [
+  {
+    label: "SHOP ALL",
+    to: "/productlist",
+    isCurrent: (pathname, params) =>
+      isProductList(pathname) && !params.get("category") && !params.get("q"),
+  },
+  ...productCategories.map((category) => ({
+    label: category.label.toUpperCase(),
+    to: `/productlist?category=${category.id}`,
+    isCurrent: (pathname, params) =>
+      isProductList(pathname) && params.get("category") === category.id,
+  })),
+  {
+    label: "ABOUT",
+    to: "/about",
+    isCurrent: (pathname) => pathname === "/about",
+  },
+];
+
 const Navbar = () => {
   const { lines } = useCart();
   const count = cartCount(lines);
   const bagRef = useRef(null);
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q") ?? "";
   const [search, setSearch] = useState(query);
@@ -192,6 +260,19 @@ const Navbar = () => {
           </Link>
         </Right>
       </Wrapper>
+      <ShopNav aria-label="Shop">
+        {shopLinks.map((link) => (
+          <ShopLink
+            key={link.to}
+            to={link.to}
+            aria-current={
+              link.isCurrent(pathname, searchParams) ? "page" : undefined
+            }
+          >
+            {link.label}
+          </ShopLink>
+        ))}
+      </ShopNav>
     </Container>
   );
 };

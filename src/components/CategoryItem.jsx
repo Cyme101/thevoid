@@ -61,7 +61,7 @@ const CategoryItem = ({ item }) => {
       />
       <Info>
         <Title>{item.title}</Title>
-        <Button as={Link} to="/productlist">
+        <Button as={Link} to={item.to}>
           SHOP HERE
         </Button>
       </Info>
