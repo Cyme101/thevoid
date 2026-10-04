@@ -8,6 +8,7 @@ import { findOrder } from "../orders";
 import { mobile, tablet } from "../responsive";
 import { ButtonLink } from "../components/Button";
 import { colors } from "../theme";
+import { contained } from "../layout";
 
 const draw = keyframes`
   to { stroke-dashoffset: 0; }
@@ -94,11 +95,10 @@ const Meta = styled.dl`
 const Body = styled.div`
   display: flex;
   gap: 40px;
-  margin: 0 auto;
-  max-width: 1000px;
-  padding: 20px 20px 40px;
+  padding-block: 20px 40px;
+  ${contained(1000)}
   ${tablet({ flexDirection: "column", gap: "24px" })}
-  ${mobile({ flexDirection: "column", gap: "20px", padding: "12px 16px 32px" })}
+  ${mobile({ flexDirection: "column", gap: "20px", paddingBlock: "12px 32px" })}
 `;
 
 const Column = styled.div`

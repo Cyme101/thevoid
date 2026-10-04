@@ -4,12 +4,14 @@ import { categories } from "../Data";
 import CategoryItem from "./CategoryItem";
 import { mobile } from "../responsive";
 import { useScrollReveal } from "../gsap";
+import { contained } from "../layout";
 
 const Container = styled.div`
   display: flex;
-  padding: 20px;
   justify-content: space-between;
-  ${mobile({ flexDirection: "column", padding: "10px" })}
+  padding-block: 20px;
+  ${contained()}
+  ${mobile({ flexDirection: "column", paddingBlock: "10px" })}
 `;
 
 const Categories = () => {

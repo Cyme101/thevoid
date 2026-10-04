@@ -12,9 +12,12 @@ import {
 
 import { mobile, tablet } from "../responsive";
 import { colors } from "../theme";
+import { contained, gutter } from "../layout";
 
 const Columns = styled.div`
   display: flex;
+  gap: 40px;
+  ${contained()}
   ${mobile({ flexDirection: "column" })}
   ${tablet({ flexDirection: "column" })}
 `;
@@ -23,7 +26,7 @@ const Left = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 20px;
+  padding-block: 20px;
 `;
 
 const Logo = styled.h1``;
@@ -50,7 +53,7 @@ const SocialIcon = styled.div`
 
 const Center = styled.div`
   flex: 1;
-  padding: 20px;
+  padding-block: 20px;
   ${mobile({ display: "none" })}
 `;
 
@@ -82,8 +85,8 @@ const ListItem = styled.li`
 
 const Right = styled.div`
   flex: 1;
-  padding: 20px;
-  ${mobile({ backgroundColor: colors.surface })}
+  padding-block: 20px;
+  ${mobile({ backgroundColor: colors.surface, padding: "20px" })}
 `;
 
 const ContactItem = styled.div`
@@ -108,7 +111,7 @@ const SmallPrint = styled.p`
   color: ${colors.muted};
   font-size: 12px;
   line-height: 1.5;
-  padding: 14px 20px;
+  padding: 14px ${gutter};
   text-align: center;
 
   a {

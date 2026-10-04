@@ -9,15 +9,17 @@ import { mobile, tablet } from "../responsive";
 import { useScrollReveal } from "../gsap";
 import { ButtonLink } from "../components/Button";
 import { colors } from "../theme";
+import { contained } from "../layout";
 
 const Hero = styled.section`
   align-items: center;
   display: flex;
   gap: 6vw;
   justify-content: center;
-  padding: 80px 80px;
-  ${tablet({ flexDirection: "column", padding: "50px 40px" })}
-  ${mobile({ flexDirection: "column", padding: "32px 20px", gap: "28px" })}
+  padding-block: 80px;
+  ${contained()}
+  ${tablet({ flexDirection: "column", paddingBlock: "50px" })}
+  ${mobile({ flexDirection: "column", paddingBlock: "32px", gap: "28px" })}
 `;
 
 const HeroImage = styled(Picture)`
@@ -55,14 +57,21 @@ const Lead = styled.p`
   ${mobile({ fontSize: "17px" })}
 `;
 
+// Full-width light band; the steps inside are centered.
 const Steps = styled.section`
   background-color: ${colors.surface};
+  padding-block: 80px;
+  ${tablet({ paddingBlock: "50px" })}
+  ${mobile({ paddingBlock: "40px" })}
+`;
+
+const StepsGrid = styled.div`
   display: grid;
   gap: 40px;
   grid-template-columns: repeat(3, 1fr);
-  padding: 80px;
-  ${tablet({ gridTemplateColumns: "1fr", padding: "50px 40px" })}
-  ${mobile({ gridTemplateColumns: "1fr", padding: "40px 20px", gap: "32px" })}
+  ${contained()}
+  ${tablet({ gridTemplateColumns: "1fr" })}
+  ${mobile({ gridTemplateColumns: "1fr", gap: "32px" })}
 `;
 
 const Step = styled.div`
@@ -127,14 +136,16 @@ const About = () => {
           <ButtonLink to="/productlist">SHOP THE COLLECTION</ButtonLink>
         </HeroText>
       </Hero>
-      <Steps ref={stepsRef} aria-label="How it works">
-        {steps.map((step, index) => (
-          <Step key={step.title}>
-            <StepNumber>0{index + 1}</StepNumber>
-            <StepTitle>{step.title}</StepTitle>
-            <StepText>{step.text}</StepText>
-          </Step>
-        ))}
+      <Steps aria-label="How it works">
+        <StepsGrid ref={stepsRef}>
+          {steps.map((step, index) => (
+            <Step key={step.title}>
+              <StepNumber>0{index + 1}</StepNumber>
+              <StepTitle>{step.title}</StepTitle>
+              <StepText>{step.text}</StepText>
+            </Step>
+          ))}
+        </StepsGrid>
       </Steps>
       <Newsletter />
       <Footer />
