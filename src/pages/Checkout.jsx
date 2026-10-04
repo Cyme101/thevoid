@@ -10,6 +10,7 @@ import { newOrderNumber, saveOrder } from "../orders";
 import { mobile, tablet } from "../responsive";
 import Button, { ButtonLink } from "../components/Button";
 import { colors } from "../theme";
+import { contained } from "../layout";
 
 const PROVINCES = [
   "Alberta",
@@ -30,11 +31,10 @@ const PROVINCES = [
 const Wrapper = styled.div`
   display: flex;
   gap: 60px;
-  margin: 0 auto;
-  max-width: 1100px;
-  padding: 40px 20px 80px;
+  padding-block: 40px 80px;
+  ${contained(1100)}
   ${tablet({ flexDirection: "column", gap: "40px" })}
-  ${mobile({ flexDirection: "column", gap: "32px", padding: "24px 16px 60px" })}
+  ${mobile({ flexDirection: "column", gap: "32px", paddingBlock: "24px 60px" })}
 `;
 
 const Title = styled.h1`

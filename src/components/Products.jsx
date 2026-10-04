@@ -4,6 +4,7 @@ import { products } from "../Data";
 import Product from "./Product";
 import { useScrollReveal } from "../gsap";
 import { mobile } from "../responsive";
+import { contained } from "../layout";
 
 const Container = styled.div`
   display: grid;
@@ -13,11 +14,12 @@ const Container = styled.div`
     auto-fill,
     minmax(max(240px, calc((100% - 3 * 24px) / 4)), 1fr)
   );
-  padding: 20px 20px 60px;
+  padding-block: 20px 60px;
+  ${contained()}
   ${mobile({
     gap: "28px 12px",
     gridTemplateColumns: "repeat(2, 1fr)",
-    padding: "12px 12px 40px",
+    paddingBlock: "12px 40px",
   })}
 `;
 

@@ -8,14 +8,19 @@ import Footer from "../components/Footer";
 import { findProduct } from "../Data";
 import { useWishlist } from "../wishlist";
 import { ButtonLink } from "../components/Button";
+import { contained } from "../layout";
+
+const Header = styled.div`
+  ${contained()}
+`;
 
 const Title = styled.h1`
-  margin: 20px;
+  margin: 20px 0;
 `;
 
 const Count = styled.p`
   font-weight: 300;
-  margin: -10px 20px 0;
+  margin: -10px 0 0;
 `;
 
 const Empty = styled.div`
@@ -38,10 +43,12 @@ const Wishlist = () => {
     <>
       <Announcement />
       <Navbar />
-      <Title>Your Wishlist</Title>
-      <Count role="status">
-        {saved.length} saved {saved.length === 1 ? "piece" : "pieces"}
-      </Count>
+      <Header>
+        <Title>Your Wishlist</Title>
+        <Count role="status">
+          {saved.length} saved {saved.length === 1 ? "piece" : "pieces"}
+        </Count>
+      </Header>
       {saved.length > 0 ? (
         <Products items={saved} />
       ) : (

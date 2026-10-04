@@ -14,6 +14,7 @@ import { useWishlist } from "../wishlist";
 import { productCategories } from "../Data";
 import { gsap, useGSAP, prefersReducedMotion } from "../gsap";
 import { colors } from "../theme";
+import { contained, gutter } from "../layout";
 
 const Container = styled.header``;
 
@@ -21,9 +22,9 @@ const Wrapper = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding: 10px 20px;
   margin-top: 10px;
-  ${mobile({ padding: "10px 14px" })}
+  padding-block: 10px;
+  ${contained()}
 `;
 
 const Language = styled.span`
@@ -126,12 +127,12 @@ const ShopNav = styled.nav`
   gap: 36px;
   justify-content: center;
   margin-top: 10px;
-  padding: 12px 20px;
+  padding: 12px ${gutter};
   ${mobile({
     gap: "22px",
     justifyContent: "flex-start",
     overflowX: "auto",
-    padding: "10px 14px",
+    padding: `10px ${gutter}`,
     scrollbarWidth: "none",
   })}
 `;

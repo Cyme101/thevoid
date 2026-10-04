@@ -24,14 +24,16 @@ import Button from "../components/Button";
 import { colors } from "../theme";
 import { useFlash } from "../useFlash";
 import QuantityButton from "../components/QuantityButton";
+import { contained } from "../layout";
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
   display: flex;
-  padding: 50px;
-  ${mobile({ flexDirection: "column", padding: "10px" })}
-  ${tablet({ flexDirection: "column", padding: "10px" })}
+  padding-block: 50px;
+  ${contained()}
+  ${mobile({ flexDirection: "column", paddingBlock: "10px" })}
+  ${tablet({ flexDirection: "column", paddingBlock: "10px" })}
 `;
 
 // Light panel (same as the product cards) with the whole product centered.

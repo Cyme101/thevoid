@@ -20,12 +20,14 @@ import { useWishlist } from "../wishlist";
 import Button, { ButtonLink } from "../components/Button";
 import { colors } from "../theme";
 import QuantityButton from "../components/QuantityButton";
+import { contained } from "../layout";
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
-  padding: 20px;
-  ${mobile({ padding: "10px" })}
+  padding-block: 20px;
+  ${contained()}
+  ${mobile({ paddingBlock: "10px" })}
 `;
 
 const Title = styled.h1`
